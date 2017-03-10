@@ -34,7 +34,7 @@ public class SpawnStructure extends ClashStructure {
 
 	@Override
 	public void spawn() {
-		//TODO: Load schematic
+		loadSchematic();
 		task = new SpawnTask(this);
 	}
 	

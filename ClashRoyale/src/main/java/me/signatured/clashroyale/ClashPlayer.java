@@ -14,4 +14,5 @@ public class ClashPlayer {
 	
 	private List<ClashCard> ownedCards = new ArrayList<>();
 	private CardDeck[] decks = new CardDeck[3];
+	private int selectedDeck = 0;
 }

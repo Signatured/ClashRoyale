@@ -23,7 +23,7 @@ public class NpcStructure extends ClashStructure {
 
 	@Override
 	public void spawn() {
-		//TODO: Load structure from schematic, spawn NPC at given location
+		loadSchematic();
 	}
 	
 	@Override

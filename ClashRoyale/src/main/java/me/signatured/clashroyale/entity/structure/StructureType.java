@@ -1,8 +1,13 @@
 package me.signatured.clashroyale.entity.structure;
 
+import java.io.File;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import me.signatured.clashroyale.ClashRoyale;
 import me.signatured.clashroyale.entity.ClashRarity;
+import me.signatured.clashroyale.util.schematic.Schematic;
+import me.signatured.clashroyale.util.schematic.SchematicUtil;
 
 @Getter
 @AllArgsConstructor
@@ -25,4 +30,12 @@ public enum StructureType {
 	private String name;
 	private ClashRarity rarity;
 	private int lifeTime;
+	
+	public File getSchematicFile() {
+		return new File(ClashRoyale.getInstance().getDataFolder() + "/" + name().toLowerCase() + ".schematic");
+	}
+	
+	public Schematic getSchematic() throws Exception {
+		return SchematicUtil.load(getSchematicFile());
+	}
 }
