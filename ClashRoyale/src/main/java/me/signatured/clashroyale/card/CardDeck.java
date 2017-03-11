@@ -17,8 +17,5 @@ public class CardDeck {
 	public void load(List<ClashCard> list) {
 		for (int i = 0; i < list.size(); i++)
 			cards[i] = list.get(i);
-		
 	}
-	
-	
 }

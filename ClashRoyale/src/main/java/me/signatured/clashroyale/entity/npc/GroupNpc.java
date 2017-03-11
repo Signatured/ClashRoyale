@@ -41,6 +41,11 @@ public class GroupNpc extends ClashSpawnable {
 	public void despawn() {
 		
 	}
+	
+	@Override
+	public void onDeath() {
+		
+	}
 
 	@Override
 	public void tick() {

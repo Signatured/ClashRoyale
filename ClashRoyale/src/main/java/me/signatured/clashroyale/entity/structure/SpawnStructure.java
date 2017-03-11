@@ -13,7 +13,7 @@ import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.task.ClashTask;
 
 @Getter
-public class SpawnStructure extends ClashStructure {
+public abstract class SpawnStructure extends ClashStructure {
 
 	private NpcType npcType;
 	private Location spawnLoc;
@@ -34,13 +34,18 @@ public class SpawnStructure extends ClashStructure {
 
 	@Override
 	public void spawn() {
-		loadSchematic();
+		place();
 		task = new SpawnTask(this);
 	}
 	
 	@Override
 	public void despawn() {
 		task.cancel();
+	}
+	
+	@Override
+	public void onDeath() {
+		
 	}
 
 	@Override

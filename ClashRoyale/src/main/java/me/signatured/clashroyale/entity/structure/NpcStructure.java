@@ -9,7 +9,7 @@ import me.signatured.clashroyale.game.ClashGame;
 import net.citizensnpcs.api.npc.NPC;
 
 @Getter
-public class NpcStructure extends ClashStructure {
+public abstract class NpcStructure extends ClashStructure {
 	
 	private NpcType npcType;
 	private NPC npc;
@@ -23,11 +23,16 @@ public class NpcStructure extends ClashStructure {
 
 	@Override
 	public void spawn() {
-		loadSchematic();
+		place();
 	}
 	
 	@Override
 	public void despawn() {
+		
+	}
+	
+	@Override
+	public void onDeath() {
 		
 	}
 

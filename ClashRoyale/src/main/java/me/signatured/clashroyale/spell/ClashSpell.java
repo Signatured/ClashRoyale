@@ -18,5 +18,10 @@ public abstract class ClashSpell extends ClashSpawnable {
 		this.spellType = spellType;
 		this.level = level;
 	}
+	
+	@Override
+	public void onDeath() {
+		//Not needed for spells
+	}
 
 }

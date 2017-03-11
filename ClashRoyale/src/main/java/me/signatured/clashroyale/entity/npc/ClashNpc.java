@@ -46,6 +46,11 @@ public class ClashNpc extends ClashSpawnable {
 	}
 	
 	@Override
+	public void onDeath() {
+		
+	}
+	
+	@Override
 	public void tick() {
 		
 	}

@@ -15,6 +15,7 @@ public abstract class ClashStructure extends ClashSpawnable {
 	
 	private StructureType structureType;
 	private Location loc;
+	private Schematic schematic;
 	private int level;
 	private int health;
 		
@@ -22,14 +23,20 @@ public abstract class ClashStructure extends ClashSpawnable {
 		super(game, player);
 		this.structureType = structureType;
 		this.loc = loc;
+		
+		loadSchematic();
 	}
 	
-	public void loadSchematic() {
+	public void place() {
+		//TODO: Place
+	}
+	
+	private void loadSchematic() {
 		try {
-			Schematic schem = structureType.getSchematic();
-			schem.place(loc);
+			schematic = structureType.getSchematic();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	
 }

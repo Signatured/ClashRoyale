@@ -17,5 +17,6 @@ public abstract class ClashSpawnable {
 	
 	public abstract void spawn();
 	public abstract void despawn();
+	public abstract void onDeath();
 	public abstract void tick();
 }

@@ -1,10 +1,51 @@
 package me.signatured.clashroyale.game;
 
+import lombok.Data;
 import me.signatured.clashroyale.ClashPlayer;
+import me.signatured.clashroyale.card.CardDeck;
+import me.signatured.clashroyale.card.ClashCard;
+import me.signatured.clashroyale.task.ElixirTask;
+import me.signatured.clashroyale.util.ClashUtil;
 
+@Data
 public class ClashGameData {
 	
 	private ClashGame game;
 	private ClashPlayer player;
-	private int elixir = 5;
+	private CardDeck selectedDeck;
+	private ClashCard[] cards = new ClashCard[4];
+	private ClashCard nextCard;
+	private int crowns;
+	private double elixir = 5;
+	
+	private ElixirTask elixirTask;
+	
+	public ClashGameData(ClashGame game, ClashPlayer player) {
+		this.game = game;
+		this.player = player;
+		this.selectedDeck = player.getDecks()[player.getSelectedDeck()];
+		
+		createHand();
+	}
+	
+	public void addElixer(double amount) {
+		elixir += amount;
+	}
+	
+	public void addCrown() {
+		crowns++;
+	}
+	
+	public boolean maxCrowns() {
+		return crowns >= 3;
+	}
+	
+	private void createHand() {
+		for (int i = 0; i < 4; i++) {
+			ClashCard card = ClashUtil.getRandomEntry(selectedDeck.getCards(), cards);
+			cards[i] = card;
+		}
+		
+		nextCard = ClashUtil.getRandomEntry(selectedDeck.getCards(), cards);
+	}
 }

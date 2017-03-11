@@ -22,6 +22,11 @@ public class ElixirCollector extends ClashStructure {
 	public void despawn() {
 		
 	}
+	
+	@Override
+	public void onDeath() {
+		
+	}
 
 	@Override
 	public void tick() {
