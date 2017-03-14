@@ -3,6 +3,7 @@ package me.signatured.clashroyale.game;
 import lombok.Data;
 import me.signatured.clashroyale.ClashPlayer;
 import me.signatured.clashroyale.task.ElixirTask;
+import me.signatured.clashroyale.task.GameTimeTask;
 
 @Data
 public class ClashGame {
@@ -12,6 +13,7 @@ public class ClashGame {
 	private ClashGameData winner;
 	private GameState state;
 	
+	private GameTimeTask gameTask;
 	private ElixirTask elixirTask;
 	
 	public ClashGame(ClashPlayer player1, ClashPlayer player2) {
