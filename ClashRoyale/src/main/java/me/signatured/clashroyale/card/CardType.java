@@ -2,77 +2,79 @@ package me.signatured.clashroyale.card;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import me.signatured.clashroyale.entity.ClashRarity;
-import me.signatured.clashroyale.entity.ClashSpawnable;
-import me.signatured.clashroyale.entity.npc.impl.Archer;
-import me.signatured.clashroyale.entity.npc.impl.BabyDragon;
-import me.signatured.clashroyale.entity.npc.impl.Balloon;
-import me.signatured.clashroyale.entity.npc.impl.Bomber;
-import me.signatured.clashroyale.entity.npc.impl.Bowler;
-import me.signatured.clashroyale.entity.npc.impl.DarkPrince;
-import me.signatured.clashroyale.entity.npc.impl.DartGoblin;
-import me.signatured.clashroyale.entity.npc.impl.ElectroWizard;
-import me.signatured.clashroyale.entity.npc.impl.Giant;
-import me.signatured.clashroyale.entity.npc.impl.GiantSkeleton;
-import me.signatured.clashroyale.entity.npc.impl.Golem;
-import me.signatured.clashroyale.entity.npc.impl.HogRider;
-import me.signatured.clashroyale.entity.npc.impl.IceGolem;
-import me.signatured.clashroyale.entity.npc.impl.IceSpirit;
-import me.signatured.clashroyale.entity.npc.impl.IceWizard;
-import me.signatured.clashroyale.entity.npc.impl.InfernoDragon;
-import me.signatured.clashroyale.entity.npc.impl.Knight;
-import me.signatured.clashroyale.entity.npc.impl.LavaHound;
-import me.signatured.clashroyale.entity.npc.impl.Lumberjack;
-import me.signatured.clashroyale.entity.npc.impl.MegaMinion;
-import me.signatured.clashroyale.entity.npc.impl.Miner;
-import me.signatured.clashroyale.entity.npc.impl.MiniPekka;
-import me.signatured.clashroyale.entity.npc.impl.Musketeer;
-import me.signatured.clashroyale.entity.npc.impl.Pekka;
-import me.signatured.clashroyale.entity.npc.impl.Prince;
-import me.signatured.clashroyale.entity.npc.impl.Princess;
-import me.signatured.clashroyale.entity.npc.impl.RoyaleGiant;
-import me.signatured.clashroyale.entity.npc.impl.Sparky;
-import me.signatured.clashroyale.entity.npc.impl.SpearGoblin;
-import me.signatured.clashroyale.entity.npc.impl.Valkyrie;
-import me.signatured.clashroyale.entity.npc.impl.Witch;
-import me.signatured.clashroyale.entity.npc.impl.Wizard;
-import me.signatured.clashroyale.entity.npc.impl.groups.Barbarians;
-import me.signatured.clashroyale.entity.npc.impl.groups.EliteBarbarians;
-import me.signatured.clashroyale.entity.npc.impl.groups.FireSpirits;
-import me.signatured.clashroyale.entity.npc.impl.groups.Goblins;
-import me.signatured.clashroyale.entity.npc.impl.groups.Guards;
-import me.signatured.clashroyale.entity.npc.impl.groups.MinionHorde;
-import me.signatured.clashroyale.entity.npc.impl.groups.Minions;
-import me.signatured.clashroyale.entity.npc.impl.groups.SkeletonArmy;
-import me.signatured.clashroyale.entity.npc.impl.groups.Skeletons;
-import me.signatured.clashroyale.entity.npc.impl.groups.ThreeMusketeers;
-import me.signatured.clashroyale.entity.structure.impl.BarbarianHut;
-import me.signatured.clashroyale.entity.structure.impl.BomberTower;
-import me.signatured.clashroyale.entity.structure.impl.Cannon;
-import me.signatured.clashroyale.entity.structure.impl.ElixirCollector;
-import me.signatured.clashroyale.entity.structure.impl.Furnace;
-import me.signatured.clashroyale.entity.structure.impl.GoblinHut;
-import me.signatured.clashroyale.entity.structure.impl.InfernoTower;
-import me.signatured.clashroyale.entity.structure.impl.Mortar;
-import me.signatured.clashroyale.entity.structure.impl.Tesla;
-import me.signatured.clashroyale.entity.structure.impl.Tombstone;
-import me.signatured.clashroyale.entity.structure.impl.XBow;
-import me.signatured.clashroyale.spell.impl.ArrowsSpell;
-import me.signatured.clashroyale.spell.impl.CloneSpell;
-import me.signatured.clashroyale.spell.impl.FireballSpell;
-import me.signatured.clashroyale.spell.impl.FreezeSpell;
-import me.signatured.clashroyale.spell.impl.GoblinBarrelSpell;
-import me.signatured.clashroyale.spell.impl.GraveyardSpell;
-import me.signatured.clashroyale.spell.impl.LightningSpell;
-import me.signatured.clashroyale.spell.impl.PoisonSpell;
-import me.signatured.clashroyale.spell.impl.RageSpell;
-import me.signatured.clashroyale.spell.impl.RocketSpell;
-import me.signatured.clashroyale.spell.impl.TheLogSpell;
-import me.signatured.clashroyale.spell.impl.TornadoSpell;
-import me.signatured.clashroyale.spell.impl.ZapSpell;
+import me.signatured.clashroyale.spawnable.ClashRarity;
+import me.signatured.clashroyale.spawnable.ClashSpawnable;
+import me.signatured.clashroyale.spawnable.npc.impl.Archer;
+import me.signatured.clashroyale.spawnable.npc.impl.BabyDragon;
+import me.signatured.clashroyale.spawnable.npc.impl.Balloon;
+import me.signatured.clashroyale.spawnable.npc.impl.Bomber;
+import me.signatured.clashroyale.spawnable.npc.impl.Bowler;
+import me.signatured.clashroyale.spawnable.npc.impl.DarkPrince;
+import me.signatured.clashroyale.spawnable.npc.impl.DartGoblin;
+import me.signatured.clashroyale.spawnable.npc.impl.ElectroWizard;
+import me.signatured.clashroyale.spawnable.npc.impl.Executioner;
+import me.signatured.clashroyale.spawnable.npc.impl.Giant;
+import me.signatured.clashroyale.spawnable.npc.impl.GiantSkeleton;
+import me.signatured.clashroyale.spawnable.npc.impl.Golem;
+import me.signatured.clashroyale.spawnable.npc.impl.HogRider;
+import me.signatured.clashroyale.spawnable.npc.impl.IceGolem;
+import me.signatured.clashroyale.spawnable.npc.impl.IceSpirit;
+import me.signatured.clashroyale.spawnable.npc.impl.IceWizard;
+import me.signatured.clashroyale.spawnable.npc.impl.InfernoDragon;
+import me.signatured.clashroyale.spawnable.npc.impl.Knight;
+import me.signatured.clashroyale.spawnable.npc.impl.LavaHound;
+import me.signatured.clashroyale.spawnable.npc.impl.Lumberjack;
+import me.signatured.clashroyale.spawnable.npc.impl.MegaMinion;
+import me.signatured.clashroyale.spawnable.npc.impl.Miner;
+import me.signatured.clashroyale.spawnable.npc.impl.MiniPekka;
+import me.signatured.clashroyale.spawnable.npc.impl.Musketeer;
+import me.signatured.clashroyale.spawnable.npc.impl.Pekka;
+import me.signatured.clashroyale.spawnable.npc.impl.Prince;
+import me.signatured.clashroyale.spawnable.npc.impl.Princess;
+import me.signatured.clashroyale.spawnable.npc.impl.RoyaleGiant;
+import me.signatured.clashroyale.spawnable.npc.impl.Sparky;
+import me.signatured.clashroyale.spawnable.npc.impl.Valkyrie;
+import me.signatured.clashroyale.spawnable.npc.impl.Witch;
+import me.signatured.clashroyale.spawnable.npc.impl.Wizard;
+import me.signatured.clashroyale.spawnable.npc.impl.groups.Barbarians;
+import me.signatured.clashroyale.spawnable.npc.impl.groups.EliteBarbarians;
+import me.signatured.clashroyale.spawnable.npc.impl.groups.FireSpirits;
+import me.signatured.clashroyale.spawnable.npc.impl.groups.Goblins;
+import me.signatured.clashroyale.spawnable.npc.impl.groups.Guards;
+import me.signatured.clashroyale.spawnable.npc.impl.groups.MinionHorde;
+import me.signatured.clashroyale.spawnable.npc.impl.groups.Minions;
+import me.signatured.clashroyale.spawnable.npc.impl.groups.SkeletonArmy;
+import me.signatured.clashroyale.spawnable.npc.impl.groups.Skeletons;
+import me.signatured.clashroyale.spawnable.npc.impl.groups.SpearGoblins;
+import me.signatured.clashroyale.spawnable.npc.impl.groups.ThreeMusketeers;
+import me.signatured.clashroyale.spawnable.spell.impl.ArrowsSpell;
+import me.signatured.clashroyale.spawnable.spell.impl.CloneSpell;
+import me.signatured.clashroyale.spawnable.spell.impl.FireballSpell;
+import me.signatured.clashroyale.spawnable.spell.impl.FreezeSpell;
+import me.signatured.clashroyale.spawnable.spell.impl.GoblinBarrelSpell;
+import me.signatured.clashroyale.spawnable.spell.impl.GraveyardSpell;
+import me.signatured.clashroyale.spawnable.spell.impl.LightningSpell;
+import me.signatured.clashroyale.spawnable.spell.impl.PoisonSpell;
+import me.signatured.clashroyale.spawnable.spell.impl.RageSpell;
+import me.signatured.clashroyale.spawnable.spell.impl.RocketSpell;
+import me.signatured.clashroyale.spawnable.spell.impl.TheLogSpell;
+import me.signatured.clashroyale.spawnable.spell.impl.TornadoSpell;
+import me.signatured.clashroyale.spawnable.spell.impl.ZapSpell;
+import me.signatured.clashroyale.spawnable.structure.impl.BarbarianHut;
+import me.signatured.clashroyale.spawnable.structure.impl.BomberTower;
+import me.signatured.clashroyale.spawnable.structure.impl.Cannon;
+import me.signatured.clashroyale.spawnable.structure.impl.ElixirCollector;
+import me.signatured.clashroyale.spawnable.structure.impl.Furnace;
+import me.signatured.clashroyale.spawnable.structure.impl.GoblinHut;
+import me.signatured.clashroyale.spawnable.structure.impl.InfernoTower;
+import me.signatured.clashroyale.spawnable.structure.impl.Mortar;
+import me.signatured.clashroyale.spawnable.structure.impl.Tesla;
+import me.signatured.clashroyale.spawnable.structure.impl.Tombstone;
+import me.signatured.clashroyale.spawnable.structure.impl.XBow;
 
 @Getter
 @AllArgsConstructor
+@Deprecated
 public enum CardType {
 	
 	ARCHER("Archer", Archer.class, ClashRarity.COMMON, 3),
@@ -90,6 +92,7 @@ public enum CardType {
 	DART_GOBLIN("Dart Goblin", DartGoblin.class, ClashRarity.RARE, 3),
 	ELECTRO_WIZARD("Electro Wizard", ElectroWizard.class, ClashRarity.LEGENDARY, 4),
 	ELITE_BARBARIANS("Elite Barbarians", EliteBarbarians.class, ClashRarity.COMMON, 6),
+	EXECUTIONER("Executioner", Executioner.class, ClashRarity.EPIC, 5),
 	ELIXIR_COLLECTOR("Elixir Collector", ElixirCollector.class, ClashRarity.RARE, 5),
 	FIRE_SPIRITS("Fire Spirits", FireSpirits.class, ClashRarity.COMMON, 2),
 	FIREBALL("Fireball", FireballSpell.class, ClashRarity.RARE, 4),
@@ -130,7 +133,7 @@ public enum CardType {
 	SKELETON_ARMY("Skeleton Army", SkeletonArmy.class, ClashRarity.EPIC, 3),
 	SKELETONS("Skeletons", Skeletons.class, ClashRarity.COMMON, 1),
 	SPARKY("Sparky", Sparky.class, ClashRarity.LEGENDARY, 6),
-	SPEAR_GOBLIN("Spear Goblin", SpearGoblin.class, ClashRarity.COMMON, 2),
+	SPEAR_GOBLINS("Spear Goblins", SpearGoblins.class, ClashRarity.COMMON, 2),
 	TESLA("Tesla", Tesla.class, ClashRarity.COMMON, 4),
 	THE_LOG("The Log", TheLogSpell.class, ClashRarity.LEGENDARY, 2),
 	THREE_MUSKETEERS("Three Musketeers", ThreeMusketeers.class, ClashRarity.RARE, 9),
@@ -146,8 +149,4 @@ public enum CardType {
 	private Class<? extends ClashSpawnable> spawnableClass;
 	private ClashRarity rarity;
 	private int elixirCost;
-	
-	public ClashCard createCard(int level, int number) {
-		return new ClashCard(this, level, number);
-	}
 }

@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import lombok.Getter;
+import me.signatured.clashroyale.card.CardList;
 import me.signatured.clashroyale.util.item.InteractiveItemListener;
 
 public class ClashRoyale extends JavaPlugin {
@@ -14,6 +15,7 @@ public class ClashRoyale extends JavaPlugin {
 	@Override
 	public void onLoad() {
 		instance = this;
+		new CardList();
 	}
 	
 	@Override

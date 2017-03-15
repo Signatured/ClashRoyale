@@ -3,7 +3,7 @@ package me.signatured.clashroyale.game;
 import lombok.Data;
 import me.signatured.clashroyale.ClashPlayer;
 import me.signatured.clashroyale.card.CardDeck;
-import me.signatured.clashroyale.card.ClashCard;
+import me.signatured.clashroyale.card.PlayerCard;
 import me.signatured.clashroyale.task.ElixirTask;
 import me.signatured.clashroyale.util.ClashUtil;
 
@@ -13,8 +13,8 @@ public class ClashGameData {
 	private ClashGame game;
 	private ClashPlayer player;
 	private CardDeck selectedDeck;
-	private ClashCard[] cards = new ClashCard[4];
-	private ClashCard nextCard;
+	private PlayerCard[] cards = new PlayerCard[4];
+	private PlayerCard nextCard;
 	private int crowns;
 	private double elixir = 5;
 	
@@ -42,7 +42,7 @@ public class ClashGameData {
 	
 	private void createHand() {
 		for (int i = 0; i < 4; i++) {
-			ClashCard card = ClashUtil.getRandomEntry(selectedDeck.getCards(), cards);
+			PlayerCard card = ClashUtil.getRandomEntry(selectedDeck.getCards(), cards);
 			cards[i] = card;
 		}
 		
