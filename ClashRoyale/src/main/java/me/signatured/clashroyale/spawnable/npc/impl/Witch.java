@@ -14,7 +14,6 @@ public class Witch extends ClashNpc implements IClashNpc {
 
 	public Witch(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, NpcType.WITCH, level);
-		flags().setAttackFlying(true);
 	}
 
 	@Override

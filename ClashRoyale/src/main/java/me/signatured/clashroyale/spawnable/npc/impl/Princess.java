@@ -14,7 +14,6 @@ public class Princess extends ClashNpc implements IClashNpc {
 
 	public Princess(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, NpcType.PRINCESS, level);
-		flags().setAttackFlying(true);
 	}
 
 	@Override

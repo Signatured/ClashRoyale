@@ -14,8 +14,6 @@ public class LavaHound extends ClashNpc implements IClashNpc {
 
 	public LavaHound(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, NpcType.LAVA_HOUND, level);
-		flags().setFlying(true);
-		flags().setStructuresOnly(true);
 	}
 
 	@Override

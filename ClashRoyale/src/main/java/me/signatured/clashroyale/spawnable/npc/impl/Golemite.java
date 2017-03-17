@@ -12,7 +12,6 @@ public class Golemite extends ClashNpc implements IClashNpc {
 
 	public Golemite(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, NpcType.MINI_GOLEM, level);
-		flags().setStructuresOnly(true);
 	}
 
 	@Override

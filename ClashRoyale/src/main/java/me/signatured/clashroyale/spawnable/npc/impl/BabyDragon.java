@@ -14,8 +14,6 @@ public class BabyDragon extends ClashNpc implements IClashNpc {
 
 	public BabyDragon(ClashGame game, ClashPlayer owner, int level) {
 		super(game, owner, NpcType.BABY_DRAGON, level);
-		flags().setFlying(true);
-		flags().setAttackFlying(true);
 	}
 
 	@Override

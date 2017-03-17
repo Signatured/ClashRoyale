@@ -14,7 +14,6 @@ public class Archer extends ClashNpc implements IClashNpc {
 
 	public Archer(ClashGame game, ClashPlayer owner, int level) {
 		super(game, owner, NpcType.ARCHER, level);
-		flags().setAttackFlying(true);
 	}
 
 	@Override

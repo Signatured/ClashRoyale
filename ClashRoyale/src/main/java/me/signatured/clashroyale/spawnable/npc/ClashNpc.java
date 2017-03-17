@@ -20,7 +20,6 @@ public class ClashNpc extends ClashSpawnable {
 	
 	private NPC npc;
 	private NpcType npcType;
-	private NpcFlags flags;
 	private int level, health, damage;
 	
 	public ClashNpc(ClashGame game, ClashPlayer player, NpcType npcType, int level) {
@@ -51,9 +50,5 @@ public class ClashNpc extends ClashSpawnable {
 	@Override
 	public void tick() {
 		
-	}
-	
-	public NpcFlags flags() {
-		return flags;
 	}
 }

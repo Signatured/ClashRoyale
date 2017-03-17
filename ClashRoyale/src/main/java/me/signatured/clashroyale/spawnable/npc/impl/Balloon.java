@@ -14,8 +14,6 @@ public class Balloon extends ClashNpc implements IClashNpc {
 
 	public Balloon(ClashGame game, ClashPlayer player, NpcType npcType, int level) {
 		super(game, player, npcType, level);
-		flags().setFlying(true);
-		flags().setAttackFlying(true);
 	}
 
 	@Override

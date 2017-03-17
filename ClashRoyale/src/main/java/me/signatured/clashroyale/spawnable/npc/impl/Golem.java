@@ -14,7 +14,6 @@ public class Golem extends ClashNpc implements IClashNpc {
 
 	public Golem(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, NpcType.GOLEM, level);
-		flags().setStructuresOnly(true);
 	}
 
 	@Override

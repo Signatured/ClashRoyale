@@ -14,7 +14,6 @@ public class IceWizard extends ClashNpc implements IClashNpc {
 
 	public IceWizard(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, NpcType.ICE_WIZARD, level);
-		flags().setAttackFlying(true);
 	}
 
 	@Override

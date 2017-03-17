@@ -14,7 +14,6 @@ public class IceGolem extends ClashNpc implements IClashNpc {
 
 	public IceGolem(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, NpcType.ICE_GOLEM, level);
-		flags().setStructuresOnly(true);
 	}
 
 	@Override

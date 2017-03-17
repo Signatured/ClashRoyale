@@ -12,7 +12,6 @@ public class SpearGoblin extends ClashNpc implements IClashNpc {
 
 	public SpearGoblin(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, NpcType.SPEAR_GOBLIN, level);
-		flags().setAttackFlying(true);
 	}
 
 	@Override

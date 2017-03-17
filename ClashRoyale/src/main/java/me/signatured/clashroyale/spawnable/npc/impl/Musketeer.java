@@ -14,7 +14,6 @@ public class Musketeer extends ClashNpc implements IClashNpc {
 
 	public Musketeer(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, NpcType.MUSKETEER, level);
-		flags().setAttackFlying(true);
 	}
 
 	@Override

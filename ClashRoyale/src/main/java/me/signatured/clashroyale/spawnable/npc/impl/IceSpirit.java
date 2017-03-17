@@ -14,7 +14,6 @@ public class IceSpirit extends ClashNpc implements IClashNpc {
 
 	public IceSpirit(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, NpcType.ICE_SPIRIT, level);
-		flags().setAttackFlying(true);
 	}
 
 	@Override

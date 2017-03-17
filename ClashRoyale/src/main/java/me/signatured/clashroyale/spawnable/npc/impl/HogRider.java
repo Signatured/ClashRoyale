@@ -14,7 +14,6 @@ public class HogRider extends ClashNpc implements IClashNpc {
 
 	public HogRider(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, NpcType.HOG_RIDER, level);
-		flags().setStructuresOnly(true);
 	}
 
 	@Override

@@ -14,8 +14,6 @@ public class MegaMinion extends ClashNpc implements IClashNpc {
 
 	public MegaMinion(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, NpcType.MEGA_MINION, level);
-		flags().setFlying(true);
-		flags().setAttackFlying(true);
 	}
 
 	@Override

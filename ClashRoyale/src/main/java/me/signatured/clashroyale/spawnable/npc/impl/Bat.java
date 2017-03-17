@@ -12,8 +12,6 @@ public class Bat extends ClashNpc implements IClashNpc {
 
 	public Bat(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, NpcType.BAT, level);
-		flags().setFlying(true);
-		flags().setAttackFlying(true);
 	}
 	
 	@Override

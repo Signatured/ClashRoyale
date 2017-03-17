@@ -14,7 +14,6 @@ public class RoyaleGiant extends ClashNpc implements IClashNpc {
 
 	public RoyaleGiant(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, NpcType.ROYALE_GIANT, level);
-		flags().setStructuresOnly(true);
 	}
 
 	@Override

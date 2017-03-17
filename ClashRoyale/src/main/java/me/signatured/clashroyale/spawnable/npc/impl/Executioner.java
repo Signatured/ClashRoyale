@@ -14,7 +14,6 @@ public class Executioner extends ClashNpc implements IClashNpc {
 
 	public Executioner(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, NpcType.EXECUTIONER, level);
-		flags().setAttackFlying(true);
 	}
 
 	@Override

@@ -14,7 +14,6 @@ public class Giant extends ClashNpc implements IClashNpc {
 
 	public Giant(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, NpcType.GIANT, level);
-		flags().setStructuresOnly(true);
 	}
 
 	@Override

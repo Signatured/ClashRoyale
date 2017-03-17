@@ -14,8 +14,6 @@ public class InfernoDragon extends ClashNpc implements IClashNpc {
 
 	public InfernoDragon(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, NpcType.INFERNO_DRAGON, level);
-		flags().setFlying(true);
-		flags().setAttackFlying(true);
 	}
 
 	@Override

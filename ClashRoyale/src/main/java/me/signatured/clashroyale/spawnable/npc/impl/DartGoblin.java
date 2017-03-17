@@ -14,7 +14,6 @@ public class DartGoblin extends ClashNpc implements IClashNpc {
 
 	public DartGoblin(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, NpcType.DART_GOBLIN, level);
-		flags().setAttackFlying(true);
 	}
 
 	@Override

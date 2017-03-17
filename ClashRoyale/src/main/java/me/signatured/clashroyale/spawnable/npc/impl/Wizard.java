@@ -14,7 +14,6 @@ public class Wizard extends ClashNpc implements IClashNpc {
 
 	public Wizard(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, NpcType.WIZARD, level);
-		flags().setAttackFlying(true);
 	}
 
 	@Override
