@@ -22,11 +22,11 @@ public enum ClashArena {
 	private String name;
 	private int trophyReq;
 	
-	public boolean canBeDemoted() {
-		return this != ARENA_1;
+	public boolean shouldDemote(int trophies) {
+		return canBeDemoted() && trophies < (trophyReq - 50);
 	}
 	
-	public int getDemotion() {
-		return trophyReq - 50;
+	public boolean canBeDemoted() {
+		return this != ARENA_1;
 	}
 }

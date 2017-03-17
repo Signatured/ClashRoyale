@@ -7,13 +7,14 @@ import me.signatured.clashroyale.card.annotation.GenerateCard;
 import me.signatured.clashroyale.game.ClashArena;
 import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.ClashRarity;
-import me.signatured.clashroyale.spawnable.spell.AOESpell;
+import me.signatured.clashroyale.spawnable.spell.ClashSpell;
+import me.signatured.clashroyale.spawnable.types.IAOESpell;
 
 @GenerateCard(key = "SPELL_GRAVEYARD", name = "Graveyard", rarity = ClashRarity.LEGENDARY, arena = ClashArena.ARENA_5, cost = 5)
-public class GraveyardSpell extends AOESpell {
+public class GraveyardSpell extends ClashSpell implements IAOESpell {
 
 	public GraveyardSpell(ClashGame game, ClashPlayer player, int level) {
-		super(game, player, level, 5);
+		super(game, player, level);
 	}
 
 	@Override
@@ -32,6 +33,21 @@ public class GraveyardSpell extends AOESpell {
 	public void tick() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public MovementType getTargetType() {
+		return null;
+	}
+
+	@Override
+	public double getRadius() {
+		return 5;
+	}
+
+	@Override
+	public double getDuration() {
+		return 10;
 	}
 
 }

@@ -5,14 +5,33 @@ import me.signatured.clashroyale.card.annotation.GenerateCard;
 import me.signatured.clashroyale.game.ClashArena;
 import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.ClashRarity;
-import me.signatured.clashroyale.spawnable.npc.NpcType;
 import me.signatured.clashroyale.spawnable.structure.SpawnStructure;
 
 @GenerateCard(key = "STRUCTURE_TOMBSTONE", name = "Tombstone", rarity = ClashRarity.RARE, arena = ClashArena.ARENA_2, cost = 3)
 public class Tombstone extends SpawnStructure {
 
 	public Tombstone(ClashGame game, ClashPlayer player, int level) {
-		super(game, player, level, ClashRarity.RARE, 40, NpcType.ARCHER, 1, 3);
+		super(game, player, level, ClashRarity.RARE);
+	}
+
+	@Override
+	public String getNpcKey() {
+		return "NPC_SKELETON";
+	}
+
+	@Override
+	public double getSpawnSpeed() {
+		return 2.9;
+	}
+
+	@Override
+	public int getSpawnAmount() {
+		return 1;
+	}
+
+	@Override
+	public int getLifetime() {
+		return 40;
 	}
 
 }

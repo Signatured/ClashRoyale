@@ -11,12 +11,32 @@ import me.signatured.clashroyale.spawnable.structure.AttackStructure;
 public class Mortar extends AttackStructure {
 
 	public Mortar(ClashGame game, ClashPlayer player, int level) {
-		super(game, player, level, ClashRarity.RARE, 40, 5);
+		super(game, player, level, ClashRarity.RARE);
 	}
 
 	@Override
 	public void tick() {
 		//TODO: Attack enemies in range
+	}
+
+	@Override
+	public double getRange() {
+		return 11;
+	}
+
+	@Override
+	public int getLifetime() {
+		return 30;
+	}
+
+	@Override
+	public double getHitSpeed() {
+		return 5;
+	}
+
+	@Override
+	public MovementType getTargetType() {
+		return MovementType.GROUND;
 	}
 
 }

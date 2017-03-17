@@ -7,13 +7,39 @@ import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.npc.ClashNpc;
 import me.signatured.clashroyale.spawnable.npc.NpcType;
+import me.signatured.clashroyale.spawnable.types.IClashNpc;
 
 @GenerateCard(key = "NPC_ARCHER", name = "Archer", rarity = ClashRarity.COMMON, arena = ClashArena.ARENA_1, cost = 3)
-public class Archer extends ClashNpc {
+public class Archer extends ClashNpc implements IClashNpc {
 
 	public Archer(ClashGame game, ClashPlayer owner, int level) {
 		super(game, owner, NpcType.ARCHER, level);
 		flags().setAttackFlying(true);
+	}
+
+	@Override
+	public double getHitSpeed() {
+		return 1.2;
+	}
+
+	@Override
+	public double getRange() {
+		return 5;
+	}
+
+	@Override
+	public MovementType getTargetType() {
+		return MovementType.AIR_AND_GROUND;
+	}
+
+	@Override
+	public SpeedType getSpeed() {
+		return SpeedType.MEDIUM;
+	}
+
+	@Override
+	public MovementType getTransportType() {
+		return MovementType.GROUND;
 	}
 
 }

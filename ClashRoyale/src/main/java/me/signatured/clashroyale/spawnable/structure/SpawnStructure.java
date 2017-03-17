@@ -9,26 +9,19 @@ import me.signatured.clashroyale.ClashPlayer;
 import me.signatured.clashroyale.ClashRoyale;
 import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.ClashRarity;
-import me.signatured.clashroyale.spawnable.npc.NpcType;
+import me.signatured.clashroyale.spawnable.types.ISpawnStructure;
 import me.signatured.clashroyale.task.ClashTask;
 
 @Getter
-public abstract class SpawnStructure extends ClashStructure {
+public abstract class SpawnStructure extends ClashStructure implements ISpawnStructure {
 
-	private NpcType npcType;
 	private Location spawnLoc;
-	private int spawnAmount;
-	private int spawnSpeed;
 	private long lastSpawnTime;
 	
 	private SpawnTask spawnTask;
 	
-	public SpawnStructure(ClashGame game, ClashPlayer player, int level, ClashRarity rarity, int lifeTime, NpcType npcType,
-			int spawnAmount, int spawnSpeed) {
-		super(game, player, level, rarity, lifeTime);
-		this.npcType = npcType;
-		this.spawnAmount = spawnAmount;
-		this.spawnSpeed = spawnSpeed;
+	public SpawnStructure(ClashGame game, ClashPlayer player, int level, ClashRarity rarity) {
+		super(game, player, level, rarity);
 	}
 
 	@Override
@@ -55,7 +48,7 @@ public abstract class SpawnStructure extends ClashStructure {
 	}
 	
 	private boolean canSpawn() {
-		return TimeUnit.SECONDS.toMillis(spawnSpeed) + lastSpawnTime < System.currentTimeMillis();
+		return TimeUnit.SECONDS.toMillis((long) getSpawnSpeed()) + lastSpawnTime < System.currentTimeMillis();
 	}
 	
 	public class SpawnTask extends ClashTask {
@@ -66,7 +59,7 @@ public abstract class SpawnStructure extends ClashStructure {
 		public SpawnTask(SpawnStructure structure) {
 			super(ClashRoyale.getInstance());
 			startTime = System.currentTimeMillis();
-			lifeTime = TimeUnit.SECONDS.toMillis(getLifeTime());
+			lifeTime = TimeUnit.SECONDS.toMillis(getLifetime());
 		}
 
 		@Override

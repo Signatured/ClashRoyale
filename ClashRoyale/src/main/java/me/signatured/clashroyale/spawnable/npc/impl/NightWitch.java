@@ -7,12 +7,38 @@ import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.npc.ClashNpc;
 import me.signatured.clashroyale.spawnable.npc.NpcType;
+import me.signatured.clashroyale.spawnable.types.IClashNpc;
 
 @GenerateCard(key = "NPC_NIGHT_WITCH", name = "Night Witch", rarity = ClashRarity.LEGENDARY, arena = ClashArena.ARENA_8, cost = 4)
-public class NightWitch extends ClashNpc {
+public class NightWitch extends ClashNpc implements IClashNpc {
 
 	public NightWitch(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, NpcType.NIGHT_WITCH, level);
+	}
+
+	@Override
+	public double getHitSpeed() {
+		return 1.5;
+	}
+
+	@Override
+	public double getRange() {
+		return -1;
+	}
+
+	@Override
+	public MovementType getTargetType() {
+		return MovementType.GROUND;
+	}
+
+	@Override
+	public SpeedType getSpeed() {
+		return SpeedType.MEDIUM;
+	}
+
+	@Override
+	public MovementType getTransportType() {
+		return MovementType.GROUND;
 	}
 
 }

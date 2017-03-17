@@ -7,12 +7,38 @@ import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.npc.ClashNpc;
 import me.signatured.clashroyale.spawnable.npc.NpcType;
+import me.signatured.clashroyale.spawnable.types.IClashNpc;
 
 @GenerateCard(key = "NPC_PRINCE", name = "Prince", rarity = ClashRarity.EPIC, arena = ClashArena.ARENA_1, cost = 5)
-public class Prince extends ClashNpc {
+public class Prince extends ClashNpc implements IClashNpc {
 
 	public Prince(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, NpcType.PRINCE, level);
 	}
 
+	@Override
+	public double getHitSpeed() {
+		return 1.5;
+	}
+
+	@Override
+	public double getRange() {
+		return -1;
+	}
+
+	@Override
+	public MovementType getTargetType() {
+		return MovementType.GROUND;
+	}
+
+	@Override
+	public SpeedType getSpeed() {
+		return SpeedType.MEDIUM;
+	}
+
+	@Override
+	public MovementType getTransportType() {
+		return MovementType.GROUND;
+	}
+	
 }

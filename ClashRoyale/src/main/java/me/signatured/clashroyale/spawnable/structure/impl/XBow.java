@@ -11,12 +11,32 @@ import me.signatured.clashroyale.spawnable.structure.AttackStructure;
 public class XBow extends AttackStructure {
 
 	public XBow(ClashGame game, ClashPlayer player, int level) {
-		super(game, player, level, ClashRarity.RARE, 40, 5);
+		super(game, player, level, ClashRarity.RARE);
 	}
 
 	@Override
 	public void tick() {
 		//TODO: Attack nearby enemies
+	}
+
+	@Override
+	public double getRange() {
+		return 11.5;
+	}
+
+	@Override
+	public int getLifetime() {
+		return 40;
+	}
+
+	@Override
+	public double getHitSpeed() {
+		return 0.3;
+	}
+
+	@Override
+	public MovementType getTargetType() {
+		return MovementType.GROUND;
 	}
 
 }

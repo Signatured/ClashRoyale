@@ -7,13 +7,39 @@ import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.npc.ClashNpc;
 import me.signatured.clashroyale.spawnable.npc.NpcType;
+import me.signatured.clashroyale.spawnable.types.IClashNpc;
 
 @GenerateCard(key = "NPC_PRINCESS", name = "Princess", rarity = ClashRarity.LEGENDARY, arena = ClashArena.ARENA_7, cost = 3)
-public class Princess extends ClashNpc {
+public class Princess extends ClashNpc implements IClashNpc {
 
 	public Princess(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, NpcType.PRINCESS, level);
 		flags().setAttackFlying(true);
+	}
+
+	@Override
+	public double getHitSpeed() {
+		return 3;
+	}
+
+	@Override
+	public double getRange() {
+		return 9;
+	}
+
+	@Override
+	public MovementType getTargetType() {
+		return MovementType.AIR_AND_GROUND;
+	}
+
+	@Override
+	public SpeedType getSpeed() {
+		return SpeedType.MEDIUM;
+	}
+
+	@Override
+	public MovementType getTransportType() {
+		return MovementType.GROUND;
 	}
 
 }

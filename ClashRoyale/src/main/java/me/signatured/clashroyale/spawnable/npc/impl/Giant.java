@@ -7,13 +7,39 @@ import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.npc.ClashNpc;
 import me.signatured.clashroyale.spawnable.npc.NpcType;
+import me.signatured.clashroyale.spawnable.types.IClashNpc;
 
 @GenerateCard(key = "NPC_GIANT", name = "Giant", rarity = ClashRarity.RARE, arena = ClashArena.ARENA_1, cost = 5)
-public class Giant extends ClashNpc {
+public class Giant extends ClashNpc implements IClashNpc {
 
 	public Giant(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, NpcType.GIANT, level);
 		flags().setStructuresOnly(true);
+	}
+
+	@Override
+	public double getHitSpeed() {
+		return 1.5;
+	}
+
+	@Override
+	public double getRange() {
+		return -1;
+	}
+
+	@Override
+	public MovementType getTargetType() {
+		return null;
+	}
+
+	@Override
+	public SpeedType getSpeed() {
+		return SpeedType.SLOW;
+	}
+
+	@Override
+	public MovementType getTransportType() {
+		return MovementType.GROUND;
 	}
 
 }

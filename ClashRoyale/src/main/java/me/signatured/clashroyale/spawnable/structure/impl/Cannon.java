@@ -6,17 +6,38 @@ import me.signatured.clashroyale.game.ClashArena;
 import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.structure.AttackStructure;
+import me.signatured.clashroyale.spawnable.types.IAttackStructure;
 
 @GenerateCard(key = "STRUCTURE_CANNON", name = "Cannon", rarity = ClashRarity.COMMON, arena = ClashArena.ARENA_3, cost = 3)
-public class Cannon extends AttackStructure {
+public class Cannon extends AttackStructure implements IAttackStructure {
 
 	public Cannon(ClashGame game, ClashPlayer player, int level) {
-		super(game, player, level, ClashRarity.COMMON, 30, 5);
+		super(game, player, level, ClashRarity.COMMON);
 	}
 
 	@Override
 	public void tick() {
 		//TODO: Point and shoot at nearest NPC
+	}
+
+	@Override
+	public int getLifetime() {
+		return 30;
+	}
+
+	@Override
+	public double getRange() {
+		return 5.5;
+	}
+
+	@Override
+	public double getHitSpeed() {
+		return 0.8;
+	}
+
+	@Override
+	public MovementType getTargetType() {
+		return MovementType.GROUND;
 	}
 
 }

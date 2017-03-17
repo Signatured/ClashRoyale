@@ -8,9 +8,10 @@ import me.signatured.clashroyale.game.ClashArena;
 import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.spell.ClashSpell;
+import me.signatured.clashroyale.spawnable.types.IClashSpell;
 
 @GenerateCard(key = "SPELL_MIRROR", name = "Mirror", rarity = ClashRarity.LEGENDARY, arena = ClashArena.ARENA_5, cost = 0)
-public class MirrorSpell extends ClashSpell {
+public class MirrorSpell extends ClashSpell implements IClashSpell {
 	
 	public MirrorSpell(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, level);

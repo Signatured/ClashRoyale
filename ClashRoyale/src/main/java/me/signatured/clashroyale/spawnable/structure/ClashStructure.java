@@ -23,12 +23,10 @@ public abstract class ClashStructure extends ClashSpawnable {
 	private Schematic schematic;
 	private int level;
 	private int health;
-	private int lifeTime;
 		
-	public ClashStructure(ClashGame game, ClashPlayer player, int level, ClashRarity rarity, int lifeTime) {
+	public ClashStructure(ClashGame game, ClashPlayer player, int level, ClashRarity rarity) {
 		super(game, player, level);
 		this.rarity = rarity;
-		this.lifeTime = lifeTime;
 		
 		loadSchematic();
 	}

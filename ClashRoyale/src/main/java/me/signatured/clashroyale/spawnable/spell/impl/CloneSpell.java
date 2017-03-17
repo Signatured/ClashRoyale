@@ -8,9 +8,10 @@ import me.signatured.clashroyale.game.ClashArena;
 import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.spell.ClashSpell;
+import me.signatured.clashroyale.spawnable.types.IClashSpell;
 
 @GenerateCard(key = "SPELL_CLONE", name = "Clone Spell", rarity = ClashRarity.EPIC, arena = ClashArena.ARENA_8, cost = 3)
-public class CloneSpell extends ClashSpell {
+public class CloneSpell extends ClashSpell implements IClashSpell {
 
 	public CloneSpell(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, level);

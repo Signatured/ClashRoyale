@@ -8,9 +8,10 @@ import me.signatured.clashroyale.game.ClashArena;
 import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.spell.ClashSpell;
+import me.signatured.clashroyale.spawnable.types.IClashSpell;
 
 @GenerateCard(key = "SPELL_FIREBALL", name = "Fireball", rarity = ClashRarity.RARE, arena = ClashArena.ARENA_1, cost = 4)
-public class FireballSpell extends ClashSpell {
+public class FireballSpell extends ClashSpell implements IClashSpell {
 
 	public FireballSpell(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, level);

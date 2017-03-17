@@ -29,4 +29,5 @@ public class ClashCard {
 			throw new RuntimeException(e);
 		}
 	}
+	
 }

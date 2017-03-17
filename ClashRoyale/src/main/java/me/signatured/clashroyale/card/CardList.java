@@ -76,6 +76,11 @@ public class CardList {
 	}
 	
 	public void add(ClashCard card) {
+		if (find(card.getKey()) != null) {
+			System.err.println("[CardList] Ignoring card " + card.getName() + ", duplicate key: " + card.getKey());
+			return;
+		}
+		
 		cards.add(card);
 		clean();
 	}

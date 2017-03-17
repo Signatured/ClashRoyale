@@ -6,19 +6,17 @@ import lombok.Getter;
 import me.signatured.clashroyale.ClashPlayer;
 import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.ClashRarity;
-import me.signatured.clashroyale.spawnable.npc.NpcType;
+import me.signatured.clashroyale.spawnable.types.INpcStructure;
 import net.citizensnpcs.api.npc.NPC;
 
 @Getter
-public abstract class NpcStructure extends ClashStructure {
+public abstract class NpcStructure extends ClashStructure implements INpcStructure {
 	
-	private NpcType npcType;
 	private NPC npc;
 	private Location npcLoc;
 
-	public NpcStructure(ClashGame game, ClashPlayer player, int level, ClashRarity rarity, int lifeTime, NpcType npcType) {
-		super(game, player, level, rarity, lifeTime);
-		this.npcType = npcType;
+	public NpcStructure(ClashGame game, ClashPlayer player, int level, ClashRarity rarity) {
+		super(game, player, level, rarity);
 	}
 
 	@Override

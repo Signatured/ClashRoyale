@@ -21,7 +21,7 @@ public class ClashNpc extends ClashSpawnable {
 	private NPC npc;
 	private NpcType npcType;
 	private NpcFlags flags;
-	private int level, health, damage, range;
+	private int level, health, damage;
 	
 	public ClashNpc(ClashGame game, ClashPlayer player, NpcType npcType, int level) {
 		super(game, player, level);
@@ -29,7 +29,6 @@ public class ClashNpc extends ClashSpawnable {
 		this.level = level;
 		this.health = npcType.getCalcHealth(level);
 		this.damage = npcType.getCalcDamage(level);
-		this.range = npcType.getRange();
 	}
 	
 	@Override

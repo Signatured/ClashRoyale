@@ -7,13 +7,39 @@ import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.npc.ClashNpc;
 import me.signatured.clashroyale.spawnable.npc.NpcType;
+import me.signatured.clashroyale.spawnable.types.IClashNpc;
 
 @GenerateCard(key = "NPC_EXECUTIONER", name = "Executioner", rarity = ClashRarity.EPIC, arena = ClashArena.ARENA_9, cost = 5)
-public class Executioner extends ClashNpc {
+public class Executioner extends ClashNpc implements IClashNpc {
 
 	public Executioner(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, NpcType.EXECUTIONER, level);
 		flags().setAttackFlying(true);
+	}
+
+	@Override
+	public double getHitSpeed() {
+		return 2.4;
+	}
+
+	@Override
+	public double getRange() {
+		return 4.5;
+	}
+
+	@Override
+	public MovementType getTargetType() {
+		return MovementType.AIR_AND_GROUND;
+	}
+
+	@Override
+	public SpeedType getSpeed() {
+		return SpeedType.MEDIUM;
+	}
+
+	@Override
+	public MovementType getTransportType() {
+		return MovementType.GROUND;
 	}
 
 }

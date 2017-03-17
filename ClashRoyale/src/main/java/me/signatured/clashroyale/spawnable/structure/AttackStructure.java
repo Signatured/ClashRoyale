@@ -2,19 +2,15 @@ package me.signatured.clashroyale.spawnable.structure;
 
 import org.bukkit.Location;
 
-import lombok.Getter;
 import me.signatured.clashroyale.ClashPlayer;
 import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.ClashRarity;
+import me.signatured.clashroyale.spawnable.types.IAttackStructure;
 
-@Getter
-public abstract class AttackStructure extends ClashStructure {
+public abstract class AttackStructure extends ClashStructure implements IAttackStructure {
 	
-	private int range;
-
-	public AttackStructure(ClashGame game, ClashPlayer player, int level, ClashRarity rarity, int lifeTime, int range) {
-		super(game, player, level, rarity, lifeTime);
-		this.range = range;
+	public AttackStructure(ClashGame game, ClashPlayer player, int level, ClashRarity rarity) {
+		super(game, player, level, rarity);
 	}
 
 	@Override

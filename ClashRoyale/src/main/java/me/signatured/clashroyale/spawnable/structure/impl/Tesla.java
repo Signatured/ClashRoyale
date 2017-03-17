@@ -11,12 +11,32 @@ import me.signatured.clashroyale.spawnable.structure.AttackStructure;
 public class Tesla extends AttackStructure {
 
 	public Tesla(ClashGame game, ClashPlayer player, int level) {
-		super(game, player, level, ClashRarity.RARE, 40, 5);
+		super(game, player, level, ClashRarity.RARE);
 	}
 
 	@Override
 	public void tick() {
 		//TODO: Attack nearby enemies
+	}
+
+	@Override
+	public double getRange() {
+		return 5.5;
+	}
+
+	@Override
+	public int getLifetime() {
+		return 40;
+	}
+
+	@Override
+	public double getHitSpeed() {
+		return 0.8;
+	}
+
+	@Override
+	public MovementType getTargetType() {
+		return MovementType.AIR_AND_GROUND;
 	}
 
 }

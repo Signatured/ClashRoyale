@@ -7,14 +7,40 @@ import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.npc.ClashNpc;
 import me.signatured.clashroyale.spawnable.npc.NpcType;
+import me.signatured.clashroyale.spawnable.types.IClashNpc;
 
 @GenerateCard(key = "NPC_BALLOON", name = "Balloon", rarity = ClashRarity.EPIC, arena = ClashArena.ARENA_2, cost = 5)
-public class Balloon extends ClashNpc {
+public class Balloon extends ClashNpc implements IClashNpc {
 
 	public Balloon(ClashGame game, ClashPlayer player, NpcType npcType, int level) {
 		super(game, player, npcType, level);
 		flags().setFlying(true);
 		flags().setAttackFlying(true);
+	}
+
+	@Override
+	public double getHitSpeed() {
+		return 3;
+	}
+
+	@Override
+	public double getRange() {
+		return -1;
+	}
+
+	@Override
+	public MovementType getTargetType() {
+		return null;
+	}
+
+	@Override
+	public SpeedType getSpeed() {
+		return SpeedType.MEDIUM;
+	}
+
+	@Override
+	public MovementType getTransportType() {
+		return MovementType.AIR;
 	}
 
 }
