@@ -8,13 +8,14 @@ import lombok.EqualsAndHashCode;
 import me.signatured.clashroyale.ClashPlayer;
 import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.ClashSpawnable;
+import me.signatured.clashroyale.spawnable.types.IClashNpc;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPC;
 import net.citizensnpcs.api.npc.NPCRegistry;
 
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class ClashNpc extends ClashSpawnable {
+public abstract class ClashNpc extends ClashSpawnable implements IClashNpc {
 	
 	private static final NPCRegistry REG = CitizensAPI.getNPCRegistry();
 	

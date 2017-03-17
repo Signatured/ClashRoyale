@@ -5,10 +5,9 @@ import me.signatured.clashroyale.card.annotation.GenerateCard;
 import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.npc.ClashNpc;
 import me.signatured.clashroyale.spawnable.npc.NpcType;
-import me.signatured.clashroyale.spawnable.types.IClashNpc;
 
 @GenerateCard(key = "NPC_LAVA_PUP", name = "Lava Pup", real = false)
-public class LavaPup extends ClashNpc implements IClashNpc {
+public class LavaPup extends ClashNpc {
 
 	public LavaPup(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, NpcType.LAVA_PUP, level);

@@ -5,10 +5,9 @@ import me.signatured.clashroyale.card.annotation.GenerateCard;
 import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.npc.ClashNpc;
 import me.signatured.clashroyale.spawnable.npc.NpcType;
-import me.signatured.clashroyale.spawnable.types.IClashNpc;
 
 @GenerateCard(key = "NPC_TOWER_KING", name = "Tower King", real = false)
-public class TowerKing extends ClashNpc implements IClashNpc {
+public class TowerKing extends ClashNpc {
 
 	public TowerKing(ClashGame game, ClashPlayer owner, int level) {
 		super(game, owner, NpcType.KING_TOWER_NPC, level);

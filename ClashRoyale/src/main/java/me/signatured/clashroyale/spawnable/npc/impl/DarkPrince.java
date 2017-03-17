@@ -7,10 +7,9 @@ import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.npc.ClashNpc;
 import me.signatured.clashroyale.spawnable.npc.NpcType;
-import me.signatured.clashroyale.spawnable.types.IClashNpc;
 
 @GenerateCard(key = "NPC_DARK_PRINCE", name = "Dark Prince", rarity = ClashRarity.EPIC, arena = ClashArena.ARENA_7, cost = 4)
-public class DarkPrince extends ClashNpc implements IClashNpc {
+public class DarkPrince extends ClashNpc {
 
 	public DarkPrince(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, NpcType.DARK_PRINCE, level);

@@ -7,10 +7,9 @@ import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.npc.ClashNpc;
 import me.signatured.clashroyale.spawnable.npc.NpcType;
-import me.signatured.clashroyale.spawnable.types.IClashNpc;
 
 @GenerateCard(key = "NPC_MEGA_MINION", name = "Mega Minion", rarity = ClashRarity.RARE, arena = ClashArena.ARENA_7, cost = 3)
-public class MegaMinion extends ClashNpc implements IClashNpc {
+public class MegaMinion extends ClashNpc {
 
 	public MegaMinion(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, NpcType.MEGA_MINION, level);

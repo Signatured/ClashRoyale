@@ -5,10 +5,9 @@ import me.signatured.clashroyale.card.annotation.GenerateCard;
 import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.npc.ClashNpc;
 import me.signatured.clashroyale.spawnable.npc.NpcType;
-import me.signatured.clashroyale.spawnable.types.IClashNpc;
 
 @GenerateCard(key = "NPC_FIRE_SPIRIT", name = "Fire Spirit", real = false)
-public class FireSpirit extends ClashNpc implements IClashNpc {
+public class FireSpirit extends ClashNpc {
 
 	public FireSpirit(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, NpcType.FIRE_SPIRIT, level);

@@ -7,10 +7,9 @@ import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.npc.ClashNpc;
 import me.signatured.clashroyale.spawnable.npc.NpcType;
-import me.signatured.clashroyale.spawnable.types.IClashNpc;
 
 @GenerateCard(key = "NPC_ICE_WIZARD", name = "Ice Wizard", rarity = ClashRarity.LEGENDARY, arena = ClashArena.ARENA_5, cost = 3)
-public class IceWizard extends ClashNpc implements IClashNpc {
+public class IceWizard extends ClashNpc {
 
 	public IceWizard(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, NpcType.ICE_WIZARD, level);

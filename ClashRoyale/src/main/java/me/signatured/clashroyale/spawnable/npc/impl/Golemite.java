@@ -5,10 +5,9 @@ import me.signatured.clashroyale.card.annotation.GenerateCard;
 import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.npc.ClashNpc;
 import me.signatured.clashroyale.spawnable.npc.NpcType;
-import me.signatured.clashroyale.spawnable.types.IClashNpc;
 
 @GenerateCard(key = "NPC_GOLEMITE", name = "Golemite", real = false)
-public class Golemite extends ClashNpc implements IClashNpc {
+public class Golemite extends ClashNpc {
 
 	public Golemite(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, NpcType.MINI_GOLEM, level);

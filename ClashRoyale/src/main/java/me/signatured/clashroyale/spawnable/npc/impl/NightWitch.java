@@ -7,10 +7,9 @@ import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.npc.ClashNpc;
 import me.signatured.clashroyale.spawnable.npc.NpcType;
-import me.signatured.clashroyale.spawnable.types.IClashNpc;
 
 @GenerateCard(key = "NPC_NIGHT_WITCH", name = "Night Witch", rarity = ClashRarity.LEGENDARY, arena = ClashArena.ARENA_8, cost = 4)
-public class NightWitch extends ClashNpc implements IClashNpc {
+public class NightWitch extends ClashNpc {
 
 	public NightWitch(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, NpcType.NIGHT_WITCH, level);

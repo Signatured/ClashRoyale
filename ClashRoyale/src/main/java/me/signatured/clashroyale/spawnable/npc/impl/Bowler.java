@@ -7,10 +7,9 @@ import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.npc.ClashNpc;
 import me.signatured.clashroyale.spawnable.npc.NpcType;
-import me.signatured.clashroyale.spawnable.types.IClashNpc;
 
 @GenerateCard(key = "NPC_BOWLER", name = "Bowler", rarity = ClashRarity.EPIC, arena = ClashArena.ARENA_8, cost = 5)
-public class Bowler extends ClashNpc implements IClashNpc {
+public class Bowler extends ClashNpc {
 
 	public Bowler(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, NpcType.BOWLER, level);
