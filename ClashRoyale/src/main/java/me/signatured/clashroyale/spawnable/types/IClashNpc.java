@@ -3,7 +3,7 @@ package me.signatured.clashroyale.spawnable.types;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-public interface IClashNpc extends IClashSpawnable, IAttackSpawnable {
+public interface IClashNpc extends IClashSpawnable, IAttackSpawnable, IDamageableSpawnable {
 	
 	public SpeedType getSpeed();
 	

@@ -39,4 +39,14 @@ public class Tesla extends AttackStructure {
 		return MovementType.AIR_AND_GROUND;
 	}
 
+	@Override
+	public int getBaseHealth() {
+		return 450;
+	}
+
+	@Override
+	public int getBaseDamage() {
+		return 64;
+	}
+
 }

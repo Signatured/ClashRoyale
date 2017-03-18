@@ -37,5 +37,15 @@ public class TowerBomber extends ClashNpc {
 	public MovementType getTransportType() {
 		return null;
 	}
+	
+	@Override
+	public int getBaseHealth() {
+		return -1;
+	}
+	
+	@Override
+	public int getBaseDamage() {
+		return 100;
+	}
 
 }

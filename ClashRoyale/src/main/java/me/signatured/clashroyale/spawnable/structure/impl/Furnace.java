@@ -15,39 +15,28 @@ public class Furnace extends SpawnStructure {
 	}
 
 	@Override
-	public int getLifetime() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public double getRange() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public SpawnableType getSpawnableType() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public String getNpcKey() {
-		// TODO Auto-generated method stub
-		return null;
+		return "NPC_FIRE_SPIRIT";
 	}
 
 	@Override
 	public double getSpawnSpeed() {
-		// TODO Auto-generated method stub
-		return 0;
+		return 10;
 	}
 
 	@Override
 	public int getSpawnAmount() {
-		// TODO Auto-generated method stub
-		return 0;
+		return 2;
+	}
+
+	@Override
+	public int getLifetime() {
+		return 50;
+	}
+
+	@Override
+	public int getBaseHealth() {
+		return 600;
 	}
 
 }

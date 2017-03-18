@@ -8,6 +8,8 @@ import me.signatured.clashroyale.spawnable.types.IClashSpawnable.MovementType;
 public interface IAttackSpawnable {
 	
 	public double getHitSpeed();
+	
+	public int getBaseDamage();
 		
 	public double getRange();
 	

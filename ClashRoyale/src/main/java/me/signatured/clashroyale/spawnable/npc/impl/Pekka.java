@@ -39,5 +39,15 @@ public class Pekka extends ClashNpc {
 	public MovementType getTransportType() {
 		return MovementType.GROUND;
 	}
+	
+	@Override
+	public int getBaseHealth() {
+		return 2600;
+	}
+	
+	@Override
+	public int getBaseDamage() {
+		return 510;
+	}
 
 }

@@ -47,6 +47,11 @@ public abstract class SpawnStructure extends ClashStructure implements ISpawnStr
 		
 	}
 	
+	@Override
+	public double getRange() {
+		return -1;
+	}
+	
 	private boolean canSpawn() {
 		return TimeUnit.SECONDS.toMillis((long) getSpawnSpeed()) + lastSpawnTime < System.currentTimeMillis();
 	}

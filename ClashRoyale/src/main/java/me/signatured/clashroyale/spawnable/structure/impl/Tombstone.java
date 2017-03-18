@@ -34,4 +34,9 @@ public class Tombstone extends SpawnStructure {
 		return 40;
 	}
 
+	@Override
+	public int getBaseHealth() {
+		return 240;
+	}
+
 }

@@ -37,4 +37,14 @@ public class SpearGoblin extends ClashNpc {
 	public MovementType getTransportType() {
 		return MovementType.GROUND;
 	}
+	
+	@Override
+	public int getBaseHealth() {
+		return 52;
+	}
+	
+	@Override
+	public int getBaseDamage() {
+		return 24;
+	}
 }

@@ -39,5 +39,15 @@ public class Witch extends ClashNpc {
 	public MovementType getTransportType() {
 		return MovementType.GROUND;
 	}
+	
+	@Override
+	public int getBaseHealth() {
+		return 500;
+	}
+	
+	@Override
+	public int getBaseDamage() {
+		return 52;
+	}
 
 }

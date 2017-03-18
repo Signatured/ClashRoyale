@@ -40,4 +40,14 @@ public class Prince extends ClashNpc {
 		return MovementType.GROUND;
 	}
 	
+	@Override
+	public int getBaseHealth() {
+		return 1100;
+	}
+	
+	@Override
+	public int getBaseDamage() {
+		return 245;
+	}
+	
 }

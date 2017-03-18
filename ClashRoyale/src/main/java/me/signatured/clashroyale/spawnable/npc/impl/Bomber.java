@@ -40,4 +40,14 @@ public class Bomber extends ClashNpc {
 		return MovementType.GROUND;
 	}
 
+	@Override
+	public int getBaseDamage() {
+		return 147;
+	}
+
+	@Override
+	public int getBaseHealth() {
+		return 128;
+	}
+
 }

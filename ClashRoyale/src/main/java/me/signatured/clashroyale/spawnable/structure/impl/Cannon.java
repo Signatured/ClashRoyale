@@ -40,4 +40,14 @@ public class Cannon extends AttackStructure implements IAttackStructure {
 		return MovementType.GROUND;
 	}
 
+	@Override
+	public int getBaseHealth() {
+		return 350;
+	}
+
+	@Override
+	public int getBaseDamage() {
+		return 60;
+	}
+
 }

@@ -40,4 +40,14 @@ public class LavaHound extends ClashNpc {
 		return MovementType.AIR;
 	}
 	
+	@Override
+	public int getBaseHealth() {
+		return 3000;
+	}
+	
+	@Override
+	public int getBaseDamage() {
+		return 45;
+	}
+	
 }

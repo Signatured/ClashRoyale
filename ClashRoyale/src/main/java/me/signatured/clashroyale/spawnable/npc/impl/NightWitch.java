@@ -39,5 +39,15 @@ public class NightWitch extends ClashNpc {
 	public MovementType getTransportType() {
 		return MovementType.GROUND;
 	}
+	
+	@Override
+	public int getBaseHealth() {
+		return 750;
+	}
+	
+	@Override
+	public int getBaseDamage() {
+		return 285;
+	}
 
 }

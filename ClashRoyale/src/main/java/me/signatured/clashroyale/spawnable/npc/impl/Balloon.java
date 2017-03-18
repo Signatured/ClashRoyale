@@ -39,5 +39,15 @@ public class Balloon extends ClashNpc {
 	public MovementType getTransportType() {
 		return MovementType.AIR;
 	}
+	
+	@Override
+	public int getBaseHealth() {
+		return 1050;
+	}
+	
+	@Override
+	public int getBaseDamage() {
+		return 600;
+	}
 
 }

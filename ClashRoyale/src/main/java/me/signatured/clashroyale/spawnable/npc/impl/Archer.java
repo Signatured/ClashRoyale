@@ -40,4 +40,14 @@ public class Archer extends ClashNpc{
 		return MovementType.GROUND;
 	}
 
+	@Override
+	public int getBaseHealth() {
+		return 120;
+	}
+	
+	@Override
+	public int getBaseDamage() {
+		return 41;
+	}
+
 }

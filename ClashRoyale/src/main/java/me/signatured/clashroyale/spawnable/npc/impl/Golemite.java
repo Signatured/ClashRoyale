@@ -37,5 +37,15 @@ public class Golemite extends ClashNpc {
 	public MovementType getTransportType() {
 		return MovementType.GROUND;
 	}
+	
+	@Override
+	public int getBaseHealth() {
+		return 650;
+	}
+	
+	@Override
+	public int getBaseDamage() {
+		return 40;
+	}
 
 }

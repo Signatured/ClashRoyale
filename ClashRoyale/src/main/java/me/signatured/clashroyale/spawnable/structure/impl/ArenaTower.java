@@ -6,7 +6,7 @@ import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.structure.NpcStructure;
 
 public class ArenaTower extends NpcStructure {
-
+	
 	public ArenaTower(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, level, ClashRarity.COMMON);
 	}
@@ -24,6 +24,16 @@ public class ArenaTower extends NpcStructure {
 	@Override
 	public double getRange() {
 		return 7.5;
+	}
+
+	@Override
+	public int getBaseHealth() {
+		return 1400;
+	}
+	
+	@Override
+	public double getLevelMultiplier() {
+		return 0.08;
 	}
 
 }

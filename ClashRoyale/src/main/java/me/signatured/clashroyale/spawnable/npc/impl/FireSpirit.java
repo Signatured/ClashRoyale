@@ -37,5 +37,15 @@ public class FireSpirit extends ClashNpc {
 	public MovementType getTransportType() {
 		return MovementType.GROUND;
 	}
+	
+	@Override
+	public int getBaseHealth() {
+		return 43;
+	}
+	
+	@Override
+	public int getBaseDamage() {
+		return 80;
+	}
 
 }

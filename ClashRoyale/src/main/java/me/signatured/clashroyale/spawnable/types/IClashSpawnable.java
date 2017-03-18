@@ -8,6 +8,10 @@ public interface IClashSpawnable {
 		return 1;
 	};
 	
+	default double getLevelMultiplier() {
+		return 0.1;
+	}
+	
 	public enum SpawnableType {
 		BUILDING, TROOP, SPELL;
 	}

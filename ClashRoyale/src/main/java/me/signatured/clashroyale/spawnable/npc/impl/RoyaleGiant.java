@@ -39,5 +39,15 @@ public class RoyaleGiant extends ClashNpc {
 	public MovementType getTransportType() {
 		return MovementType.GROUND;
 	}
+	
+	@Override
+	public int getBaseHealth() {
+		return 1200;
+	}
+	
+	@Override
+	public int getBaseDamage() {
+		return 75;
+	}
 
 }

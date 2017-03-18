@@ -48,4 +48,9 @@ public class ElixirCollector extends ClashStructure implements IProduceStructure
 		return 8.5;
 	}
 
+	@Override
+	public int getBaseHealth() {
+		return 580;
+	}
+
 }

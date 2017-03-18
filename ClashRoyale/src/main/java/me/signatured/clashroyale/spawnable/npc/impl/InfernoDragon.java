@@ -39,5 +39,15 @@ public class InfernoDragon extends ClashNpc {
 	public MovementType getTransportType() {
 		return MovementType.AIR;
 	}
+	
+	@Override
+	public int getBaseHealth() {
+		return 1000;
+	}
+	
+	@Override
+	public int getBaseDamage() {
+		return 30;
+	}
 
 }

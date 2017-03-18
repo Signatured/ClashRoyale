@@ -42,5 +42,15 @@ public class Goblin extends ClashNpc {
 	public MovementType getTransportType() {
 		return MovementType.GROUND;
 	}
+	
+	@Override
+	public int getBaseHealth() {
+		return 80;
+	}
+	
+	@Override
+	public int getBaseDamage() {
+		return 50;
+	}
 
 }

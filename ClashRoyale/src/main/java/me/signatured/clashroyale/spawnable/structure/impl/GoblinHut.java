@@ -33,4 +33,9 @@ public class GoblinHut extends SpawnStructure {
 	public int getLifetime() {
 		return 60;
 	}
+
+	@Override
+	public int getBaseHealth() {
+		return 700;
+	}
 }

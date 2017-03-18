@@ -34,4 +34,9 @@ public class BarbarianHut extends SpawnStructure {
 		return 2;
 	}
 
+	@Override
+	public int getBaseHealth() {
+		return 1100;
+	}
+
 }

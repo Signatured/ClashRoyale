@@ -39,5 +39,15 @@ public class Valkyrie extends ClashNpc {
 	public MovementType getTransportType() {
 		return MovementType.GROUND;
 	}
+	
+	@Override
+	public int getBaseHealth() {
+		return 880;
+	}
+	
+	@Override
+	public int getBaseDamage() {
+		return 120;
+	}
 
 }

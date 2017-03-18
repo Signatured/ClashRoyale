@@ -40,4 +40,14 @@ public class BabyDragon extends ClashNpc {
 		return MovementType.AIR;
 	}
 
+	@Override
+	public int getBaseHealth() {
+		return 800;
+	}
+	
+	@Override
+	public int getBaseDamage() {
+		return 100;
+	}
+
 }

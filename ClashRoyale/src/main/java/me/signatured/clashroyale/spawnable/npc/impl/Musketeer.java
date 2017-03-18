@@ -39,5 +39,15 @@ public class Musketeer extends ClashNpc {
 	public MovementType getTransportType() {
 		return MovementType.GROUND;
 	}
+	
+	@Override
+	public int getBaseHealth() {
+		return 340;
+	}
+	
+	@Override
+	public int getBaseDamage() {
+		return 100;
+	}
 
 }

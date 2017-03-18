@@ -39,5 +39,15 @@ public class MiniPekka extends ClashNpc {
 	public MovementType getTransportType() {
 		return MovementType.GROUND;
 	}
+	
+	@Override
+	public int getBaseHealth() {
+		return 600;
+	}
+	
+	@Override
+	public int getBaseDamage() {
+		return 325;
+	}
 
 }

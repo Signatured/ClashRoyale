@@ -39,4 +39,14 @@ public class InfernoTower extends AttackStructure {
 		return MovementType.AIR_AND_GROUND;
 	}
 
+	@Override
+	public int getBaseHealth() {
+		return 800;
+	}
+
+	@Override
+	public int getBaseDamage() {
+		return 20;
+	}
+
 }

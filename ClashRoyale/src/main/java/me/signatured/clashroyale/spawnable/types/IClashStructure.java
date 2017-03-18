@@ -1,6 +1,6 @@
 package me.signatured.clashroyale.spawnable.types;
 
-public interface IClashStructure extends IClashSpawnable {
+public interface IClashStructure extends IClashSpawnable, IDamageableSpawnable {
 	
 	public int getLifetime();
 	

@@ -39,5 +39,15 @@ public class MegaMinion extends ClashNpc {
 	public MovementType getTransportType() {
 		return MovementType.AIR;
 	}
+	
+	@Override
+	public int getBaseHealth() {
+		return 395;
+	}
+	
+	@Override
+	public int getBaseDamage() {
+		return 147;
+	}
 
 }

@@ -39,5 +39,19 @@ public class ElectroWizard extends ClashNpc {
 	public MovementType getTransportType() {
 		return MovementType.AIR;
 	}
+	
+	@Override
+	public int getBaseHealth() {
+		return 600;
+	}
+	
+	@Override
+	public int getBaseDamage() {
+		return 200;
+	}
+	
+	public int getBaseSpawnDamage() {
+		return 159;
+	}
 
 }

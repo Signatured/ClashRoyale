@@ -39,5 +39,15 @@ public class Giant extends ClashNpc {
 	public MovementType getTransportType() {
 		return MovementType.GROUND;
 	}
+	
+	@Override
+	public int getBaseHealth() {
+		return 1900;
+	}
+	
+	@Override
+	public int getBaseDamage() {
+		return 120;
+	}
 
 }

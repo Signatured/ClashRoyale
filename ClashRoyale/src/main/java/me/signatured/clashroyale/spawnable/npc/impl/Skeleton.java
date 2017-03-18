@@ -37,5 +37,15 @@ public class Skeleton extends ClashNpc {
 	public MovementType getTransportType() {
 		return MovementType.GROUND;
 	}
+	
+	@Override
+	public int getBaseHealth() {
+		return 32;
+	}
+	
+	@Override
+	public int getBaseDamage() {
+		return 32;
+	}
 
 }

@@ -37,5 +37,15 @@ public class LavaPup extends ClashNpc {
 	public MovementType getTransportType() {
 		return MovementType.AIR;
 	}
+	
+	@Override
+	public int getBaseHealth() {
+		return 179;
+	}
+	
+	@Override
+	public int getBaseDamage() {
+		return 45;
+	}
 
 }

@@ -37,5 +37,19 @@ public class Guard extends ClashNpc {
 	public MovementType getTransportType() {
 		return MovementType.GROUND;
 	}
+	
+	@Override
+	public int getBaseHealth() {
+		return 65;
+	}
+	
+	@Override
+	public int getBaseDamage() {
+		return 65;
+	}
+	
+	public int getBaseShieldHealth() {
+		return 150;
+	}
 
 }

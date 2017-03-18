@@ -37,5 +37,15 @@ public class Bat extends ClashNpc {
 	public MovementType getTransportType() {
 		return MovementType.AIR;
 	}
+	
+	@Override
+	public int getBaseHealth() {
+		return 32;
+	}
+	
+	@Override
+	public int getBaseDamage() {
+		return 32;
+	}
 
 }

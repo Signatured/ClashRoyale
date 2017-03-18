@@ -39,5 +39,15 @@ public class DartGoblin extends ClashNpc {
 	public MovementType getTransportType() {
 		return MovementType.GROUND;
 	}
+	
+	@Override
+	public int getBaseHealth() {
+		return 123;
+	}
+	
+	@Override
+	public int getBaseDamage() {
+		return 53;
+	}
 
 }

@@ -17,7 +17,7 @@ import me.signatured.clashroyale.util.schematic.SchematicUtil;
 @Data
 @EqualsAndHashCode(callSuper=false)
 public abstract class ClashStructure extends ClashSpawnable {
-	
+		
 	private ClashRarity rarity;
 	private Location loc;
 	private Schematic schematic;

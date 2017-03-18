@@ -8,7 +8,7 @@ import me.signatured.clashroyale.spawnable.npc.NpcType;
 
 @GenerateCard(key = "NPC_TOWER_ARCHER", name = "Tower Archer", real = false)
 public class TowerArcher extends ClashNpc {
-
+	
 	public TowerArcher(ClashGame game, ClashPlayer owner, int level) {
 		super(game, owner, NpcType.ARENA_TOWER_NPC, level);
 	}
@@ -36,6 +36,21 @@ public class TowerArcher extends ClashNpc {
 	@Override
 	public MovementType getTransportType() {
 		return null;
+	}
+	
+	@Override
+	public double getLevelMultiplier() {
+		return 0.08;
+	}
+	
+	@Override
+	public int getBaseHealth() {
+		return -1;
+	}
+	
+	@Override
+	public int getBaseDamage() {
+		return 50;
 	}
 
 }

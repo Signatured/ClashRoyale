@@ -8,6 +8,8 @@ import me.signatured.clashroyale.spawnable.npc.NpcType;
 
 @GenerateCard(key = "NPC_TOWER_KING", name = "Tower King", real = false)
 public class TowerKing extends ClashNpc {
+	
+	private final double LEVEL_MULT = 0.08;
 
 	public TowerKing(ClashGame game, ClashPlayer owner, int level) {
 		super(game, owner, NpcType.KING_TOWER_NPC, level);
@@ -36,6 +38,21 @@ public class TowerKing extends ClashNpc {
 	@Override
 	public MovementType getTransportType() {
 		return null;
+	}
+	
+	@Override
+	public double getLevelMultiplier() {
+		return 0.7;
+	}
+	
+	@Override
+	public int getBaseHealth() {
+		return -1;
+	}
+	
+	@Override
+	public int getBaseDamage() {
+		return 50;
 	}
 
 }

@@ -39,5 +39,15 @@ public class Miner extends ClashNpc {
 	public MovementType getTransportType() {
 		return MovementType.GROUND;
 	}
+	
+	@Override
+	public int getBaseHealth() {
+		return 1000;
+	}
+	
+	@Override
+	public int getBaseDamage() {
+		return 160;
+	}
 
 }

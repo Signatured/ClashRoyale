@@ -39,5 +39,15 @@ public class IceSpirit extends ClashNpc {
 	public MovementType getTransportType() {
 		return MovementType.GROUND;
 	}
+	
+	@Override
+	public int getBaseHealth() {
+		return 90;
+	}
+	
+	@Override
+	public int getBaseDamage() {
+		return 45;
+	}
 
 }

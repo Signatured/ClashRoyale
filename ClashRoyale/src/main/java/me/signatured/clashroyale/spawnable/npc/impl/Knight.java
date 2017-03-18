@@ -39,5 +39,15 @@ public class Knight extends ClashNpc {
 	public MovementType getTransportType() {
 		return MovementType.GROUND;
 	}
+	
+	@Override
+	public int getBaseHealth() {
+		return 660;
+	}
+	
+	@Override
+	public int getBaseDamage() {
+		return 75;
+	}
 
 }

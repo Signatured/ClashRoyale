@@ -37,5 +37,15 @@ public class Minion extends ClashNpc {
 	public MovementType getTransportType() {
 		return MovementType.AIR;
 	}
+	
+	@Override
+	public int getBaseHealth() {
+		return 90;
+	}
+	
+	@Override
+	public int getBaseDamage() {
+		return 40;
+	}
 
 }

@@ -6,6 +6,7 @@ import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.structure.NpcStructure;
 
 public class KingTower extends NpcStructure {
+	
 
 	public KingTower(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, level, ClashRarity.COMMON);
@@ -19,6 +20,16 @@ public class KingTower extends NpcStructure {
 	@Override
 	public int getLifetime() {
 		return -1;
+	}
+	
+	@Override
+	public int getBaseHealth() {
+		return 2400;
+	}
+	
+	@Override
+	public double getLevelMultiplier() {
+		return 0.07;
 	}
 
 }

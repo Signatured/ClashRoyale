@@ -29,4 +29,9 @@ public class BomberTower extends NpcStructure {
 		return 6;
 	}
 
+	@Override
+	public int getBaseHealth() {
+		return 950;
+	}
+
 }

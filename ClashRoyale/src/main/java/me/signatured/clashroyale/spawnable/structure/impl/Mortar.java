@@ -39,4 +39,14 @@ public class Mortar extends AttackStructure {
 		return MovementType.GROUND;
 	}
 
+	@Override
+	public int getBaseHealth() {
+		return 600;
+	}
+
+	@Override
+	public int getBaseDamage() {
+		return 108;
+	}
+
 }
