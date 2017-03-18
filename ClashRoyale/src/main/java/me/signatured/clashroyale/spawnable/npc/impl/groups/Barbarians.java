@@ -6,13 +6,17 @@ import me.signatured.clashroyale.game.ClashArena;
 import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.npc.GroupNpc;
-import me.signatured.clashroyale.spawnable.npc.NpcType;
 
 @GenerateCard(key = "GROUP_BARBARIANS", name = "Barbarians", rarity = ClashRarity.COMMON, arena = ClashArena.ARENA_3, cost = 5)
 public class Barbarians extends GroupNpc {
 
 	public Barbarians(ClashGame game, ClashPlayer player, int level) {
-		super(game, player, NpcType.BARBARIANS, level, 4);
+		super(game, player, level, 4);
+	}
+
+	@Override
+	public String getNpcKey() {
+		return "NPC_BARBARIAN";
 	}
 
 }

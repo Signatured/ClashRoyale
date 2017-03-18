@@ -4,13 +4,12 @@ import me.signatured.clashroyale.ClashPlayer;
 import me.signatured.clashroyale.card.annotation.GenerateCard;
 import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.npc.ClashNpc;
-import me.signatured.clashroyale.spawnable.npc.NpcType;
 
 @GenerateCard(key = "NPC_TOWER_BOMBER", name = "Tower Bomber", real = false)
 public class TowerBomber extends ClashNpc {
 
 	public TowerBomber(ClashGame game, ClashPlayer owner, int level) {
-		super(game, owner, NpcType.TOWER_BOMBER, level);
+		super(game, owner, level);
 	}
 
 	@Override

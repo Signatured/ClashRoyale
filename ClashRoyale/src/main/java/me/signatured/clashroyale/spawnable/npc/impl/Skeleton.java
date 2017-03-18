@@ -4,13 +4,12 @@ import me.signatured.clashroyale.ClashPlayer;
 import me.signatured.clashroyale.card.annotation.GenerateCard;
 import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.npc.ClashNpc;
-import me.signatured.clashroyale.spawnable.npc.NpcType;
 
 @GenerateCard(key = "NPC_SKELETON", name = "Skeleton", real = false)
 public class Skeleton extends ClashNpc {
 
 	public Skeleton(ClashGame game, ClashPlayer player, int level) {
-		super(game, player, NpcType.SKELETON, level);
+		super(game, player, level);
 	}
 
 	@Override

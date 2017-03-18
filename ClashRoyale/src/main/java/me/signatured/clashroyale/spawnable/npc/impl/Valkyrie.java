@@ -6,13 +6,12 @@ import me.signatured.clashroyale.game.ClashArena;
 import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.npc.ClashNpc;
-import me.signatured.clashroyale.spawnable.npc.NpcType;
 
 @GenerateCard(key = "NPC_VALKYRIE", name = "Valkyrie", rarity = ClashRarity.RARE, arena = ClashArena.ARENA_1, cost = 4)
 public class Valkyrie extends ClashNpc {
 
 	public Valkyrie(ClashGame game, ClashPlayer player, int level) {
-		super(game, player, NpcType.VALKYRIE, level);
+		super(game, player, level);
 	}
 
 	@Override

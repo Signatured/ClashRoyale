@@ -4,13 +4,12 @@ import me.signatured.clashroyale.ClashPlayer;
 import me.signatured.clashroyale.card.annotation.GenerateCard;
 import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.npc.ClashNpc;
-import me.signatured.clashroyale.spawnable.npc.NpcType;
 
 @GenerateCard(key = "NPC_GOBLIN", name = "Goblin", real = false)
 public class Goblin extends ClashNpc {
 
 	public Goblin(ClashGame game, ClashPlayer player, int level) {
-		super(game, player, NpcType.GOBLIN, level);
+		super(game, player, level);
 	}
 
 	@Override

@@ -20,15 +20,13 @@ public abstract class ClashNpc extends ClashSpawnable implements IClashNpc {
 	private static final NPCRegistry REG = CitizensAPI.getNPCRegistry();
 	
 	private NPC npc;
-	private NpcType npcType;
 	private int level, health, damage;
 	
-	public ClashNpc(ClashGame game, ClashPlayer player, NpcType npcType, int level) {
+	public ClashNpc(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, level);
-		this.npcType = npcType;
 		this.level = level;
-		this.health = npcType.getCalcHealth(level);
-		this.damage = npcType.getCalcDamage(level);
+		this.health = calcHealth();
+		this.damage = calcDamage();
 	}
 	
 	@Override
@@ -51,5 +49,13 @@ public abstract class ClashNpc extends ClashSpawnable implements IClashNpc {
 	@Override
 	public void tick() {
 		
+	}
+	
+	private int calcHealth() {
+		return (int) ((getBaseHealth() * getLevelMultiplier()) + getBaseHealth());
+	}
+	
+	private int calcDamage() {
+		return (int) ((getBaseDamage() * getLevelMultiplier()) + getBaseDamage());
 	}
 }

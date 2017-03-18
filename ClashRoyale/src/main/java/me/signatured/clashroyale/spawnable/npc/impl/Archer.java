@@ -6,13 +6,12 @@ import me.signatured.clashroyale.game.ClashArena;
 import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.npc.ClashNpc;
-import me.signatured.clashroyale.spawnable.npc.NpcType;
 
 @GenerateCard(key = "NPC_ARCHER", name = "Archer", rarity = ClashRarity.COMMON, arena = ClashArena.ARENA_1, cost = 3)
 public class Archer extends ClashNpc{
 
 	public Archer(ClashGame game, ClashPlayer owner, int level) {
-		super(game, owner, NpcType.ARCHER, level);
+		super(game, owner, level);
 	}
 
 	@Override

@@ -13,18 +13,14 @@ import me.signatured.clashroyale.spawnable.ClashSpawnable;
 
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class GroupNpc extends ClashSpawnable {
+public abstract class GroupNpc extends ClashSpawnable {
 		
-	private final double LEVEL_MULT = 0.1;
-	
 	private List<ClashNpc> npcs = new ArrayList<>();
-	private NpcType npcType;
 	private int level;
 	private int amount;
 
-	public GroupNpc(ClashGame game, ClashPlayer player, NpcType npcType, int level, int amount) {
+	public GroupNpc(ClashGame game, ClashPlayer player, int level, int amount) {
 		super(game, player, level);
-		this.npcType = npcType;
 		this.level = level;
 		this.amount = amount;
 	}
@@ -48,5 +44,7 @@ public class GroupNpc extends ClashSpawnable {
 	public void tick() {
 		
 	}
+	
+	public abstract String getNpcKey();
 
 }
