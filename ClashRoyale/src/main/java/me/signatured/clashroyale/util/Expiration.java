@@ -1,7 +1,5 @@
 package me.signatured.clashroyale.util;
 
-import java.time.Duration;
-
 /**
  * A class that "expires" after a certain amount of time.
  */
@@ -35,7 +33,7 @@ public class Expiration {
 	 * @return This instance.
 	 */
 	public Expiration expireIn(Duration duration) {
-		return expireIn(duration.toMillis());
+		return expireIn(duration.ms());
 	}
 
 	/**
@@ -64,6 +62,6 @@ public class Expiration {
 	 * @return A Duration spanning the length of time remaining.
 	 */
 	public Duration getRemaining() {
-		return Duration.ofMillis(expiration - System.currentTimeMillis());
+		return Duration.ms(expiration - System.currentTimeMillis());
 	}
 }

@@ -1,12 +1,20 @@
 package me.signatured.clashroyale.game;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import lombok.Data;
+import lombok.Getter;
 import me.signatured.clashroyale.ClashPlayer;
 import me.signatured.clashroyale.task.ElixirTask;
 import me.signatured.clashroyale.task.GameTimeTask;
 
 @Data
 public class ClashGame {
+	
+	@Getter
+	private static List<ClashGame> games = new ArrayList<>();
 	
 	private ClashGameData player1;
 	private ClashGameData player2;
@@ -17,10 +25,17 @@ public class ClashGame {
 	private ElixirTask elixirTask;
 	
 	public ClashGame(ClashPlayer player1, ClashPlayer player2) {
-		//TODO: Handle ClashGameData
+		this.player1 = new ClashGameData(this, player1);
+		this.player2 = new ClashGameData(this, player2);
 		
 		elixirTask = new ElixirTask(this);
 		state = GameState.IDLE;
+		
+		games.add(this);
+	}
+	
+	public ClashGameData getData(ClashPlayer player) {
+		return getDatas().stream().filter(d -> d.getPlayer().equals(player)).findAny().orElse(null);
 	}
 	
 	public boolean isWinner() {
@@ -44,7 +59,7 @@ public class ClashGame {
 	}
 	
 	public void end() {
-		
+		state = GameState.ENDED;
 	}
 	
 	public boolean inProgress() {
@@ -81,6 +96,10 @@ public class ClashGame {
 			winner = (player1.getCrowns() > player2.getCrowns()) ? player1 : player2;
 			return;
 		}
+	}
+	
+	private List<ClashGameData> getDatas() {
+		return Arrays.asList(player1, player2);
 	}
 	
 	public enum GameState {

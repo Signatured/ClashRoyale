@@ -1,9 +1,8 @@
 package me.signatured.clashroyale.task;
 
-import java.time.Duration;
-
 import me.signatured.clashroyale.ClashRoyale;
 import me.signatured.clashroyale.game.ClashGame;
+import me.signatured.clashroyale.util.Duration;
 import me.signatured.clashroyale.util.Expiration;
 
 public class GameTimeTask extends ClashTask {
@@ -13,7 +12,7 @@ public class GameTimeTask extends ClashTask {
 
 	public GameTimeTask() {
 		super(ClashRoyale.getInstance());
-		this.expiration = new Expiration(Duration.ofMinutes(2));
+		this.expiration = new Expiration(Duration.mins(2));
 	}
 
 	@Override
@@ -26,7 +25,7 @@ public class GameTimeTask extends ClashTask {
 		if (expiration.isExpired()) {
 			if (game.regulation()) {
 				if (!game.isWinner()) {
-					expiration.expireIn(Duration.ofMinutes(1));
+					expiration.expireIn(Duration.mins(1));
 					game.startOvertime();
 					return;
 				}
@@ -43,7 +42,7 @@ public class GameTimeTask extends ClashTask {
 	}
 	
 	public int getTimeLeft() {
-		return (int) expiration.getRemaining().getSeconds();
+		return (int) expiration.getRemaining().secs();
 	}
 
 	@Override

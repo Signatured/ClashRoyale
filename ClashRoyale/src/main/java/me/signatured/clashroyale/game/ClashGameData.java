@@ -28,8 +28,13 @@ public class ClashGameData {
 		createHand();
 	}
 	
+	public void useCard(int index) {
+		cards[index] = nextCard;
+		nextCard = getNewCard();
+	}
+	
 	public void addElixer(double amount) {
-		elixir += amount;
+		elixir = Math.min(elixir + amount, 10);
 	}
 	
 	public void addCrown() {
@@ -46,6 +51,10 @@ public class ClashGameData {
 			cards[i] = card;
 		}
 		
-		nextCard = ClashUtil.getRandomEntry(selectedDeck.getCards(), cards);
+		nextCard = getNewCard();
+	}
+	
+	private PlayerCard getNewCard() {
+		return ClashUtil.getRandomEntry(selectedDeck.getCards(), cards);
 	}
 }

@@ -9,6 +9,7 @@ import me.signatured.clashroyale.card.CardDeck;
 import me.signatured.clashroyale.card.ClashCard;
 import me.signatured.clashroyale.game.ClashArena;
 import me.signatured.clashroyale.game.ClashGame;
+import me.signatured.clashroyale.game.ClashGameData;
 
 @Data
 public class ClashPlayer {
@@ -23,4 +24,8 @@ public class ClashPlayer {
 	
 	private ClashArena arena;
 	private int trophies;
+	
+	public ClashGameData getData() {
+		return game != null ? game.getData(this) : null;
+	}
 }

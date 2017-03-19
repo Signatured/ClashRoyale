@@ -82,6 +82,20 @@ public class ClashUtil {
 	}
 	
 	/**
+	 * @return A string representation of a time
+	 */
+	public static String getTime(long millis) {
+		long second = (millis / 1000) % 60;
+		long minute = (millis / (1000 * 60)) % 60;
+		long hour = (millis / (1000 * 60 * 60)) % 24;
+		
+		if (hour == 0)
+			return String.format("%02dm:%02ds", minute, second);
+
+		return String.format("%02dh:%02dm:%02ds", hour, minute, second);
+	}
+	
+	/**
 	 * Shortcut of {@link Random#nextInt(int)}.
 	 * @param max The maximum number to return (non-inclusive).
 	 * @return A number in the range of [0, max).

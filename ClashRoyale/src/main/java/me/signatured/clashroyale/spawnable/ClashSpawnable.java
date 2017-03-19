@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import me.signatured.clashroyale.ClashPlayer;
 import me.signatured.clashroyale.game.ClashGame;
+import me.signatured.clashroyale.game.ClashGameData;
 
 @Getter
 public abstract class ClashSpawnable {
@@ -22,6 +23,10 @@ public abstract class ClashSpawnable {
 		this.game = game;
 		this.player = player;
 		this.level = level;
+	}
+	
+	public ClashGameData getGameData() {
+		return player.getData();
 	}
 	
 	public abstract void spawn(Location loc);
