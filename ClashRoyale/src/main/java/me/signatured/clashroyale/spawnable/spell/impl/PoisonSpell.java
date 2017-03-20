@@ -4,8 +4,8 @@ import org.bukkit.Location;
 
 import me.signatured.clashroyale.ClashPlayer;
 import me.signatured.clashroyale.card.annotation.GenerateCard;
-import me.signatured.clashroyale.game.ClashArena;
 import me.signatured.clashroyale.game.ClashGame;
+import me.signatured.clashroyale.game.arena.ClashArena;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.spell.ClashSpell;
 import me.signatured.clashroyale.spawnable.types.IAOESpell;

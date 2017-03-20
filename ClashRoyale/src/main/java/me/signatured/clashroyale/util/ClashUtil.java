@@ -5,6 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+
 import net.citizensnpcs.api.npc.NPC;
 import net.citizensnpcs.npc.skin.SkinnableEntity;
 import net.citizensnpcs.util.NMS;
@@ -79,6 +82,21 @@ public class ClashUtil {
 		}
 		
 		return getRandomEntry(list);
+	}
+	
+	/**
+	 * @return The string converted to a location. Format: world,x,y,z
+	 */
+	public static Location deserializeLoc(String loc) {
+		String[] parts = loc.split(",");
+		return new Location(Bukkit.getWorld(parts[0]), Double.valueOf(parts[1]), Double.valueOf(parts[2]), Double.valueOf(parts[3]));
+	}
+	
+	/**
+	 * @return The location converted to a string. 
+	 */
+	public static String serializeLoc(Location loc) {
+		return loc.getWorld().getName() + "," + loc.getX() + "," + loc.getY() + "," + loc.getZ();
 	}
 	
 	/**

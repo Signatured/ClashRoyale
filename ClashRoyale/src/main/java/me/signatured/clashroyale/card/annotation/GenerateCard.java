@@ -6,7 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import me.signatured.clashroyale.card.CardList;
-import me.signatured.clashroyale.game.ClashArena;
+import me.signatured.clashroyale.game.arena.ClashArena;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 
 /**

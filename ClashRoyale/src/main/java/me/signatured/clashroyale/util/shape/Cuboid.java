@@ -1,4 +1,4 @@
-package me.signatured.clashroyale.util;
+package me.signatured.clashroyale.util.shape;
 
 import java.util.Random;
 

@@ -2,15 +2,14 @@ package me.signatured.clashroyale.util.task;
 
 import java.util.concurrent.TimeUnit;
 
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.scheduler.BukkitScheduler;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
 import lombok.Builder;
 
 @Builder
-public class TaskBuilder implements Runnable {
+public class TaskBuilder extends BukkitRunnable {
 	
 	static final TimeUnit TICKS = null;
 	private TaskType type;
@@ -55,28 +54,26 @@ public class TaskBuilder implements Runnable {
 	
 	public BukkitTask run(Runnable runnable) {
 		this.runnable = runnable;
-		BukkitScheduler sch = Bukkit.getScheduler();
 		
-		if (interval == 0 && cycles == 0) { //Only to be ran once
+		if (interval == 0 && cycles == 0) {
 			if (delay == 0) {
 				if (type == TaskType.SYNC)
-					return task = sch.runTask(plugin, this);
+					return task = this.runTask(plugin);
 				else if (type == TaskType.ASYNC)
-					return task = sch.runTaskAsynchronously(plugin, this);
+					return task = this.runTaskAsynchronously(plugin);
 			} else {
 				if (type == TaskType.SYNC)
-					return task = sch.runTaskLater(plugin, this, delay);
+					return task = this.runTaskLater(plugin, delay);
 				else if (type == TaskType.ASYNC)
-					return task = sch.runTaskLaterAsynchronously(plugin, this, delay);
+					return task = this.runTaskLaterAsynchronously(plugin, delay);
 			}
 		} else {
 			if (type == TaskType.SYNC)
-				return task = sch.runTaskTimer(plugin, this, delay, interval);
+				return task = this.runTaskTimer(plugin, delay, interval);
 			else if (type == TaskType.ASYNC)
-				return task = sch.runTaskTimerAsynchronously(plugin, this, delay, interval);
+				return task = this.runTaskTimerAsynchronously(plugin, delay, interval);
 		}
 		
-		//Should never happen
 		return null;
 	}
 	

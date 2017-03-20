@@ -10,7 +10,7 @@ import org.reflections.Reflections;
 
 import lombok.Getter;
 import me.signatured.clashroyale.card.annotation.GenerateCard;
-import me.signatured.clashroyale.game.ClashArena;
+import me.signatured.clashroyale.game.arena.ClashArena;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.ClashSpawnable;
 

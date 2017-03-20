@@ -3,8 +3,8 @@ package me.signatured.clashroyale.card;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import me.signatured.clashroyale.ClashPlayer;
-import me.signatured.clashroyale.game.ClashArena;
 import me.signatured.clashroyale.game.ClashGame;
+import me.signatured.clashroyale.game.arena.ClashArena;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.ClashSpawnable;
 

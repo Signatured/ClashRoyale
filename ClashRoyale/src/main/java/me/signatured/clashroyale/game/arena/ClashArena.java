@@ -1,4 +1,4 @@
-package me.signatured.clashroyale.game;
+package me.signatured.clashroyale.game.arena;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,6 +22,10 @@ public enum ClashArena {
 	private String name;
 	private int trophyReq;
 	
+	public String getWorldFileName() {
+		return name().toLowerCase();
+	}
+	
 	public boolean shouldDemote(int trophies) {
 		return canBeDemoted() && trophies < (trophyReq - 50);
 	}
@@ -29,4 +33,9 @@ public enum ClashArena {
 	public boolean canBeDemoted() {
 		return this != ARENA_1;
 	}
+	
+	public enum ArenaLane {
+		LEFT_LANE, RIGHT_LANE;
+	}
+
 }

@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -67,6 +69,30 @@ public class ItemBuilder {
 		if (amount < 1)
 			return amount(1);
 		return amount(amount);
+	}
+	
+	public ItemBuilder enchant(Enchantment enchant, int level) {
+		item.addEnchantment(enchant, level);
+		return this;
+	}
+	
+	public ItemBuilder enchant(Enchantment enchant) {
+		return enchant(enchant, 1);
+	}
+	
+	public ItemBuilder hideEnchant() {
+		editMeta(m -> m.addItemFlags(ItemFlag.HIDE_ENCHANTS));
+		return this;
+	}
+	
+	public ItemBuilder hideAttributes() {
+		editMeta(m -> m.addItemFlags(ItemFlag.HIDE_ATTRIBUTES));
+		return this;
+	}
+	
+	public ItemBuilder unbreakable() {
+		editMeta(m -> m.addItemFlags(ItemFlag.HIDE_UNBREAKABLE));
+		return this;
 	}
 	
 	public ItemStack build() {

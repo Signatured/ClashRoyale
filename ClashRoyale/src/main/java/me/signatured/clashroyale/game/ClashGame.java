@@ -4,11 +4,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.bukkit.Location;
+import org.bukkit.World;
+
 import lombok.Data;
 import lombok.Getter;
 import me.signatured.clashroyale.ClashPlayer;
 import me.signatured.clashroyale.task.ElixirTask;
 import me.signatured.clashroyale.task.GameTimeTask;
+import me.signatured.clashroyale.util.Duration;
+import me.signatured.clashroyale.util.task.Async;
+import me.signatured.clashroyale.util.task.Sync;
+import me.signatured.clashroyale.util.task.TaskBuilder;
 
 @Data
 public class ClashGame {
@@ -16,6 +23,7 @@ public class ClashGame {
 	@Getter
 	private static List<ClashGame> games = new ArrayList<>();
 	
+	private World world;
 	private ClashGameData player1;
 	private ClashGameData player2;
 	private ClashGameData winner;
@@ -23,6 +31,8 @@ public class ClashGame {
 	
 	private GameTimeTask gameTask;
 	private ElixirTask elixirTask;
+	
+	private List<TaskBuilder> gameTasks = new ArrayList<>();
 	
 	public ClashGame(ClashPlayer player1, ClashPlayer player2) {
 		this.player1 = new ClashGameData(this, player1);
@@ -45,6 +55,10 @@ public class ClashGame {
 		return winner != null;
 	}
 	
+	public boolean canPlace(ClashPlayer player, Location loc) {
+		return player1.getData().canPlace(player, loc) || player2.getData().canPlace(player, loc);
+	}
+	
 	public void addElixir(double amount) {
 		player1.addElixer(amount);
 		player2.addElixer(amount);
@@ -52,6 +66,8 @@ public class ClashGame {
 	
 	public void start() {
 		state = GameState.REGULATION;
+		
+		sync().delay(Duration.mins(1).ticks()).run(() -> activateDoubleElixir());
 	}
 	
 	public void startOvertime() {
@@ -76,6 +92,24 @@ public class ClashGame {
 	
 	public boolean ended() {
 		return state == GameState.ENDED;
+	}
+	
+	public TaskBuilder sync() {
+		TaskBuilder builder = Sync.get();
+		gameTasks.add(builder);
+		
+		return builder;
+	}
+	
+	public TaskBuilder async() {
+		TaskBuilder builder = Async.get();
+		gameTasks.add(builder);
+		
+		return builder;
+	}
+	
+	private void activateDoubleElixir() {
+		
 	}
 	
 	private void findWinner() {
