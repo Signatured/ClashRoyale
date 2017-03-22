@@ -3,14 +3,14 @@ package me.signatured.clashroyale.spawnable.spell.impl;
 import org.bukkit.Location;
 
 import me.signatured.clashroyale.ClashPlayer;
+import me.signatured.clashroyale.arena.ArenaType;
 import me.signatured.clashroyale.card.annotation.GenerateCard;
 import me.signatured.clashroyale.game.ClashGame;
-import me.signatured.clashroyale.game.arena.ClashArena;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.spell.ClashSpell;
 import me.signatured.clashroyale.spawnable.types.IAOESpell;
 
-@GenerateCard(key = "SPELL_RAGE", name = "Rage", rarity = ClashRarity.EPIC, arena = ClashArena.ARENA_3, cost = 2)
+@GenerateCard(key = "SPELL_RAGE", name = "Rage", rarity = ClashRarity.EPIC, arena = ArenaType.ARENA_3, cost = 2)
 public class RageSpell extends ClashSpell implements IAOESpell {
 	
 	private final double DEFAULT_DURATION = 6;

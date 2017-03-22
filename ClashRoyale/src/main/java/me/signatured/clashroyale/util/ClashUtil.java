@@ -1,10 +1,13 @@
 package me.signatured.clashroyale.util;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import org.apache.commons.io.FileUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
@@ -111,6 +114,32 @@ public class ClashUtil {
 			return String.format("%02dm:%02ds", minute, second);
 
 		return String.format("%02dh:%02dm:%02ds", hour, minute, second);
+	}
+	
+	/**
+	 * Copy a worlds files to another destination for easy world duplication
+	 * 
+	 * @param worldName World to copy
+	 * @param newLocation New file location/world name
+	 * @param ignore Files to ignore
+	 */
+	public static void copyWorld(String worldName, String newLocation, String... ignore) {
+		File worldFile = new File(worldName);
+		File copyFile = new File(newLocation);
+		
+		if (!copyFile.exists())
+			copyFile.mkdir();
+		
+		try {
+			FileUtils.copyDirectory(worldFile, copyFile);
+			
+			for (File file : copyFile.listFiles()) {
+				if (Arrays.asList(ignore).contains(file.getName()))
+					file.delete();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**

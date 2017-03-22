@@ -3,14 +3,14 @@ package me.signatured.clashroyale.spawnable.spell.impl;
 import org.bukkit.Location;
 
 import me.signatured.clashroyale.ClashPlayer;
+import me.signatured.clashroyale.arena.ArenaType;
 import me.signatured.clashroyale.card.annotation.GenerateCard;
 import me.signatured.clashroyale.game.ClashGame;
-import me.signatured.clashroyale.game.arena.ClashArena;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.spell.ClashSpell;
 import me.signatured.clashroyale.spawnable.types.IAOESpell;
 
-@GenerateCard(key = "SPELL_HEAL", name = "Heal", rarity = ClashRarity.RARE, arena = ClashArena.ARENA_10, cost = 3)
+@GenerateCard(key = "SPELL_HEAL", name = "Heal", rarity = ClashRarity.RARE, arena = ArenaType.ARENA_10, cost = 3)
 public class HealSpell extends ClashSpell implements IAOESpell {
 
 	public HealSpell(ClashGame game, ClashPlayer player, int level) {

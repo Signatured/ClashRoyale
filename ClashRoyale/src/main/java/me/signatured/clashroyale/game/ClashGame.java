@@ -10,6 +10,8 @@ import org.bukkit.World;
 import lombok.Data;
 import lombok.Getter;
 import me.signatured.clashroyale.ClashPlayer;
+import me.signatured.clashroyale.arena.Arena;
+import me.signatured.clashroyale.arena.ArenaType;
 import me.signatured.clashroyale.task.ElixirTask;
 import me.signatured.clashroyale.task.GameTimeTask;
 import me.signatured.clashroyale.util.Duration;
@@ -23,7 +25,7 @@ public class ClashGame {
 	@Getter
 	private static List<ClashGame> games = new ArrayList<>();
 	
-	private World world;
+	private Arena arena;
 	private ClashGameData player1;
 	private ClashGameData player2;
 	private ClashGameData winner;
@@ -35,13 +37,17 @@ public class ClashGame {
 	private List<TaskBuilder> gameTasks = new ArrayList<>();
 	
 	public ClashGame(ClashPlayer player1, ClashPlayer player2) {
-		this.player1 = new ClashGameData(this, player1);
-		this.player2 = new ClashGameData(this, player2);
+		this.player1 = new ClashGameData(this, player1, 1);
+		this.player2 = new ClashGameData(this, player2, 2);
 		
 		elixirTask = new ElixirTask(this);
 		state = GameState.IDLE;
 		
 		games.add(this);
+	}
+	
+	public ClashGameData getData(int id) {
+		return getDatas().stream().filter(d -> d.getId() == id).findAny().orElse(null);
 	}
 	
 	public ClashGameData getData(ClashPlayer player) {
@@ -62,6 +68,10 @@ public class ClashGame {
 	public void addElixir(double amount) {
 		player1.addElixer(amount);
 		player2.addElixer(amount);
+	}
+	
+	public void loadArena() {
+		this.arena = new Arena(this, getArenaType().getArenaWorld());
 	}
 	
 	public void start() {
@@ -92,6 +102,10 @@ public class ClashGame {
 	
 	public boolean ended() {
 		return state == GameState.ENDED;
+	}
+	
+	public World getWorld() {
+		return arena.getWorld();
 	}
 	
 	public TaskBuilder sync() {
@@ -134,6 +148,13 @@ public class ClashGame {
 	
 	private List<ClashGameData> getDatas() {
 		return Arrays.asList(player1, player2);
+	}
+	
+	private ArenaType getArenaType() {
+		ArenaType type1 = player1.getPlayer().getArena();
+		ArenaType type2 = player2.getPlayer().getArena();
+		
+		return type1.getTrophyReq() > type2.getTrophyReq() ? type1 : type2;
 	}
 	
 	public enum GameState {

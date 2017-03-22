@@ -3,14 +3,14 @@ package me.signatured.clashroyale.spawnable.spell.impl;
 import org.bukkit.Location;
 
 import me.signatured.clashroyale.ClashPlayer;
+import me.signatured.clashroyale.arena.ArenaType;
 import me.signatured.clashroyale.card.annotation.GenerateCard;
 import me.signatured.clashroyale.game.ClashGame;
-import me.signatured.clashroyale.game.arena.ClashArena;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.spell.ClashSpell;
 import me.signatured.clashroyale.spawnable.types.IAOESpell;
 
-@GenerateCard(key = "SPELL_GRAVEYARD", name = "Graveyard", rarity = ClashRarity.LEGENDARY, arena = ClashArena.ARENA_5, cost = 5)
+@GenerateCard(key = "SPELL_GRAVEYARD", name = "Graveyard", rarity = ClashRarity.LEGENDARY, arena = ArenaType.ARENA_5, cost = 5)
 public class GraveyardSpell extends ClashSpell implements IAOESpell {
 
 	public GraveyardSpell(ClashGame game, ClashPlayer player, int level) {

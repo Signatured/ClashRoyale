@@ -2,9 +2,9 @@ package me.signatured.clashroyale.game;
 
 import lombok.Data;
 import me.signatured.clashroyale.ClashPlayer;
+import me.signatured.clashroyale.arena.ArenaData;
 import me.signatured.clashroyale.card.CardDeck;
 import me.signatured.clashroyale.card.PlayerCard;
-import me.signatured.clashroyale.game.arena.ClashArenaData;
 import me.signatured.clashroyale.task.ElixirTask;
 import me.signatured.clashroyale.util.ClashUtil;
 import me.signatured.clashroyale.util.xml.ArenaLoader;
@@ -12,18 +12,19 @@ import me.signatured.clashroyale.util.xml.ArenaLoader;
 @Data
 public class ClashGameData {
 	
+	private int id;
 	private ClashGame game;
 	private ClashPlayer player;
 	private CardDeck selectedDeck;
 	private PlayerCard[] cards = new PlayerCard[4];
 	private PlayerCard nextCard;
-	private ClashArenaData data;
+	private ArenaData data;
 	private int crowns;
 	private double elixir = 5;
 	
 	private ElixirTask elixirTask;
 	
-	public ClashGameData(ClashGame game, ClashPlayer player) {
+	public ClashGameData(ClashGame game, ClashPlayer player, int id) {
 		this.game = game;
 		this.player = player;
 		this.selectedDeck = player.getDecks()[player.getSelectedDeck()];

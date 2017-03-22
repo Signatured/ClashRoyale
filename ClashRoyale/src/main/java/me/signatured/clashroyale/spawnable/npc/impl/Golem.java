@@ -1,13 +1,13 @@
 package me.signatured.clashroyale.spawnable.npc.impl;
 
 import me.signatured.clashroyale.ClashPlayer;
+import me.signatured.clashroyale.arena.ArenaType;
 import me.signatured.clashroyale.card.annotation.GenerateCard;
 import me.signatured.clashroyale.game.ClashGame;
-import me.signatured.clashroyale.game.arena.ClashArena;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.npc.ClashNpc;
 
-@GenerateCard(key = "NPC_GOLEM", name = "Golem", rarity = ClashRarity.EPIC, arena = ClashArena.ARENA_6, cost = 8)
+@GenerateCard(key = "NPC_GOLEM", name = "Golem", rarity = ClashRarity.EPIC, arena = ArenaType.ARENA_6, cost = 8)
 public class Golem extends ClashNpc {
 
 	public Golem(ClashGame game, ClashPlayer player, int level) {

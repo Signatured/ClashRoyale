@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 import org.reflections.Reflections;
 
 import lombok.Getter;
+import me.signatured.clashroyale.arena.ArenaType;
 import me.signatured.clashroyale.card.annotation.GenerateCard;
-import me.signatured.clashroyale.game.arena.ClashArena;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.ClashSpawnable;
 
@@ -43,7 +43,7 @@ public class CardList {
 		return cards.stream().filter(c -> c.getRarity() == rarity && c.isReal()).collect(Collectors.toList());
 	}
 	
-	public List<ClashCard> find(ClashArena arena) {
+	public List<ClashCard> find(ArenaType arena) {
 		return cards.stream().filter(c -> c.getArena() == arena && c.isReal()).collect(Collectors.toList());
 	}
 	
@@ -65,7 +65,7 @@ public class CardList {
 			String key = gc.key();
 			String name = gc.name();
 			ClashRarity rarity = gc.rarity();
-			ClashArena arena = gc.arena();
+			ArenaType arena = gc.arena();
 			int cost = gc.cost();
 			boolean real = gc.real();
 			

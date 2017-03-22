@@ -1,4 +1,4 @@
-package me.signatured.clashroyale.game.arena;
+package me.signatured.clashroyale.arena;
 
 import org.bukkit.Location;
 
@@ -7,13 +7,13 @@ import me.signatured.clashroyale.ClashPlayer;
 import me.signatured.clashroyale.util.shape.Cuboid;
 
 @Getter
-public class ClashArenaData {
+public class ArenaData {
 	
 	private ClashPlayer player;
 	private Cuboid main, lane1, lane2;
 	private boolean lane1Destroyed = false, lane2Destroyed = false;
 	
-	public ClashArenaData(ClashPlayer player, Cuboid main, Cuboid lane1, Cuboid lane2) {
+	public ArenaData(ClashPlayer player, Cuboid main, Cuboid lane1, Cuboid lane2) {
 		this.player = player;
 		this.main = main;
 		this.lane1 = lane1;

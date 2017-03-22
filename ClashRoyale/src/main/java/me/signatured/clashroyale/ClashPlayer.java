@@ -8,11 +8,11 @@ import org.bukkit.entity.Player;
 
 import lombok.Data;
 import lombok.Getter;
+import me.signatured.clashroyale.arena.ArenaType;
 import me.signatured.clashroyale.card.CardDeck;
 import me.signatured.clashroyale.card.ClashCard;
 import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.game.ClashGameData;
-import me.signatured.clashroyale.game.arena.ClashArena;
 
 @Data
 public class ClashPlayer {
@@ -27,7 +27,7 @@ public class ClashPlayer {
 	private CardDeck[] decks = new CardDeck[3];
 	private int selectedDeck = 0;
 	
-	private ClashArena arena;
+	private ArenaType arena;
 	private int trophies;
 	
 	public ClashPlayer(String name, UUID uuid) {

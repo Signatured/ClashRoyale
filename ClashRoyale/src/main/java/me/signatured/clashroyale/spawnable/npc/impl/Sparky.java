@@ -1,13 +1,13 @@
 package me.signatured.clashroyale.spawnable.npc.impl;
 
 import me.signatured.clashroyale.ClashPlayer;
+import me.signatured.clashroyale.arena.ArenaType;
 import me.signatured.clashroyale.card.annotation.GenerateCard;
 import me.signatured.clashroyale.game.ClashGame;
-import me.signatured.clashroyale.game.arena.ClashArena;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.npc.ClashNpc;
 
-@GenerateCard(key = "NPC_SPARKY", name = "Sparky", rarity = ClashRarity.LEGENDARY, arena = ClashArena.ARENA_6, cost = 6)
+@GenerateCard(key = "NPC_SPARKY", name = "Sparky", rarity = ClashRarity.LEGENDARY, arena = ArenaType.ARENA_6, cost = 6)
 public class Sparky extends ClashNpc {
 
 	public Sparky(ClashGame game, ClashPlayer player, int level) {

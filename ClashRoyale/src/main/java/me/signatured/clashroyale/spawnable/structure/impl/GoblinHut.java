@@ -1,13 +1,13 @@
 package me.signatured.clashroyale.spawnable.structure.impl;
 
 import me.signatured.clashroyale.ClashPlayer;
+import me.signatured.clashroyale.arena.ArenaType;
 import me.signatured.clashroyale.card.annotation.GenerateCard;
 import me.signatured.clashroyale.game.ClashGame;
-import me.signatured.clashroyale.game.arena.ClashArena;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.structure.SpawnStructure;
 
-@GenerateCard(key = "STRUCTURE_GOBLIN_HUT", name = "Goblin Hut", rarity = ClashRarity.RARE, arena = ClashArena.ARENA_1, cost = 5)
+@GenerateCard(key = "STRUCTURE_GOBLIN_HUT", name = "Goblin Hut", rarity = ClashRarity.RARE, arena = ArenaType.ARENA_1, cost = 5)
 public class GoblinHut extends SpawnStructure {
 
 	public GoblinHut(ClashGame game, ClashPlayer player, int level) {

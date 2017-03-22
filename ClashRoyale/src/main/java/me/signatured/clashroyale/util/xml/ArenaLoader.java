@@ -10,12 +10,12 @@ import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 
 import me.signatured.clashroyale.ClashPlayer;
-import me.signatured.clashroyale.game.arena.ClashArenaData;
+import me.signatured.clashroyale.arena.ArenaData;
 import me.signatured.clashroyale.util.shape.Cuboid;
 
 public class ArenaLoader {
 	
-	public static ClashArenaData getArenaData(ClashPlayer player, World world, int side) {
+	public static ArenaData getArenaData(ClashPlayer player, World world, int side) {
 		File file = new File("arena.xml");
 		SAXBuilder saxBuilder = new SAXBuilder();
 		Document document;
@@ -32,6 +32,6 @@ public class ArenaLoader {
 		Cuboid lane1 = UtilXML.getLane1Cuboid(root, side, world);
 		Cuboid lane2 = UtilXML.getLane2Cuboid(root, side, world);
 		
-		return new ClashArenaData(player, main, lane1, lane2);
+		return new ArenaData(player, main, lane1, lane2);
 	}
 }

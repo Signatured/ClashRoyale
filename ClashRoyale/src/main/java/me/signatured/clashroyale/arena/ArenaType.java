@@ -1,11 +1,15 @@
-package me.signatured.clashroyale.game.arena;
+package me.signatured.clashroyale.arena;
+
+import org.bukkit.Bukkit;
+import org.bukkit.World;
+import org.bukkit.WorldCreator;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum ClashArena {
+public enum ArenaType {
 	
 	ARENA_1("Goblin Statium", 0),
 	ARENA_2("Bone Pit", 400),
@@ -22,7 +26,11 @@ public enum ClashArena {
 	private String name;
 	private int trophyReq;
 	
-	public String getWorldFileName() {
+	public ArenaWorld getArenaWorld() {
+		return ArenaWorld.getWorld(this);
+	}
+	
+	public String getWorldName() {
 		return name().toLowerCase();
 	}
 	
@@ -34,8 +42,8 @@ public enum ClashArena {
 		return this != ARENA_1;
 	}
 	
-	public enum ArenaLane {
-		LEFT_LANE, RIGHT_LANE;
+	public World loadWorld() {
+		return Bukkit.createWorld(new WorldCreator(getWorldName()));
 	}
 
 }

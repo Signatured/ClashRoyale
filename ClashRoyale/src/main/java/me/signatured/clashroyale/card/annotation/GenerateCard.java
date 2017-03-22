@@ -5,8 +5,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import me.signatured.clashroyale.arena.ArenaType;
 import me.signatured.clashroyale.card.CardList;
-import me.signatured.clashroyale.game.arena.ClashArena;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 
 /**
@@ -23,7 +23,7 @@ public @interface GenerateCard {
 	String key();
 	String name();
 	ClashRarity rarity() default ClashRarity.COMMON;
-	ClashArena arena() default ClashArena.ARENA_1;
+	ArenaType arena() default ArenaType.ARENA_1;
 	int cost() default 1;
 	boolean real() default true;
 }

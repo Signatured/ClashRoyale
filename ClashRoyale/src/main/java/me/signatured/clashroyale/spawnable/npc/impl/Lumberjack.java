@@ -1,13 +1,13 @@
 package me.signatured.clashroyale.spawnable.npc.impl;
 
 import me.signatured.clashroyale.ClashPlayer;
+import me.signatured.clashroyale.arena.ArenaType;
 import me.signatured.clashroyale.card.annotation.GenerateCard;
 import me.signatured.clashroyale.game.ClashGame;
-import me.signatured.clashroyale.game.arena.ClashArena;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.npc.ClashNpc;
 
-@GenerateCard(key = "NPC_LUMBERJACK", name = "Lumberjack", rarity = ClashRarity.LEGENDARY, arena = ClashArena.ARENA_8, cost = 4)
+@GenerateCard(key = "NPC_LUMBERJACK", name = "Lumberjack", rarity = ClashRarity.LEGENDARY, arena = ArenaType.ARENA_8, cost = 4)
 public class Lumberjack extends ClashNpc {
 
 	public Lumberjack(ClashGame game, ClashPlayer player, int level) {

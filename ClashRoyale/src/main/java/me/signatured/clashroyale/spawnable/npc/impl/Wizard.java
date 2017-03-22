@@ -1,13 +1,13 @@
 package me.signatured.clashroyale.spawnable.npc.impl;
 
 import me.signatured.clashroyale.ClashPlayer;
+import me.signatured.clashroyale.arena.ArenaType;
 import me.signatured.clashroyale.card.annotation.GenerateCard;
 import me.signatured.clashroyale.game.ClashGame;
-import me.signatured.clashroyale.game.arena.ClashArena;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.npc.ClashNpc;
 
-@GenerateCard(key = "NPC_WIZARD", name = "Wizard", rarity = ClashRarity.RARE, arena = ClashArena.ARENA_5, cost = 5)
+@GenerateCard(key = "NPC_WIZARD", name = "Wizard", rarity = ClashRarity.RARE, arena = ArenaType.ARENA_5, cost = 5)
 public class Wizard extends ClashNpc {
 
 	public Wizard(ClashGame game, ClashPlayer player, int level) {

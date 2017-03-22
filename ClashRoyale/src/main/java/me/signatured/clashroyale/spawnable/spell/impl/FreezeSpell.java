@@ -3,14 +3,14 @@ package me.signatured.clashroyale.spawnable.spell.impl;
 import org.bukkit.Location;
 
 import me.signatured.clashroyale.ClashPlayer;
+import me.signatured.clashroyale.arena.ArenaType;
 import me.signatured.clashroyale.card.annotation.GenerateCard;
 import me.signatured.clashroyale.game.ClashGame;
-import me.signatured.clashroyale.game.arena.ClashArena;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.spell.ClashSpell;
 import me.signatured.clashroyale.spawnable.types.IAOESpell;
 
-@GenerateCard(key = "SPELL_FREEZE", name = "Freeze", rarity = ClashRarity.EPIC, arena = ClashArena.ARENA_1, cost = 4)
+@GenerateCard(key = "SPELL_FREEZE", name = "Freeze", rarity = ClashRarity.EPIC, arena = ArenaType.ARENA_1, cost = 4)
 public class FreezeSpell extends ClashSpell implements IAOESpell {
 
 	public FreezeSpell(ClashGame game, ClashPlayer player, int level) {
