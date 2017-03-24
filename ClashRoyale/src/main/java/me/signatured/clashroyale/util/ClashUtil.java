@@ -10,10 +10,14 @@ import java.util.Random;
 import org.apache.commons.io.FileUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
+import org.bukkit.entity.Player;
 
 import net.citizensnpcs.api.npc.NPC;
 import net.citizensnpcs.npc.skin.SkinnableEntity;
 import net.citizensnpcs.util.NMS;
+import net.minecraft.server.v1_8_R3.IChatBaseComponent;
+import net.minecraft.server.v1_8_R3.PacketPlayOutChat;
 
 public class ClashUtil {
 	
@@ -140,6 +144,12 @@ public class ClashUtil {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static void actionbar(Player player, String message) {
+		IChatBaseComponent icbc = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + C.translate(message) + "\"}");
+		PacketPlayOutChat bar = new PacketPlayOutChat(icbc, (byte) 2);
+		((CraftPlayer) player).getHandle().playerConnection.sendPacket(bar);
 	}
 	
 	/**

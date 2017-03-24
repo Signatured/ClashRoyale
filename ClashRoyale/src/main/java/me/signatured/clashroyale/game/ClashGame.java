@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.World;
 
 import lombok.Data;
@@ -13,8 +14,11 @@ import me.signatured.clashroyale.ClashPlayer;
 import me.signatured.clashroyale.arena.Arena;
 import me.signatured.clashroyale.arena.ArenaType;
 import me.signatured.clashroyale.task.ElixirTask;
-import me.signatured.clashroyale.task.GameTimeTask;
+import me.signatured.clashroyale.task.countdown.GameCountdown;
+import me.signatured.clashroyale.task.countdown.OvertimeCountdown;
+import me.signatured.clashroyale.task.countdown.StartCountdown;
 import me.signatured.clashroyale.util.Duration;
+import me.signatured.clashroyale.util.Title;
 import me.signatured.clashroyale.util.task.Async;
 import me.signatured.clashroyale.util.task.Sync;
 import me.signatured.clashroyale.util.task.TaskBuilder;
@@ -31,16 +35,18 @@ public class ClashGame {
 	private ClashGameData winner;
 	private GameState state;
 	
-	private GameTimeTask gameTask;
+	private StartCountdown startCountdown;
+	private GameCountdown gameCountdown;
+	private OvertimeCountdown overtimeCountdown;
 	private ElixirTask elixirTask;
+	
+	private boolean doubleElixir = false;
 	
 	private List<TaskBuilder> gameTasks = new ArrayList<>();
 	
 	public ClashGame(ClashPlayer player1, ClashPlayer player2) {
 		this.player1 = new ClashGameData(this, player1, 1);
-		this.player2 = new ClashGameData(this, player2, 2);
-		
-		elixirTask = new ElixirTask(this);
+		this.player2 = new ClashGameData(this, player2, 2);		
 		state = GameState.IDLE;
 		
 		games.add(this);
@@ -71,21 +77,47 @@ public class ClashGame {
 	}
 	
 	public void loadArena() {
-		this.arena = new Arena(this, getArenaType().getArenaWorld());
+		new Arena(this, getArenaType().getArenaWorld());
+	}
+	
+	//TODO: TP players to their spawn
+	public void begin() {
+		startCountdown = new StartCountdown(this);
+		startCountdown.enable();
 	}
 	
 	public void start() {
 		state = GameState.REGULATION;
+		elixirTask = new ElixirTask(this);
 		
-		sync().delay(Duration.mins(1).ticks()).run(() -> activateDoubleElixir());
+		gameCountdown = new GameCountdown(this);
+		gameCountdown.enable();
+		
+		sync().delay(Duration.mins(1).ticks()).run(() -> doubleElixir = true);
 	}
 	
 	public void startOvertime() {
 		state = GameState.OVERTIME;
+		
+		overtimeCountdown = new OvertimeCountdown(this);
+		overtimeCountdown.enable();
 	}
 	
+	//TODO: TP players, unload world, award winner, end tasks
 	public void end() {
 		state = GameState.ENDED;
+	}
+	
+	public void title(Title title) {
+		getPlayers().forEach(p -> p.title(title));
+	}
+	
+	public void actionbar(String message) {
+		getPlayers().forEach(p -> p.actionbar(message));
+	}
+	
+	public void sound(Sound sound) {
+		getPlayers().forEach(p -> p.sound(sound));
 	}
 	
 	public boolean inProgress() {
@@ -108,6 +140,14 @@ public class ClashGame {
 		return arena.getWorld();
 	}
 	
+	public List<ClashGameData> getDatas() {
+		return Arrays.asList(player1, player2);
+	}
+	
+	public List<ClashPlayer> getPlayers() {
+		return Arrays.asList(player1.getPlayer(), player2.getPlayer());
+	}
+	
 	public TaskBuilder sync() {
 		TaskBuilder builder = Sync.get();
 		gameTasks.add(builder);
@@ -120,10 +160,6 @@ public class ClashGame {
 		gameTasks.add(builder);
 		
 		return builder;
-	}
-	
-	private void activateDoubleElixir() {
-		
 	}
 	
 	private void findWinner() {
@@ -144,10 +180,6 @@ public class ClashGame {
 			winner = (player1.getCrowns() > player2.getCrowns()) ? player1 : player2;
 			return;
 		}
-	}
-	
-	private List<ClashGameData> getDatas() {
-		return Arrays.asList(player1, player2);
 	}
 	
 	private ArenaType getArenaType() {

@@ -16,9 +16,9 @@ public class ElixirTask extends ClashTask {
 
 	@Override
 	public void run() {
-		if (game.regulation())
+		if (!game.isDoubleElixir())
 			game.addElixir(1.0 / 56); // 0.01785 elixir per tick, 1 elixir every 2.8 seconds
-		else if (game.overtime())
+		else
 			game.addElixir(2 * (1.0 / 56)); // 0.0357 elixir per tick, 2 elixir every 2.8 seconds
 	}
 

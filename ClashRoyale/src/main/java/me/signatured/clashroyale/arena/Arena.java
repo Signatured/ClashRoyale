@@ -44,10 +44,12 @@ public class Arena {
 		});
 	}
 	
-	//TODO: TP players to arena, start short countdown
 	private void finish() {
 		Sync.get().run(() -> {
 			loaded = true;
+			
+			game.setArena(this);
+			game.begin();
 		});
 	}
 }
