@@ -2,11 +2,11 @@ package me.signatured.clashroyale.arena;
 
 import org.bukkit.Location;
 
-import lombok.Getter;
+import lombok.Data;
 import me.signatured.clashroyale.ClashPlayer;
 import me.signatured.clashroyale.util.shape.Cuboid;
 
-@Getter
+@Data
 public class ArenaData {
 	
 	private ClashPlayer player;

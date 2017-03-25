@@ -4,12 +4,19 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.function.Consumer;
 
 import org.apache.commons.io.FileUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.Chunk;
+import org.bukkit.ChunkSnapshot;
 import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
@@ -121,8 +128,6 @@ public class ClashUtil {
 	}
 	
 	/**
-	 * Copy a worlds files to another destination for easy world duplication
-	 * 
 	 * @param worldName World to copy
 	 * @param newLocation New file location/world name
 	 * @param ignore Files to ignore
@@ -146,6 +151,10 @@ public class ClashUtil {
 		}
 	}
 	
+	/**
+	 * @param player Player to send message to
+	 * @param message Message to send in actionbar
+	 */
 	public static void actionbar(Player player, String message) {
 		IChatBaseComponent icbc = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + C.translate(message) + "\"}");
 		PacketPlayOutChat bar = new PacketPlayOutChat(icbc, (byte) 2);
@@ -153,7 +162,102 @@ public class ClashUtil {
 	}
 	
 	/**
-	 * Shortcut of {@link Random#nextInt(int)}.
+	 * Find all blocks of the given types in a chunk
+	 * 
+	 * @param chunk Chuck to search
+	 * @param materials Material to look for
+	 * @return List of blocks with materials given
+	 */
+	public static List<Block> findBlocks(Chunk chunk, Material... materials) {
+		List<Block> chunkBlocks = getBlocks(chunk);
+		List<Block> found = new ArrayList<>();
+		
+		for (Block block : chunkBlocks) {
+			for (Material mat : materials)
+				if (block.getType() == mat) {
+					found.add(block);
+					break;
+				}
+		}
+		return found;
+	}
+	
+	/**
+	 * Collect all blocks from a chunk
+	 * 
+	 * @param chunk Chunk to collect blocks from
+	 * @return List of blocks
+	 */
+	public static List<Block> getBlocks(Chunk chunk) {
+		List<Block> blocks = new ArrayList<>();
+		for (int x = 0; x < 16; x++)
+			for (int z = 0; z < 16; z++)
+				for (int y = 0; y < 128; y++)
+					blocks.add(chunk.getBlock(x, y, z));
+		return blocks;
+	}
+	
+	/**
+	 * Load in chunks temp using constructor to use live chunk
+	 * 
+	 * @param center Center location
+	 * @param chunks Radius of chunks to load in
+	 * @param consumer What to do with loaded chunk
+	 */
+	public static void loadChunks(Location center, int chunks, Consumer<Chunk> consumer) {
+		World world = center.getWorld();
+		for (int x = -chunks; x <= chunks; x++) {
+			for (int z = -chunks; z <= chunks; z++) {
+				loadChunkTemporarily(world,  x,  z, consumer);
+			}
+		}
+	}
+	
+	/**
+	 * Load in a chunk, perform a consumer then unload it again
+	 * 
+	 * @param world World to load chunk in
+	 * @param x Position of chunk
+	 * @param z Position of chunk
+	 * @param consumer What to run before unloading again
+	 */
+	public static void loadChunkTemporarily(World world, int x, int z, Consumer<Chunk> consumer) {
+		boolean wasLoaded = world.isChunkLoaded(x, z);
+		consumer.accept(world.getChunkAt(x, z));
+		
+		if (!wasLoaded)
+			world.unloadChunk(x, z, false);
+	}
+	
+	/**
+	 * Efficient way to search chunk via ChunkSnapshot
+	 * 
+	 * @param chunk
+	 * @param materials
+	 * @return
+	 */
+	@SuppressWarnings("deprecation")
+	public static List<Block> findBlocks(ChunkSnapshot chunk, Material... materials) {
+		List<Block> result = new LinkedList<>();
+		List<Material> mats = Arrays.asList(materials);
+		
+		boolean checkMaterials = !mats.isEmpty();
+		
+		for (int x = 0; x != 16; x++)
+			for (int z = 0; z != 16; z++)
+				for (int y = 0; y != 256; y++) {
+					Material m = Material.getMaterial(chunk.getBlockTypeId(x, y, z));
+					if (!checkMaterials || mats.contains(m)) {
+						int absX = chunk.getX() * 16 + x;
+						int absZ = chunk.getZ() * 16 + z;
+						result.add(new Location(Bukkit.getWorld(chunk.getWorldName()), absX, y, absZ).getBlock());
+					}
+				}
+		
+		return result;
+	}
+	
+	/**
 	 * @param max The maximum number to return (non-inclusive).
 	 * @return A number in the range of [0, max).
 	 */
