@@ -1,5 +1,7 @@
 package me.signatured.clashroyale.spawnable.npc.impl;
 
+import org.bukkit.entity.EntityType;
+
 import me.signatured.clashroyale.ClashPlayer;
 import me.signatured.clashroyale.arena.ArenaType;
 import me.signatured.clashroyale.card.annotation.GenerateCard;
@@ -12,6 +14,11 @@ public class BabyDragon extends ClashNpc {
 
 	public BabyDragon(ClashGame game, ClashPlayer owner, int level) {
 		super(game, owner, level);
+	}
+	
+	@Override
+	public EntityType getEntityType() {
+		return EntityType.PLAYER;
 	}
 
 	@Override

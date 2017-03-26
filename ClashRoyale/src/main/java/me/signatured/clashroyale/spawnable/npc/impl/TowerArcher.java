@@ -1,5 +1,7 @@
 package me.signatured.clashroyale.spawnable.npc.impl;
 
+import org.bukkit.entity.EntityType;
+
 import me.signatured.clashroyale.ClashPlayer;
 import me.signatured.clashroyale.card.annotation.GenerateCard;
 import me.signatured.clashroyale.game.ClashGame;
@@ -10,6 +12,11 @@ public class TowerArcher extends ClashNpc {
 	
 	public TowerArcher(ClashGame game, ClashPlayer owner, int level) {
 		super(game, owner, level);
+	}
+	
+	@Override
+	public EntityType getEntityType() {
+		return EntityType.PLAYER;
 	}
 
 	@Override

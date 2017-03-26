@@ -1,5 +1,7 @@
 package me.signatured.clashroyale.spawnable.npc.impl;
 
+import org.bukkit.entity.EntityType;
+
 import me.signatured.clashroyale.ClashPlayer;
 import me.signatured.clashroyale.arena.ArenaType;
 import me.signatured.clashroyale.card.annotation.GenerateCard;
@@ -12,6 +14,11 @@ public class InfernoDragon extends ClashNpc {
 
 	public InfernoDragon(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, level);
+	}
+	
+	@Override
+	public EntityType getEntityType() {
+		return EntityType.PLAYER;
 	}
 
 	@Override

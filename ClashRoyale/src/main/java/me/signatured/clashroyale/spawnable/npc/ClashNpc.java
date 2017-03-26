@@ -31,7 +31,7 @@ public abstract class ClashNpc extends ClashSpawnable implements IClashNpc {
 	
 	@Override
 	public void spawn(Location loc) {
-		npc = REG.createNPC(EntityType.PLAYER, getName());
+		npc = REG.createNPC(getEntityType(), getName());
 		
 		//TODO: Spawn looking correct way, add appropriate goals
 	}
@@ -78,4 +78,6 @@ public abstract class ClashNpc extends ClashSpawnable implements IClashNpc {
 	private int calcDamage() {
 		return (int) ((getBaseDamage() * getLevelMultiplier()) + getBaseDamage());
 	}
+	
+	public abstract EntityType getEntityType();
 }
