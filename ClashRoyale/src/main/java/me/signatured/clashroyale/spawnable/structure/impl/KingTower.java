@@ -31,5 +31,10 @@ public class KingTower extends NpcStructure {
 	public double getLevelMultiplier() {
 		return 0.07;
 	}
+	
+	@Override
+	public boolean isCrownTower() {
+		return true;
+	}
 
 }

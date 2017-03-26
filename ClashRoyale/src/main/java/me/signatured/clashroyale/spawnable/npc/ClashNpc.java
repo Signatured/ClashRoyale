@@ -42,6 +42,14 @@ public abstract class ClashNpc extends ClashSpawnable implements IClashNpc {
 	}
 	
 	@Override
+	public void damage(int amount) {
+		health = Math.max(0, health - amount);
+		
+		if (health <= 0)
+			onDeath();
+	}
+	
+	@Override
 	public void onDeath() {
 		
 	}
@@ -49,6 +57,18 @@ public abstract class ClashNpc extends ClashSpawnable implements IClashNpc {
 	@Override
 	public void tick() {
 		
+	}
+	
+	@Override
+	public double getHealthPercent() {
+		return ((double) health / calcHealth()) * 100;
+	}
+	
+	@Override
+	public Location getLocation() {
+		if (npc != null && npc.isSpawned())
+			return npc.getStoredLocation();
+		return null;
 	}
 	
 	private int calcHealth() {

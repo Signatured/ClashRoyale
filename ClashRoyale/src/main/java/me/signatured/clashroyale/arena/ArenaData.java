@@ -10,14 +10,14 @@ import me.signatured.clashroyale.util.shape.Cuboid;
 public class ArenaData {
 	
 	private ClashPlayer player;
-	private Cuboid main, lane1, lane2;
-	private boolean lane1Destroyed = false, lane2Destroyed = false;
+	private Cuboid main, rightLane, leftLane;
+	private boolean rightLaneDestroyed = false, leftLaneDestroyed = false;
 	
-	public ArenaData(ClashPlayer player, Cuboid main, Cuboid lane1, Cuboid lane2) {
+	public ArenaData(ClashPlayer player, Cuboid main, Cuboid rightLane, Cuboid leftLane) {
 		this.player = player;
 		this.main = main;
-		this.lane1 = lane1;
-		this.lane2 = lane2;
+		this.rightLane = rightLane;
+		this.leftLane = leftLane;
 	}
 	
 	public boolean canPlace(ClashPlayer player, Location loc) {
@@ -25,7 +25,7 @@ public class ArenaData {
 			return true;
 		
 		if (!this.player.equals(player)) {
-			if ((lane1Destroyed && lane1.contains(loc)) || (lane2Destroyed && lane2.contains(loc)))
+			if ((rightLaneDestroyed && rightLane.contains(loc)) || (leftLaneDestroyed && leftLane.contains(loc)))
 				return true;
 		}
 		
@@ -33,6 +33,6 @@ public class ArenaData {
 	}
 	
 	private boolean contains(Location loc) {
-		return main.contains(loc) || lane1.contains(loc) || lane2.contains(loc);
+		return main.contains(loc) || rightLane.contains(loc) || leftLane.contains(loc);
 	}
 }

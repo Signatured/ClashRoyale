@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 import org.apache.commons.io.FileUtils;
 import org.bukkit.Bukkit;
@@ -20,6 +21,11 @@ import org.bukkit.block.Block;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
+import me.signatured.clashroyale.ClashPlayer;
+import me.signatured.clashroyale.game.ClashGame;
+import me.signatured.clashroyale.spawnable.ClashSpawnable;
+import me.signatured.clashroyale.spawnable.types.IDamageableSpawnable;
+import me.signatured.clashroyale.spawnable.types.ILocatable;
 import net.citizensnpcs.api.npc.NPC;
 import net.citizensnpcs.npc.skin.SkinnableEntity;
 import net.citizensnpcs.util.NMS;
@@ -255,6 +261,30 @@ public class ClashUtil {
 				}
 		
 		return result;
+	}
+	
+	/**
+	 * Get a list of spawnables in a specified game in a given range
+	 */
+	public static List<ClashSpawnable> getSpawnablesInRange(ClashGame game, Location loc, double radius) {
+		List<ClashSpawnable> spawnables = new ArrayList<>();
+		for (ClashSpawnable s : game.getSpawnables()) {
+			if (s instanceof ILocatable && s instanceof IDamageableSpawnable) {
+				ILocatable locatable = (ILocatable) s;
+				
+				if (locatable.getLocation() != null && locatable.getLocation().distance(loc) <= radius)
+					spawnables.add(s);
+			}
+		}
+		return spawnables;
+	}
+	
+	/**
+	 * Get a list of spawnables in a specified game in a given range and owner
+	 */
+	public static List<ClashSpawnable> getSpawnablesInRange(ClashPlayer owner, Location loc, double radius) {
+		List<ClashSpawnable> spawnables = getSpawnablesInRange(owner.getGame(), loc, radius);
+		return spawnables.stream().filter(s -> s.getPlayer().equals(owner)).collect(Collectors.toList());
 	}
 	
 	/**

@@ -35,5 +35,10 @@ public class ArenaTower extends NpcStructure {
 	public double getLevelMultiplier() {
 		return 0.08;
 	}
+	
+	@Override
+	public boolean isCrownTower() {
+		return true;
+	}
 
 }

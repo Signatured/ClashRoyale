@@ -13,10 +13,5 @@ public abstract class ClashSpell extends ClashSpawnable {
 	public ClashSpell(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, level);
 	}
-	
-	@Override
-	public void onDeath() {
-		//Not needed for spells
-	}
 
 }

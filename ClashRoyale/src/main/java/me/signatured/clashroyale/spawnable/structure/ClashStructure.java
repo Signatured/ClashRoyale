@@ -11,12 +11,13 @@ import me.signatured.clashroyale.ClashRoyale;
 import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.ClashSpawnable;
+import me.signatured.clashroyale.spawnable.types.IClashStructure;
 import me.signatured.clashroyale.util.schematic.Schematic;
 import me.signatured.clashroyale.util.schematic.SchematicUtil;
 
 @Data
 @EqualsAndHashCode(callSuper=false)
-public abstract class ClashStructure extends ClashSpawnable {
+public abstract class ClashStructure extends ClashSpawnable implements IClashStructure {
 		
 	private ClashRarity rarity;
 	private Location loc;
@@ -33,6 +34,33 @@ public abstract class ClashStructure extends ClashSpawnable {
 	
 	public void place() {
 		//TODO: Place
+	}
+	
+	@Override
+	public void damage(int amount) {
+		health = Math.max(0, health - amount);
+		
+		if (health <= 0)
+			onDeath();
+	}
+	
+	@Override
+	public void onDeath() {
+		
+	}
+	
+	@Override
+	public double getHealthPercent() {
+		return ((double) health / calcHealth()) * 100;
+	}
+	
+	@Override
+	public Location getLocation() {
+		return loc;
+	}
+	
+	private int calcHealth() {
+		return (int) ((getBaseHealth() * getLevelMultiplier()) + getBaseHealth());
 	}
 	
 	private File getSchematicFile() {

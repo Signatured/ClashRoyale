@@ -13,6 +13,7 @@ import lombok.Getter;
 import me.signatured.clashroyale.ClashPlayer;
 import me.signatured.clashroyale.arena.Arena;
 import me.signatured.clashroyale.arena.ArenaType;
+import me.signatured.clashroyale.spawnable.ClashSpawnable;
 import me.signatured.clashroyale.task.ElixirTask;
 import me.signatured.clashroyale.task.countdown.GameCountdown;
 import me.signatured.clashroyale.task.countdown.OvertimeCountdown;
@@ -42,11 +43,15 @@ public class ClashGame {
 	
 	private boolean doubleElixir = false;
 	
+	private List<ClashSpawnable> spawnables = new ArrayList<>();
 	private List<TaskBuilder> gameTasks = new ArrayList<>();
 	
 	public ClashGame(ClashPlayer player1, ClashPlayer player2) {
 		this.player1 = new ClashGameData(this, player1, 1);
 		this.player2 = new ClashGameData(this, player2, 2);		
+		this.startCountdown = new StartCountdown(this);
+		this.gameCountdown = new GameCountdown(this);
+		this.overtimeCountdown = new OvertimeCountdown(this);
 		state = GameState.IDLE;
 		
 		games.add(this);
@@ -82,15 +87,12 @@ public class ClashGame {
 	
 	//TODO: TP players to their spawn
 	public void begin() {
-		startCountdown = new StartCountdown(this);
 		startCountdown.enable();
 	}
 	
 	public void start() {
 		state = GameState.REGULATION;
 		elixirTask = new ElixirTask(this);
-		
-		gameCountdown = new GameCountdown(this);
 		gameCountdown.enable();
 		
 		sync().delay(Duration.mins(1).ticks()).run(() -> doubleElixir = true);
@@ -98,14 +100,13 @@ public class ClashGame {
 	
 	public void startOvertime() {
 		state = GameState.OVERTIME;
-		
-		overtimeCountdown = new OvertimeCountdown(this);
 		overtimeCountdown.enable();
 	}
 	
-	//TODO: TP players, unload world, award winner, end tasks
+	//TODO: TP players, unload world, award winner
 	public void end() {
 		state = GameState.ENDED;
+		cancelTasks();
 	}
 	
 	public void title(Title title) {
@@ -180,6 +181,14 @@ public class ClashGame {
 			winner = (player1.getCrowns() > player2.getCrowns()) ? player1 : player2;
 			return;
 		}
+	}
+	
+	private void cancelTasks() {
+		gameCountdown.cancel();
+		overtimeCountdown.cancel();
+		elixirTask.cancel();
+		
+		gameTasks.forEach(t -> t.cancel());
 	}
 	
 	private ArenaType getArenaType() {
