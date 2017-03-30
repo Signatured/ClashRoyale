@@ -14,6 +14,8 @@ import org.bukkit.entity.Item;
 import org.bukkit.util.BlockVector;
 import org.bukkit.util.Vector;
 
+import me.signatured.clashroyale.util.ClashUtil;
+
 public class Schematic {
 	
 	private HashMap<BlockVector, StoredBlock> blocks = new HashMap<>();
@@ -86,8 +88,7 @@ public class Schematic {
 			if (schemeBlock == null || (!replaceAir && Material.getMaterial(schemeBlock.blockId) == Material.AIR))
 				continue;
 			replaced.put(set.getKey(), new ReplacedBlock(block));
-			block.setTypeId(schemeBlock.blockId, false);
-			block.setData(schemeBlock.data, false);
+			ClashUtil.setTypeQuick(block, Material.getMaterial(schemeBlock.blockId), schemeBlock.data);
 		}
 		
 		for (Entry<BlockVector, StoredBlock> set : getNonSolids()) {
@@ -97,8 +98,6 @@ public class Schematic {
 			if (schemeBlock == null || (!replaceAir && Material.getMaterial(schemeBlock.blockId) == Material.AIR))
 				continue;
 			replaced.put(set.getKey(), new ReplacedBlock(block));
-			block.setTypeId(schemeBlock.blockId, false);
-			block.setData(schemeBlock.data, false);
 		}
 	}
 	
@@ -181,10 +180,8 @@ public class Schematic {
 		 * Sets the given block to this block.
 		 * @param block
 		 */
-		@SuppressWarnings("deprecation")
 		public void restore(Block block) {
-			block.setType(material);
-			block.setData(data, false);
+			ClashUtil.setTypeQuick(block, material, data);
 		}
 		
 		public void restore() {

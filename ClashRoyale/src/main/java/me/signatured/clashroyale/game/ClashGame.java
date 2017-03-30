@@ -103,10 +103,15 @@ public class ClashGame {
 		overtimeCountdown.enable();
 	}
 	
-	//TODO: TP players, unload world, award winner
+	//TODO: TP players, remove spawnables, unload world, award winner
 	public void end() {
 		state = GameState.ENDED;
 		cancelTasks();
+		removeSpawnables();
+		
+		sync().delay(Duration.secs(5)).run(() -> {
+			//TODO: tp players, unload world
+		});
 	}
 	
 	public void title(Title title) {
@@ -189,6 +194,10 @@ public class ClashGame {
 		elixirTask.cancel();
 		
 		gameTasks.forEach(t -> t.cancel());
+	}
+	
+	private void removeSpawnables() {
+		spawnables.stream().forEach(s -> s.despawn());
 	}
 	
 	private ArenaType getArenaType() {

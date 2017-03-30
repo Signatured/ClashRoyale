@@ -7,6 +7,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
 import lombok.Builder;
+import me.signatured.clashroyale.util.Duration;
 
 @Builder
 public class TaskBuilder extends BukkitRunnable {
@@ -29,7 +30,7 @@ public class TaskBuilder extends BukkitRunnable {
 	}
 	
 	/**
-	 * Delays the task launch by the given number of ticks.
+	 * Delays the task launch by the given number of ticks
 	 * @param delay The time to delay in ticks.
 	 */
 	public TaskBuilder delay(long delay) {
@@ -38,15 +39,36 @@ public class TaskBuilder extends BukkitRunnable {
 	}
 	
 	/**
+	 * Delays the task launch by the given duration
+	 * @param dur The time to delay
+	 */
+	public TaskBuilder delay(Duration dur) {
+		return delay(dur.ticks());
+	}
+	
+	/**
 	 * Launches the task at the given rate, regardless of how long
-	 * the task takes to complete.
-	 * @param rate The delay in ticks to wait between launches.
+	 * the task takes to complete
+	 * @param rate The delay in ticks to wait between launches
 	 */
 	public TaskBuilder interval(long interval) {
 		this.interval = interval;
 		return this;
 	}
 	
+	/**
+	 * Launches the task at the given rate, regardless of how long
+	 * the task takes to complete
+	 * @param dur The time to delay
+	 */
+	public TaskBuilder interval(Duration dur) {
+		return interval(dur.ticks());
+	}
+	
+	/**
+	 * Runs the task the given amount of cycles
+	 * @param cycles Number of cycles to run
+	 */
 	public TaskBuilder cycles(long cycles) {
 		this.cycles = cycles;
 		return this;

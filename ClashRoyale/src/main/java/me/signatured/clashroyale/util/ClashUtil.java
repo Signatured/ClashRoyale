@@ -18,6 +18,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
@@ -26,9 +27,11 @@ import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.ClashSpawnable;
 import me.signatured.clashroyale.spawnable.types.IDamageableSpawnable;
 import me.signatured.clashroyale.spawnable.types.ILocatable;
+import me.signatured.clashroyale.util.task.Sync;
 import net.citizensnpcs.api.npc.NPC;
 import net.citizensnpcs.npc.skin.SkinnableEntity;
-import net.citizensnpcs.util.NMS;
+import net.minecraft.server.v1_8_R3.BlockPosition;
+import net.minecraft.server.v1_8_R3.IBlockData;
 import net.minecraft.server.v1_8_R3.IChatBaseComponent;
 import net.minecraft.server.v1_8_R3.PacketPlayOutChat;
 
@@ -40,10 +43,11 @@ public class ClashUtil {
 	 * Apply skin of player given to NPC
 	 */
 	public static void applySkin(NPC npc, String skinName) {
-		npc.data().setPersistent("player-skin-name", skinName);
+		npc.data().setPersistent(NPC.PLAYER_SKIN_UUID_METADATA, skinName);
 		
 		if (npc.isSpawned()) {
-			SkinnableEntity skinnable = NMS.getSkinnable(npc.getEntity());
+			SkinnableEntity skinnable = npc.getEntity() instanceof SkinnableEntity ? (SkinnableEntity) npc.getEntity()
+					: null;
 			if (skinnable != null)
 				skinnable.setSkinName(skinName);
 		}
@@ -261,6 +265,69 @@ public class ClashUtil {
 				}
 		
 		return result;
+	}
+	
+	/**
+	 * Sets the type of a block quickly
+	 * 
+	 * @param block Block to set type
+	 * @param type Type to set
+	 * @param data Data to set (default 0)
+	 */
+	public static void setTypeQuick(Block block, Material type, int data) {
+		setTypeQuick(block.getLocation(), type, data);
+	}
+	
+	/**
+	 * Sets the type of a location quickly
+	 * 
+	 * @param loc Location to set type
+	 * @param type Type to set
+	 * @param data Data to set (default 0)
+	 */
+	@SuppressWarnings("deprecation")
+	public static void setTypeQuick(Location loc, Material type, int data) {
+
+		World world = loc.getWorld();
+		
+		int x = loc.getBlockX();
+		int y = loc.getBlockY();
+		int z = loc.getBlockZ();
+		
+		net.minecraft.server.v1_8_R3.Chunk chunk = getChunk(world, x, z);
+        
+        BlockPosition bp = new BlockPosition(x, y, z);
+        
+        int combined = type.getId() + (data << 12);
+        
+        IBlockData ibd = net.minecraft.server.v1_8_R3.Block.getByCombinedId(combined);
+        
+        Runnable change = () -> chunk.getWorld().setTypeAndData(bp, ibd, 2); // 2 == Dont update physics.
+        
+        if (!Bukkit.isPrimaryThread())
+        	Sync.get().run(change);
+        else
+        	change.run();
+        
+        Bukkit.getOnlinePlayers().forEach(p -> p.sendBlockChange(new Location(world, x, y, z), type, (byte) data));
+	}
+	
+	/**
+	 * Get a net.minecraft.server.v1_8_R3.Chunk via coords
+	 * 
+	 * @param world Bukkit world
+	 * @param x X coordinate
+	 * @param z Z coordinate
+	 * @return net.minecraft.server.v1_8_R3.Chunk
+	 */
+	public static net.minecraft.server.v1_8_R3.Chunk getChunk(org.bukkit.World world, int x, int z) {
+		
+		CraftWorld cw = (CraftWorld) world;
+		
+        net.minecraft.server.v1_8_R3.World w = cw.getHandle();
+        net.minecraft.server.v1_8_R3.Chunk chunk = w.getChunkAt(x >> 4, z >> 4);
+        
+		return chunk;
 	}
 	
 	/**

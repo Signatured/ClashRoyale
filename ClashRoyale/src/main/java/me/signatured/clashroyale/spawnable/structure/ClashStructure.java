@@ -32,8 +32,10 @@ public abstract class ClashStructure extends ClashSpawnable implements IClashStr
 		loadSchematic();
 	}
 	
-	public void place() {
-		//TODO: Place
+	//TODO: point in correct direction, center, etc
+	public void place(Location loc) {
+		this.loc = loc;
+		schematic.place(loc);
 	}
 	
 	@Override
