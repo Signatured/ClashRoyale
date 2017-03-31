@@ -83,19 +83,19 @@ public class Schematic {
 	public void place(Location place, boolean replaceAir) {
 		for (Entry<BlockVector, StoredBlock> set : getSolids()) {
 			Location current = place.clone().add(set.getKey().getX(), set.getKey().getY(), set.getKey().getZ());
-			StoredBlock schemeBlock = set.getValue();
+			StoredBlock storedBlock = set.getValue();
 			Block block = current.getBlock();
-			if (schemeBlock == null || (!replaceAir && Material.getMaterial(schemeBlock.blockId) == Material.AIR))
+			if (storedBlock == null || (!replaceAir && Material.getMaterial(storedBlock.blockId) == Material.AIR))
 				continue;
 			replaced.put(set.getKey(), new ReplacedBlock(block));
-			ClashUtil.setTypeQuick(block, Material.getMaterial(schemeBlock.blockId), schemeBlock.data);
+			ClashUtil.setTypeQuick(block, Material.getMaterial(storedBlock.blockId), storedBlock.data);
 		}
 		
 		for (Entry<BlockVector, StoredBlock> set : getNonSolids()) {
 			Location current = place.clone().add(set.getKey().getX(), set.getKey().getY(), set.getKey().getZ());
-			StoredBlock schemeBlock = set.getValue();
+			StoredBlock storedBlock = set.getValue();
 			Block block = current.getBlock();
-			if (schemeBlock == null || (!replaceAir && Material.getMaterial(schemeBlock.blockId) == Material.AIR))
+			if (storedBlock == null || (!replaceAir && Material.getMaterial(storedBlock.blockId) == Material.AIR))
 				continue;
 			replaced.put(set.getKey(), new ReplacedBlock(block));
 		}
@@ -123,8 +123,6 @@ public class Schematic {
 			double radians = Math.toRadians(degree);
 			double newX = x * Math.cos(radians) - z * Math.sin(radians);
 			double newZ = x * Math.sin(radians) + z * Math.cos(radians);
-			// newX = Math.floor(newX);
-			// newZ = Math.floor(newZ);
 			if (negativeX)
 				newX += size.getX();
 			if (negativeZ)

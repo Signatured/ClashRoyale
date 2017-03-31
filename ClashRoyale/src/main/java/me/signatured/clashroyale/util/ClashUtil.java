@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.EnumMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -18,6 +19,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
@@ -38,6 +40,51 @@ import net.minecraft.server.v1_8_R3.PacketPlayOutChat;
 public class ClashUtil {
 	
 	public static Random RANDOM = new Random();
+	public static final BlockFace[] RADIAL = {BlockFace.WEST, BlockFace.NORTH_WEST, BlockFace.NORTH, BlockFace.NORTH_EAST, BlockFace.EAST, BlockFace.SOUTH_EAST, BlockFace.SOUTH, BlockFace.SOUTH_WEST};
+	private static final EnumMap<BlockFace, Integer> notches = new EnumMap<BlockFace, Integer>(BlockFace.class);
+
+    static {
+        for (int i = 0; i < RADIAL.length; i++)
+            notches.put(RADIAL[i], i);
+    }
+    
+    /**
+     * Gets the Notch integer representation of a BlockFace<br>
+     * <b>These are the horizontal faces, which exclude up and down</b>
+     *
+     * @param face to get
+     * @return Notch of the face
+     */
+    public static int faceToNotch(BlockFace face) {
+        Integer notch = notches.get(face);
+        return notch == null ? 0 : notch.intValue();
+    }
+    
+    /**
+     * Gets the angle from a horizontal Block Face
+     *
+     * @param face to get the angle for
+     * @return face angle
+     */
+    public static int faceToYaw(final BlockFace face) {
+        return wrapAngle(45 * faceToNotch(face));
+    }
+    
+    /**
+     * Wraps the angle to be between -180 and 180 degrees
+     *
+     * @param angle to wrap
+     * @return [-180 > angle >= 180]
+     */
+    public static int wrapAngle(int angle) {
+        int wrappedAngle = angle;
+        while (wrappedAngle <= -180)
+            wrappedAngle += 360;
+        
+        while (wrappedAngle > 180)
+            wrappedAngle -= 360;
+        return wrappedAngle;
+    }
 	
 	/**
 	 * Apply skin of player given to NPC

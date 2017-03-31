@@ -5,6 +5,7 @@ import org.bukkit.Location;
 import lombok.Getter;
 import lombok.Setter;
 import me.signatured.clashroyale.ClashPlayer;
+import me.signatured.clashroyale.arena.ArenaData;
 import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.game.ClashGameData;
 
@@ -27,6 +28,11 @@ public abstract class ClashSpawnable {
 	
 	public ClashGameData getGameData() {
 		return player.getData();
+	}
+	
+	public float getFacingYaw() {
+		ArenaData arenaData = game.getData(player).getData();
+		return arenaData.getYaw();
 	}
 	
 	public abstract void spawn(Location loc);

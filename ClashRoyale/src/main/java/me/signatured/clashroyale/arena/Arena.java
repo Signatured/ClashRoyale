@@ -67,9 +67,11 @@ public class Arena {
 		Cuboid main2 = findCuboid("main", "2", signs);
 		Cuboid rightlane2 = findCuboid("rightlane", "2", signs);
 		Cuboid leftlane2 = findCuboid("leftlane", "2", signs);
+		float yaw1 = getYaw("1", signs);
+		float yaw2 = getYaw("2", signs);
 		
-		game.getPlayer1().setData(new ArenaData(game.getPlayer1().getPlayer(), main1, rightlane1, leftlane1));
-		game.getPlayer2().setData(new ArenaData(game.getPlayer2().getPlayer(), main2, rightlane2, leftlane2));
+		game.getPlayer1().setData(new ArenaData(game.getPlayer1().getPlayer(), main1, rightlane1, leftlane1, yaw1));
+		game.getPlayer2().setData(new ArenaData(game.getPlayer2().getPlayer(), main2, rightlane2, leftlane2, yaw2));
 		
 		for (Block sign : signs)
 			sign.setType(Material.AIR);
@@ -102,5 +104,12 @@ public class Arena {
 		}
 		
 		return new Cuboid(corner1, corner2);
+	}
+	
+	private float getYaw(String id, List<Block> signs) {
+		Block block = signs.stream().filter(s -> ((Sign)s.getState()).getLine(1).equals(id)).findAny().orElse(null);
+		org.bukkit.material.Sign sign = (org.bukkit.material.Sign) block;
+		
+		return ClashUtil.faceToYaw(sign.getFacing());
 	}
 }

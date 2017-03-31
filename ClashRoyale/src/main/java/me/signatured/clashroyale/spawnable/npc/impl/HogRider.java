@@ -7,10 +7,10 @@ import me.signatured.clashroyale.arena.ArenaType;
 import me.signatured.clashroyale.card.annotation.GenerateCard;
 import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.ClashRarity;
-import me.signatured.clashroyale.spawnable.npc.ClashNpc;
+import me.signatured.clashroyale.spawnable.npc.RidingNpc;
 
 @GenerateCard(key = "NPC_HOG_RIDER", name = "Hog Rider", rarity = ClashRarity.RARE, arena = ArenaType.ARENA_4, cost = 4)
-public class HogRider extends ClashNpc {
+public class HogRider extends RidingNpc {
 
 	public HogRider(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, level);
@@ -54,6 +54,11 @@ public class HogRider extends ClashNpc {
 	@Override
 	public int getBaseDamage() {
 		return 150;
+	}
+
+	@Override
+	public EntityType getVehicleType() {
+		return EntityType.PIG;
 	}
 
 }

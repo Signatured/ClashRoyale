@@ -18,7 +18,7 @@ public class NightWitch extends ClashNpc {
 	
 	@Override
 	public EntityType getEntityType() {
-		return EntityType.PLAYER;
+		return EntityType.WITCH;
 	}
 
 	@Override

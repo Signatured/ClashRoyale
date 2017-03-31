@@ -18,7 +18,7 @@ public class IceSpirit extends ClashNpc {
 	
 	@Override
 	public EntityType getEntityType() {
-		return EntityType.PLAYER;
+		return EntityType.SLIME;
 	}
 
 	@Override

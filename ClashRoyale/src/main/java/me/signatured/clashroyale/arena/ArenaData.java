@@ -12,12 +12,14 @@ public class ArenaData {
 	private ClashPlayer player;
 	private Cuboid main, rightLane, leftLane;
 	private boolean rightLaneDestroyed = false, leftLaneDestroyed = false;
+	private float yaw;
 	
-	public ArenaData(ClashPlayer player, Cuboid main, Cuboid rightLane, Cuboid leftLane) {
+	public ArenaData(ClashPlayer player, Cuboid main, Cuboid rightLane, Cuboid leftLane, float yaw) {
 		this.player = player;
 		this.main = main;
 		this.rightLane = rightLane;
 		this.leftLane = leftLane;
+		this.yaw = yaw;
 	}
 	
 	public boolean canPlace(ClashPlayer player, Location loc) {

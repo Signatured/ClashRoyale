@@ -16,7 +16,7 @@ public class FireSpirit extends ClashNpc {
 	
 	@Override
 	public EntityType getEntityType() {
-		return EntityType.PLAYER;
+		return EntityType.MAGMA_CUBE;
 	}
 
 	@Override

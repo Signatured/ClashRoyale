@@ -16,7 +16,7 @@ public class Bat extends ClashNpc {
 	
 	@Override
 	public EntityType getEntityType() {
-		return EntityType.PLAYER;
+		return EntityType.BAT;
 	}
 	
 	@Override

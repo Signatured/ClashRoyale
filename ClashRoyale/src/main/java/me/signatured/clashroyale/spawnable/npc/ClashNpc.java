@@ -32,8 +32,9 @@ public abstract class ClashNpc extends ClashSpawnable implements IClashNpc {
 	@Override
 	public void spawn(Location loc) {
 		npc = REG.createNPC(getEntityType(), getName());
+		loc.setYaw(getFacingYaw());
 		
-		//TODO: Spawn looking correct way, add appropriate goals
+		//TODO: Add appropriate goals
 	}
 	
 	@Override
