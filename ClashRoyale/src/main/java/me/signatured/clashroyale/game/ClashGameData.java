@@ -1,5 +1,7 @@
 package me.signatured.clashroyale.game;
 
+import org.bukkit.Location;
+
 import lombok.Data;
 import me.signatured.clashroyale.ClashPlayer;
 import me.signatured.clashroyale.arena.ArenaData;
@@ -31,9 +33,22 @@ public class ClashGameData {
 		createHand();
 	}
 	
-	public void useCard(int index) {
+	public void useCard(Location loc, int index) {
+		PlayerCard used = cards[index];
+		int cost = used.getCard().getCost();
+		
+		if (cost > elixir) {
+			player.message("You need " + cost + " elixir to use " + used.getCard().getName());
+			return;
+		}
+		
+		elixir -= cost;
+		used.spawn(loc);
+		
 		cards[index] = nextCard;
 		nextCard = getNewCard();
+		
+		//TODO: give new card
 	}
 	
 	public void addElixer(double amount) {
@@ -49,10 +64,8 @@ public class ClashGameData {
 	}
 	
 	private void createHand() {
-		for (int i = 0; i < 4; i++) {
-			PlayerCard card = ClashUtil.getRandomEntry(selectedDeck.getCards(), cards);
-			cards[i] = card;
-		}
+		for (int i = 0; i < 4; i++) 
+			cards[i] = getNewCard();
 		
 		nextCard = getNewCard();
 	}

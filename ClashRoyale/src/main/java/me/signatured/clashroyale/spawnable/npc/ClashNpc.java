@@ -1,7 +1,10 @@
 package me.signatured.clashroyale.spawnable.npc;
 
+import org.bukkit.EntityEffect;
 import org.bukkit.Location;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -17,7 +20,7 @@ import net.citizensnpcs.api.npc.NPCRegistry;
 @EqualsAndHashCode(callSuper=false)
 public abstract class ClashNpc extends ClashSpawnable implements IClashNpc {
 	
-	private static final NPCRegistry REG = CitizensAPI.getNPCRegistry();
+	protected static final NPCRegistry REG = CitizensAPI.getNPCRegistry();
 	
 	private NPC npc;
 	private int level, health, damage;
@@ -39,12 +42,14 @@ public abstract class ClashNpc extends ClashSpawnable implements IClashNpc {
 	
 	@Override
 	public void despawn() {
-		
+		npc.destroy();
+		getGame().getSpawnables().remove(this);
 	}
 	
 	@Override
 	public void damage(int amount) {
 		health = Math.max(0, health - amount);
+		getLivingEntity().playEffect(EntityEffect.HURT);
 		
 		if (health <= 0)
 			onDeath();
@@ -52,7 +57,10 @@ public abstract class ClashNpc extends ClashSpawnable implements IClashNpc {
 	
 	@Override
 	public void onDeath() {
+		getLivingEntity().playEffect(EntityEffect.DEATH);
+		getLivingEntity().setHealth(0);
 		
+		despawn();
 	}
 	
 	@Override
@@ -70,6 +78,17 @@ public abstract class ClashNpc extends ClashSpawnable implements IClashNpc {
 		if (npc != null && npc.isSpawned())
 			return npc.getStoredLocation();
 		return null;
+	}
+	
+	public LivingEntity getLivingEntity() {
+		if (npc == null || npc.getEntity() == null)
+			return null;
+		Entity entity = npc.getEntity();
+		
+		if (entity.isDead())
+			return null;
+		
+		return (LivingEntity) entity;
 	}
 	
 	private int calcHealth() {

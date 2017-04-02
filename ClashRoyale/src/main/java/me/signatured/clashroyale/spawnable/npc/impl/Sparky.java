@@ -18,7 +18,7 @@ public class Sparky extends ClashNpc {
 	
 	@Override
 	public EntityType getEntityType() {
-		return EntityType.PLAYER;
+		return EntityType.SHEEP;
 	}
 
 	@Override

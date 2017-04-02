@@ -4,11 +4,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 
+import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.LeatherArmorMeta;
 
 public class ItemBuilder {
 	
@@ -78,6 +80,38 @@ public class ItemBuilder {
 	
 	public ItemBuilder enchant(Enchantment enchant) {
 		return enchant(enchant, 1);
+	}
+	
+	@SuppressWarnings("deprecation")
+	public ItemBuilder color(DyeColor color) {
+		switch (item.getType()) {
+		
+		case LEATHER_HELMET:
+		case LEATHER_CHESTPLATE:
+		case LEATHER_LEGGINGS:
+		case LEATHER_BOOTS:
+			LeatherArmorMeta meta = (LeatherArmorMeta) item.getItemMeta();
+			meta.setColor(color.getColor());
+			item.setItemMeta(meta);
+			break;
+		
+		case WOOL: 
+		case CARPET:
+		case STAINED_GLASS:
+		case STAINED_GLASS_PANE:
+			item.setDurability(color.getData());
+			break;
+		case INK_SACK:
+		case STAINED_CLAY:
+		case CLAY:
+			item.setDurability(color.getDyeData());
+			break;
+		
+		default:
+			break;	
+		}
+		
+		return this;
 	}
 	
 	public ItemBuilder hideEnchant() {

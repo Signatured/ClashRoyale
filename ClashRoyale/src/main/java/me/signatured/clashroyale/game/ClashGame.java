@@ -184,7 +184,6 @@ public class ClashGame {
 				return;
 			
 			winner = (player1.getCrowns() > player2.getCrowns()) ? player1 : player2;
-			return;
 		}
 	}
 	

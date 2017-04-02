@@ -22,6 +22,7 @@ public @interface GenerateCard {
 	
 	String key();
 	String name();
+	String skull() default "";
 	ClashRarity rarity() default ClashRarity.COMMON;
 	ArenaType arena() default ArenaType.ARENA_1;
 	int cost() default 1;

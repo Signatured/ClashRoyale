@@ -7,10 +7,10 @@ import me.signatured.clashroyale.arena.ArenaType;
 import me.signatured.clashroyale.card.annotation.GenerateCard;
 import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.ClashRarity;
-import me.signatured.clashroyale.spawnable.npc.ClashNpc;
+import me.signatured.clashroyale.spawnable.npc.RidingNpc;
 
 @GenerateCard(key = "NPC_DARK_PRINCE", name = "Dark Prince", rarity = ClashRarity.EPIC, arena = ArenaType.ARENA_7, cost = 4)
-public class DarkPrince extends ClashNpc {
+public class DarkPrince extends RidingNpc {
 
 	public DarkPrince(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, level);
@@ -54,6 +54,11 @@ public class DarkPrince extends ClashNpc {
 	@Override
 	public int getBaseDamage() {
 		return 180;
+	}
+
+	@Override
+	public EntityType getVehicleType() {
+		return EntityType.HORSE;
 	}
 
 }

@@ -34,6 +34,8 @@ public class ClashPlayer {
 	
 	private ArenaType arena;
 	private int trophies;
+	private int level;
+	private int xp;
 	
 	public ClashPlayer(String name, UUID uuid) {
 		this.name = name;
@@ -56,6 +58,18 @@ public class ClashPlayer {
 	
 	public ClashGameData getData() {
 		return game != null ? game.getData(this) : null;
+	}
+	
+	public void clearInventory() {
+		if (!isOnline())
+			return;
+		getPlayer().getInventory().clear();
+	}
+	
+	public void message(String message) {
+		if (!isOnline())
+			return;
+		getPlayer().sendMessage(message);
 	}
 	
 	public void teleport(Location loc) {
@@ -86,6 +100,10 @@ public class ClashPlayer {
 		if (!isOnline())
 			return null;
 		return getPlayer().getLocation();
+	}
+	
+	public boolean inGame() {
+		return game != null;
 	}
 	
 	public boolean isOnline() {

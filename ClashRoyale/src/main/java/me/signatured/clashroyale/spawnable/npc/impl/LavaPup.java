@@ -16,7 +16,7 @@ public class LavaPup extends ClashNpc {
 	
 	@Override
 	public EntityType getEntityType() {
-		return EntityType.PLAYER;
+		return EntityType.ZOMBIE;
 	}
 
 	@Override
