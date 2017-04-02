@@ -23,13 +23,14 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
+import org.bukkit.util.BlockIterator;
 
 import com.mojang.authlib.properties.Property;
 
 import me.signatured.clashroyale.ClashPlayer;
 import me.signatured.clashroyale.game.ClashGame;
+import me.signatured.clashroyale.mechanics.SkinData;
 import me.signatured.clashroyale.spawnable.ClashSpawnable;
-import me.signatured.clashroyale.spawnable.npc.SkinData;
 import me.signatured.clashroyale.spawnable.types.IDamageableSpawnable;
 import me.signatured.clashroyale.spawnable.types.ILocatable;
 import me.signatured.clashroyale.util.task.Sync;
@@ -403,6 +404,23 @@ public class ClashUtil {
 	public static List<ClashSpawnable> getSpawnablesInRange(ClashPlayer owner, Location loc, double radius) {
 		List<ClashSpawnable> spawnables = getSpawnablesInRange(owner.getGame(), loc, radius);
 		return spawnables.stream().filter(s -> s.getPlayer().equals(owner)).collect(Collectors.toList());
+	}
+	
+	/**
+	 * Get a target block within a given range, null if no block was found
+	 */
+	public static Block getTargetBlock(Player player, int range) {
+		BlockIterator iter = new BlockIterator(player, range);
+		
+		while (iter.hasNext()) {
+			Block block = iter.next();
+			if (block.getType() == Material.AIR) {
+				continue;
+			}
+			
+			return block;
+		}
+		return null;
 	}
 	
 	/**

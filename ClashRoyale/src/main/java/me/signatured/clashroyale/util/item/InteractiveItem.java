@@ -14,6 +14,7 @@ public class InteractiveItem {
 	@Getter
 	private static List<InteractiveItem> items = new ArrayList<>();
 	
+	@Getter
 	private ItemStack item;
 	private List<Consumer<PlayerInteractEvent>> interactHandlers = new ArrayList<>();
 	
@@ -22,15 +23,16 @@ public class InteractiveItem {
 		items.add(this);
 	}
 	
+	public static InteractiveItem of(ItemStack item) {
+		return new InteractiveItem(item);
+	}
+	
 	public InteractiveItem onInteract(Consumer<PlayerInteractEvent> handler) {
 		interactHandlers.add(handler);
 		return this;
 	}
 	
 	public void onInteractEvent(PlayerInteractEvent event) {
-		if (event.isCancelled())
-			return;
-		
 		if (!event.hasItem())
 			return;
 		

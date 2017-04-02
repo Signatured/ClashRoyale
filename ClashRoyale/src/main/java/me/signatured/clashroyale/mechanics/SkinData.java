@@ -1,4 +1,4 @@
-package me.signatured.clashroyale.spawnable.npc;
+package me.signatured.clashroyale.mechanics;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

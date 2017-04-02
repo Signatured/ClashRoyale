@@ -15,9 +15,9 @@ import lombok.Getter;
 import me.signatured.clashroyale.ClashRoyale;
 import me.signatured.clashroyale.arena.ArenaType;
 import me.signatured.clashroyale.card.annotation.GenerateCard;
+import me.signatured.clashroyale.mechanics.SkinData;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.ClashSpawnable;
-import me.signatured.clashroyale.spawnable.npc.SkinData;
 
 public class CardList {
 	

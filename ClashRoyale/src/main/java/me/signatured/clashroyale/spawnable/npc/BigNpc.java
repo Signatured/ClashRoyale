@@ -2,15 +2,15 @@ package me.signatured.clashroyale.spawnable.npc;
 
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Skeleton;
+import org.bukkit.entity.Skeleton.SkeletonType;
 
 import me.signatured.clashroyale.ClashPlayer;
 import me.signatured.clashroyale.game.ClashGame;
-import me.signatured.clashroyale.mechanics.SkinData;
-import me.signatured.clashroyale.util.ClashUtil;
 
-public abstract class SkinnedNpc extends ClashNpc {
+public abstract class BigNpc extends ClashNpc {
 
-	public SkinnedNpc(ClashGame game, ClashPlayer player, int level) {
+	public BigNpc(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, level);
 	}
 	
@@ -18,13 +18,12 @@ public abstract class SkinnedNpc extends ClashNpc {
 	public void spawn(Location loc) {
 		super.spawn(loc);
 		
-		SkinData data = SkinData.getData(getKey());
-		ClashUtil.applySkin(getNpc(), data);
+		Skeleton skeleton = (Skeleton) getNpc().getEntity();
+		skeleton.setSkeletonType(SkeletonType.WITHER);
 	}
 	
 	@Override
 	public EntityType getEntityType() {
-		return EntityType.PLAYER;
+		return EntityType.SKELETON;
 	}
-	
 }

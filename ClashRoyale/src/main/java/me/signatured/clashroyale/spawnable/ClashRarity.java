@@ -2,14 +2,16 @@ package me.signatured.clashroyale.spawnable;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import me.signatured.clashroyale.util.C;
 
 @Getter
 @AllArgsConstructor
 public enum ClashRarity {
 
-	COMMON("Common"), RARE("Rare"), EPIC("Epic"), LEGENDARY("Legendary");
+	COMMON("Common", C.GREEN), RARE("Rare", C.RED), EPIC("Epic", C.PURPLE), LEGENDARY("Legendary", C.GOLD);
 
 	private String name;
+	private String color;
 
 	public int getCardsRequired(int level) {
 		switch (this) {

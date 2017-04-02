@@ -28,7 +28,7 @@ public class ClashGameData {
 	public ClashGameData(ClashGame game, ClashPlayer player, int id) {
 		this.game = game;
 		this.player = player;
-		this.selectedDeck = player.getDecks()[player.getSelectedDeck()];
+		this.selectedDeck = player.getDeck();
 		
 		createHand();
 	}
@@ -49,6 +49,16 @@ public class ClashGameData {
 		nextCard = getNewCard();
 		
 		//TODO: give new card
+	}
+	
+	public void giveHand() {
+		if (!player.isOnline())
+			return;
+		
+		for (int i = 0; i < 4; i++)
+			player.getInventory().setItem(i, cards[i].getGameSkull(game));
+		
+		player.getInventory().setItem(8, nextCard.getSkull());
 	}
 	
 	public void addElixer(double amount) {

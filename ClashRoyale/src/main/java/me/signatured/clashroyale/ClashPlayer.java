@@ -8,6 +8,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 
 import lombok.Data;
 import lombok.Getter;
@@ -96,10 +97,20 @@ public class ClashPlayer {
 		getPlayer().playSound(getLocation(), sound, 1f, 1f);
 	}
 	
+	public CardDeck getDeck() {
+		return decks[selectedDeck];
+	}
+	
 	public Location getLocation() {
 		if (!isOnline())
 			return null;
 		return getPlayer().getLocation();
+	}
+	
+	public Inventory getInventory() {
+		if (!isOnline())
+			return null;
+		return getPlayer().getInventory();
 	}
 	
 	public boolean inGame() {
