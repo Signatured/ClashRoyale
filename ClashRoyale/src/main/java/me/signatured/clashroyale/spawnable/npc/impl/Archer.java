@@ -1,24 +1,17 @@
 package me.signatured.clashroyale.spawnable.npc.impl;
 
-import org.bukkit.entity.EntityType;
-
 import me.signatured.clashroyale.ClashPlayer;
 import me.signatured.clashroyale.arena.ArenaType;
 import me.signatured.clashroyale.card.annotation.GenerateCard;
 import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.ClashRarity;
-import me.signatured.clashroyale.spawnable.npc.ClashNpc;
+import me.signatured.clashroyale.spawnable.npc.SkinnedNpc;
 
 @GenerateCard(key = "NPC_ARCHER", name = "Archer", rarity = ClashRarity.COMMON, arena = ArenaType.ARENA_1, cost = 3)
-public class Archer extends ClashNpc{
+public class Archer extends SkinnedNpc {
 
 	public Archer(ClashGame game, ClashPlayer owner, int level) {
 		super(game, owner, level);
-	}
-	
-	@Override
-	public EntityType getEntityType() {
-		return EntityType.PLAYER;
 	}
 
 	@Override

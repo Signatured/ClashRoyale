@@ -18,7 +18,7 @@ public class RoyaleGiant extends ClashNpc {
 	
 	@Override
 	public EntityType getEntityType() {
-		return EntityType.PLAYER;
+		return EntityType.SKELETON;
 	}
 
 	@Override

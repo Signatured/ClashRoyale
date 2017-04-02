@@ -15,11 +15,6 @@ public class HogRider extends RidingNpc {
 	public HogRider(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, level);
 	}
-	
-	@Override
-	public EntityType getEntityType() {
-		return EntityType.PLAYER;
-	}
 
 	@Override
 	public double getHitSpeed() {

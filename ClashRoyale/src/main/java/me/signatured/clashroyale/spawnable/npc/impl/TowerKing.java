@@ -1,22 +1,15 @@
 package me.signatured.clashroyale.spawnable.npc.impl;
 
-import org.bukkit.entity.EntityType;
-
 import me.signatured.clashroyale.ClashPlayer;
 import me.signatured.clashroyale.card.annotation.GenerateCard;
 import me.signatured.clashroyale.game.ClashGame;
-import me.signatured.clashroyale.spawnable.npc.ClashNpc;
+import me.signatured.clashroyale.spawnable.npc.SkinnedNpc;
 
 @GenerateCard(key = "NPC_TOWER_KING", name = "Tower King", real = false)
-public class TowerKing extends ClashNpc {
+public class TowerKing extends SkinnedNpc {
 	
 	public TowerKing(ClashGame game, ClashPlayer owner, int level) {
 		super(game, owner, level);
-	}
-	
-	@Override
-	public EntityType getEntityType() {
-		return EntityType.PLAYER;
 	}
 
 	@Override

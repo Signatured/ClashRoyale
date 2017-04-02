@@ -15,11 +15,6 @@ public class DarkPrince extends RidingNpc {
 	public DarkPrince(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, level);
 	}
-	
-	@Override
-	public EntityType getEntityType() {
-		return EntityType.PLAYER;
-	}
 
 	@Override
 	public double getHitSpeed() {

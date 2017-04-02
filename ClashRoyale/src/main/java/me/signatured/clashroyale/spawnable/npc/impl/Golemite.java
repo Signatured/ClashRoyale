@@ -16,7 +16,7 @@ public class Golemite extends ClashNpc {
 	
 	@Override
 	public EntityType getEntityType() {
-		return EntityType.PLAYER;
+		return EntityType.SNOWMAN;
 	}
 
 	@Override

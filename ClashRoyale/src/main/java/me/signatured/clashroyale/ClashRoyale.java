@@ -65,6 +65,5 @@ public class ClashRoyale extends JavaPlugin implements Listener {
         
         skull.setItemMeta(meta);
         e.getPlayer().getInventory().addItem(skull);
-        System.out.println("fired");
 	}
 }

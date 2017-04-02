@@ -24,9 +24,12 @@ import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
+import com.mojang.authlib.properties.Property;
+
 import me.signatured.clashroyale.ClashPlayer;
 import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.ClashSpawnable;
+import me.signatured.clashroyale.spawnable.npc.SkinData;
 import me.signatured.clashroyale.spawnable.types.IDamageableSpawnable;
 import me.signatured.clashroyale.spawnable.types.ILocatable;
 import me.signatured.clashroyale.util.task.Sync;
@@ -89,14 +92,15 @@ public class ClashUtil {
 	/**
 	 * Apply skin of player given to NPC
 	 */
-	public static void applySkin(NPC npc, String skinName) {
-		npc.data().setPersistent(NPC.PLAYER_SKIN_UUID_METADATA, skinName);
+	public static void applySkin(NPC npc, SkinData data) {
+		if (!npc.isSpawned() || data == null)
+			return;
 		
-		if (npc.isSpawned()) {
-			SkinnableEntity skinnable = npc.getEntity() instanceof SkinnableEntity ? (SkinnableEntity) npc.getEntity()
-					: null;
-			if (skinnable != null)
-				skinnable.setSkinName(skinName);
+		SkinnableEntity skinnable = npc.getEntity() instanceof SkinnableEntity ? (SkinnableEntity) npc.getEntity()
+				: null;
+		if (skinnable != null) {
+			skinnable.getProfile().getProperties().put("textures",
+					new Property("textures", data.getTexture1(), data.getTexture2()));
 		}
 	}
 	

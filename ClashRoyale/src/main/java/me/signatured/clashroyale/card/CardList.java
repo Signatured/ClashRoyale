@@ -1,18 +1,23 @@
 package me.signatured.clashroyale.card;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.reflections.Reflections;
 
 import lombok.Getter;
+import me.signatured.clashroyale.ClashRoyale;
 import me.signatured.clashroyale.arena.ArenaType;
 import me.signatured.clashroyale.card.annotation.GenerateCard;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.ClashSpawnable;
+import me.signatured.clashroyale.spawnable.npc.SkinData;
 
 public class CardList {
 	
@@ -70,6 +75,7 @@ public class CardList {
 			boolean real = gc.real();
 			
 			add(new ClashCard(key, name, clazz, rarity, arena, cost, real));
+			createSkin(key);
 		}
 		
 		clean();
@@ -87,6 +93,19 @@ public class CardList {
 	
 	public Iterator<ClashCard> iterator() {
 		return cards.iterator();
+	}
+	
+	public void createSkin(String key) {
+		if (!skinsDir().exists())
+			skinsDir().mkdir();
+		
+		FileConfiguration skinConfig = null;
+		File skinFile = null;
+		
+		skinFile = new File(skinsDir(), key + ".yml");
+		skinConfig = YamlConfiguration.loadConfiguration(skinFile);
+		
+		new SkinData(key, skinConfig.getString("uuid"), skinConfig.getString("name"), skinConfig.getString("texture1"), skinConfig.getString("texture2"));
 	}
 	
 	private void clean() {
@@ -109,5 +128,9 @@ public class CardList {
 	
 	private boolean hasProblem(ClashCard card) {
 		return card.getKey() == null || card.getName() == null;
+	}
+	
+	private File skinsDir() {
+		return new File(ClashRoyale.getInstance().getDataFolder().getAbsolutePath() + File.separator + "Skins");
 	}
 }

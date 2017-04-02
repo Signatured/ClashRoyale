@@ -1,24 +1,17 @@
 package me.signatured.clashroyale.spawnable.npc.impl;
 
-import org.bukkit.entity.EntityType;
-
 import me.signatured.clashroyale.ClashPlayer;
 import me.signatured.clashroyale.arena.ArenaType;
 import me.signatured.clashroyale.card.annotation.GenerateCard;
 import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.ClashRarity;
-import me.signatured.clashroyale.spawnable.npc.ClashNpc;
+import me.signatured.clashroyale.spawnable.npc.SkinnedNpc;
 
 @GenerateCard(key = "NPC_EXECUTIONER", name = "Executioner", rarity = ClashRarity.EPIC, arena = ArenaType.ARENA_9, cost = 5)
-public class Executioner extends ClashNpc {
+public class Executioner extends SkinnedNpc {
 
 	public Executioner(ClashGame game, ClashPlayer player, int level) {
 		super(game, player, level);
-	}
-	
-	@Override
-	public EntityType getEntityType() {
-		return EntityType.PLAYER;
 	}
 
 	@Override

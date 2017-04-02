@@ -7,7 +7,7 @@ import me.signatured.clashroyale.ClashPlayer;
 import me.signatured.clashroyale.game.ClashGame;
 import net.citizensnpcs.api.npc.NPC;
 
-public abstract class RidingNpc extends ClashNpc {
+public abstract class RidingNpc extends SkinnedNpc {
 	
 	private NPC vehicle;
 
@@ -17,6 +17,7 @@ public abstract class RidingNpc extends ClashNpc {
 	
 	@Override
 	public void spawn(Location loc) {
+		super.spawn(loc);
 		vehicle = REG.createNPC(getVehicleType(), getName());
 		
 		//TODO: Give goal
