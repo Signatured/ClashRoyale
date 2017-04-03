@@ -13,7 +13,7 @@ import me.signatured.clashroyale.spawnable.structure.ClashStructure;
 import me.signatured.clashroyale.spawnable.types.IDamageableSpawnable;
 import me.signatured.clashroyale.util.ClashUtil;
 import me.signatured.clashroyale.util.ParticleBuilder;
-import net.minecraft.server.v1_8_R3.EnumParticle;
+import net.minecraft.server.v1_11_R1.EnumParticle;
 
 @Data
 public class ClashExplosion {

@@ -20,8 +20,8 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_11_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_11_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.util.BlockIterator;
 
@@ -36,10 +36,10 @@ import me.signatured.clashroyale.spawnable.types.ILocatable;
 import me.signatured.clashroyale.util.task.Sync;
 import net.citizensnpcs.api.npc.NPC;
 import net.citizensnpcs.npc.skin.SkinnableEntity;
-import net.minecraft.server.v1_8_R3.BlockPosition;
-import net.minecraft.server.v1_8_R3.IBlockData;
-import net.minecraft.server.v1_8_R3.IChatBaseComponent;
-import net.minecraft.server.v1_8_R3.PacketPlayOutChat;
+import net.minecraft.server.v1_11_R1.BlockPosition;
+import net.minecraft.server.v1_11_R1.IBlockData;
+import net.minecraft.server.v1_11_R1.IChatBaseComponent;
+import net.minecraft.server.v1_11_R1.PacketPlayOutChat;
 
 public class ClashUtil {
 	
@@ -346,13 +346,13 @@ public class ClashUtil {
 		int y = loc.getBlockY();
 		int z = loc.getBlockZ();
 		
-		net.minecraft.server.v1_8_R3.Chunk chunk = getChunk(world, x, z);
+		net.minecraft.server.v1_11_R1.Chunk chunk = getChunk(world, x, z);
         
         BlockPosition bp = new BlockPosition(x, y, z);
         
         int combined = type.getId() + (data << 12);
         
-        IBlockData ibd = net.minecraft.server.v1_8_R3.Block.getByCombinedId(combined);
+        IBlockData ibd = net.minecraft.server.v1_11_R1.Block.getByCombinedId(combined);
         
         Runnable change = () -> chunk.getWorld().setTypeAndData(bp, ibd, 2); // 2 == Dont update physics.
         
@@ -372,12 +372,12 @@ public class ClashUtil {
 	 * @param z Z coordinate
 	 * @return net.minecraft.server.v1_8_R3.Chunk
 	 */
-	public static net.minecraft.server.v1_8_R3.Chunk getChunk(org.bukkit.World world, int x, int z) {
+	public static net.minecraft.server.v1_11_R1.Chunk getChunk(org.bukkit.World world, int x, int z) {
 		
 		CraftWorld cw = (CraftWorld) world;
 		
-        net.minecraft.server.v1_8_R3.World w = cw.getHandle();
-        net.minecraft.server.v1_8_R3.Chunk chunk = w.getChunkAt(x >> 4, z >> 4);
+        net.minecraft.server.v1_11_R1.World w = cw.getHandle();
+        net.minecraft.server.v1_11_R1.Chunk chunk = w.getChunkAt(x >> 4, z >> 4);
         
 		return chunk;
 	}

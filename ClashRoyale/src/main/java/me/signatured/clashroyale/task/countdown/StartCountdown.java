@@ -18,9 +18,9 @@ public class StartCountdown extends ClashCountdown {
 		title(new Title(C.RED + "2"), 2);
 		title(new Title(C.DRED + "1"), 1);
 		
-		sound(Sound.CLICK, 10);
+		sound(Sound.UI_BUTTON_CLICK, 10);
 		for (int i = 1; i <= 5; i++)
-			sound(Sound.CLICK, i);
+			sound(Sound.UI_BUTTON_CLICK, i);
 		
 		onEnd(() -> game.start());
 	}

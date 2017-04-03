@@ -1,11 +1,15 @@
 package me.signatured.clashroyale.spawnable.npc.impl;
 
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
+
 import me.signatured.clashroyale.ClashPlayer;
 import me.signatured.clashroyale.arena.ArenaType;
 import me.signatured.clashroyale.card.annotation.GenerateCard;
 import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.npc.SkinnedNpc;
+import me.signatured.clashroyale.util.item.ItemBuilder;
 
 @GenerateCard(key = "NPC_EXECUTIONER", name = "Executioner", rarity = ClashRarity.EPIC, arena = ArenaType.ARENA_9, cost = 5)
 public class Executioner extends SkinnedNpc {
@@ -47,6 +51,11 @@ public class Executioner extends SkinnedNpc {
 	@Override
 	public int getBaseDamage() {
 		return 100;
+	}
+	
+	@Override
+	public ItemStack getMainHand() {
+		return ItemBuilder.of(Material.IRON_AXE).build();
 	}
 
 }

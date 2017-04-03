@@ -11,6 +11,9 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
+import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.potion.PotionData;
+import org.bukkit.potion.PotionType;
 
 public class ItemBuilder {
 	
@@ -99,7 +102,7 @@ public class ItemBuilder {
 		case CARPET:
 		case STAINED_GLASS:
 		case STAINED_GLASS_PANE:
-			item.setDurability(color.getData());
+			item.setDurability(color.getWoolData());
 			break;
 		case INK_SACK:
 		case STAINED_CLAY:
@@ -109,6 +112,17 @@ public class ItemBuilder {
 		
 		default:
 			break;	
+		}
+		
+		return this;
+	}
+	
+	public ItemBuilder potion(PotionType type, boolean extended, boolean upgrade) {
+		if (item.getType() == Material.POTION || item.getType() == Material.LINGERING_POTION || item.getType() == Material.SPLASH_POTION) {
+			PotionMeta meta = (PotionMeta) item.getItemMeta();
+			meta.setBasePotionData(new PotionData(type, extended, upgrade));
+			
+			item.setItemMeta(meta);
 		}
 		
 		return this;

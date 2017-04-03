@@ -2,11 +2,11 @@ package me.signatured.clashroyale.util;
 
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_11_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
-import net.minecraft.server.v1_8_R3.EnumParticle;
-import net.minecraft.server.v1_8_R3.PacketPlayOutWorldParticles;
+import net.minecraft.server.v1_11_R1.EnumParticle;
+import net.minecraft.server.v1_11_R1.PacketPlayOutWorldParticles;
 
 public class ParticleBuilder {
 	

@@ -1,6 +1,8 @@
 package me.signatured.clashroyale.spawnable.npc.impl;
 
+import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
+import org.bukkit.inventory.ItemStack;
 
 import me.signatured.clashroyale.ClashPlayer;
 import me.signatured.clashroyale.arena.ArenaType;
@@ -8,6 +10,7 @@ import me.signatured.clashroyale.card.annotation.GenerateCard;
 import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.npc.ClashNpc;
+import me.signatured.clashroyale.util.item.ItemBuilder;
 
 @GenerateCard(key = "NPC_GIANT", name = "Giant", rarity = ClashRarity.RARE, arena = ArenaType.ARENA_1, cost = 5)
 public class Giant extends ClashNpc {
@@ -18,7 +21,7 @@ public class Giant extends ClashNpc {
 	
 	@Override
 	public EntityType getEntityType() {
-		return EntityType.SKELETON;
+		return EntityType.WITHER_SKELETON;
 	}
 
 	@Override
@@ -54,6 +57,26 @@ public class Giant extends ClashNpc {
 	@Override
 	public int getBaseDamage() {
 		return 120;
+	}
+	
+	@Override
+	public ItemStack getHelmet() {
+		return getSkinnedHead();
+	}
+	
+	@Override
+	public ItemStack getChestplate() {
+		return ItemBuilder.of(Material.LEATHER_CHESTPLATE).build();
+	}
+	
+	@Override
+	public ItemStack getLeggings() {
+		return ItemBuilder.of(Material.LEATHER_LEGGINGS).build();
+	}
+	
+	@Override
+	public ItemStack getBoots() {
+		return ItemBuilder.of(Material.LEATHER_BOOTS).build();
 	}
 
 }

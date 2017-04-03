@@ -1,9 +1,13 @@
 package me.signatured.clashroyale.spawnable.npc.impl;
 
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
+
 import me.signatured.clashroyale.ClashPlayer;
 import me.signatured.clashroyale.card.annotation.GenerateCard;
 import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.npc.SkinnedNpc;
+import me.signatured.clashroyale.util.item.ItemBuilder;
 
 @GenerateCard(key = "NPC_ELITE_BARBARIAN", name = "Elite Barbarian", real = false)
 public class EliteBarbarian extends SkinnedNpc {
@@ -45,6 +49,11 @@ public class EliteBarbarian extends SkinnedNpc {
 	@Override
 	public int getBaseDamage() {
 		return 120;
+	}
+	
+	@Override
+	public ItemStack getMainHand() {
+		return ItemBuilder.of(Material.IRON_SWORD).build();
 	}
 
 }

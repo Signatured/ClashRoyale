@@ -5,6 +5,8 @@ import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.inventory.EntityEquipment;
+import org.bukkit.inventory.ItemStack;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -38,6 +40,8 @@ public abstract class ClashNpc extends ClashSpawnable implements IClashNpc {
 		loc.setYaw(getFacingYaw());
 		
 		npc.spawn(loc);
+		giveGear();
+		
 		//TODO: Add appropriate goals
 	}
 	
@@ -90,6 +94,13 @@ public abstract class ClashNpc extends ClashSpawnable implements IClashNpc {
 			return null;
 		
 		return (LivingEntity) entity;
+	}
+	
+	private void giveGear() {
+		EntityEquipment equip = getLivingEntity().getEquipment();
+		equip.setArmorContents(new ItemStack[] {getHelmet(), getChestplate(), getLeggings(), getBoots()});
+		equip.setItemInMainHand(getMainHand());
+		equip.setItemInOffHand(getOffHand());
 	}
 	
 	private int calcHealth() {

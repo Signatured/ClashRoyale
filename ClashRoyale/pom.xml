@@ -10,15 +10,6 @@
 	<name>CraftRoyale</name>
 	<url>http://maven.apache.org</url>
 
-	<repositories>
-		<repository>
-			<id>brawl</id>
-			<name>Brawl releases</name>
-			<url>http://maven.brawl.com:8082/nexus/content/repositories/releases</url>
-			<layout>default</layout>
-		</repository>
-	</repositories>
-
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
@@ -41,9 +32,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.psykospigot</groupId>
+			<groupId>org.spigotmc</groupId>
 			<artifactId>spigot</artifactId>
-			<version>1.0.3</version>
+			<version>1.11.2-R0.1-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>

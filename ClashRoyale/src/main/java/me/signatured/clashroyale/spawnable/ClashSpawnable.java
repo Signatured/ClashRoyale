@@ -1,6 +1,7 @@
 package me.signatured.clashroyale.spawnable;
 
 import org.bukkit.Location;
+import org.bukkit.inventory.ItemStack;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,6 +9,7 @@ import me.signatured.clashroyale.ClashPlayer;
 import me.signatured.clashroyale.arena.ArenaData;
 import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.game.ClashGameData;
+import me.signatured.clashroyale.mechanics.SkinData;
 
 @Getter
 public abstract class ClashSpawnable {
@@ -33,6 +35,15 @@ public abstract class ClashSpawnable {
 	public float getFacingYaw() {
 		ArenaData arenaData = game.getData(player).getData();
 		return arenaData.getYaw();
+	}
+	
+	public ItemStack getSkinnedHead() {
+		SkinData skinData = SkinData.getData(key);
+		
+		if (skinData == null)
+			return null;
+		
+		return skinData.getSkull();
 	}
 	
 	public abstract void spawn(Location loc);

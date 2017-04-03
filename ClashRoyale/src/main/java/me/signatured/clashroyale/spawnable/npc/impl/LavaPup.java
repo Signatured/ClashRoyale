@@ -1,11 +1,15 @@
 package me.signatured.clashroyale.spawnable.npc.impl;
 
+import org.bukkit.DyeColor;
+import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
+import org.bukkit.inventory.ItemStack;
 
 import me.signatured.clashroyale.ClashPlayer;
 import me.signatured.clashroyale.card.annotation.GenerateCard;
 import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.npc.ClashNpc;
+import me.signatured.clashroyale.util.item.ItemBuilder;
 
 @GenerateCard(key = "NPC_LAVA_PUP", name = "Lava Pup", real = false)
 public class LavaPup extends ClashNpc {
@@ -52,6 +56,26 @@ public class LavaPup extends ClashNpc {
 	@Override
 	public int getBaseDamage() {
 		return 45;
+	}
+	
+	@Override
+	public ItemStack getHelmet() {
+		return ItemBuilder.of(Material.LEATHER_CHESTPLATE).color(DyeColor.YELLOW).build();
+	}
+	
+	@Override
+	public ItemStack getChestplate() {
+		return ItemBuilder.of(Material.LEATHER_CHESTPLATE).color(DyeColor.YELLOW).build();
+	}
+	
+	@Override
+	public ItemStack getLeggings() {
+		return ItemBuilder.of(Material.LEATHER_LEGGINGS).color(DyeColor.YELLOW).build();
+	}
+	
+	@Override
+	public ItemStack getBoots() {
+		return ItemBuilder.of(Material.LEATHER_BOOTS).color(DyeColor.YELLOW).build();
 	}
 
 }
