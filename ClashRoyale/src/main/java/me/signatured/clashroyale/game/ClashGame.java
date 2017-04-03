@@ -14,7 +14,6 @@ import me.signatured.clashroyale.ClashPlayer;
 import me.signatured.clashroyale.arena.Arena;
 import me.signatured.clashroyale.arena.ArenaType;
 import me.signatured.clashroyale.spawnable.ClashSpawnable;
-import me.signatured.clashroyale.task.ElixirTask;
 import me.signatured.clashroyale.task.countdown.GameCountdown;
 import me.signatured.clashroyale.task.countdown.OvertimeCountdown;
 import me.signatured.clashroyale.task.countdown.StartCountdown;
@@ -39,7 +38,6 @@ public class ClashGame {
 	private StartCountdown startCountdown;
 	private GameCountdown gameCountdown;
 	private OvertimeCountdown overtimeCountdown;
-	private ElixirTask elixirTask;
 	
 	private boolean doubleElixir = false;
 	
@@ -85,16 +83,18 @@ public class ClashGame {
 		new Arena(this, getArenaType().getArenaWorld());
 	}
 	
-	//TODO: TP players to their spawn
 	public void begin() {
+		player1.spawn();
+		player2.spawn();
+		
 		startCountdown.enable();
 	}
 	
 	public void start() {
 		state = GameState.REGULATION;
-		elixirTask = new ElixirTask(this);
 		gameCountdown.enable();
 		
+		sync().interval(1).run(() -> addElixir(!doubleElixir ? (1.0 / 56) : 2 * (1.0 / 56))); // Normal: 0.01785 a tick, Double: 0.0357 a tick
 		sync().delay(Duration.mins(1).ticks()).run(() -> doubleElixir = true);
 	}
 	
@@ -103,14 +103,17 @@ public class ClashGame {
 		overtimeCountdown.enable();
 	}
 	
-	//TODO: TP players, remove spawnables, unload world, award winner
+	//TODO: Award winner
 	public void end() {
 		state = GameState.ENDED;
 		cancelTasks();
 		removeSpawnables();
 		
 		sync().delay(Duration.secs(5)).run(() -> {
-			//TODO: tp players, unload world
+			player1.endGame();
+			player2.endGame();
+			
+			arena.unloadWorld();
 		});
 	}
 	
@@ -190,7 +193,6 @@ public class ClashGame {
 	private void cancelTasks() {
 		gameCountdown.cancel();
 		overtimeCountdown.cancel();
-		elixirTask.cancel();
 		
 		gameTasks.forEach(t -> t.cancel());
 	}

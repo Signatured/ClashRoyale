@@ -75,7 +75,8 @@ public abstract class ClashNpc extends ClashSpawnable implements IClashNpc {
 	
 	@Override
 	public double getHealthPercent() {
-		return ((double) health / calcHealth()) * 100;
+		int percent = (int) (((double) health / calcHealth()) * 100);
+		return percent != 0 ? percent : 1;
 	}
 	
 	@Override

@@ -9,7 +9,7 @@ import me.signatured.clashroyale.util.Title;
 public class StartCountdown extends ClashCountdown {
 
 	public StartCountdown(ClashGame game) {
-		super(game, 10);
+		super(game, 12);
 		
 		title(new Title(C.GREEN + "10"), 10);
 		title(new Title(C.YELLOW + "5"), 5);

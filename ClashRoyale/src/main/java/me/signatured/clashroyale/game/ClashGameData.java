@@ -1,5 +1,6 @@
 package me.signatured.clashroyale.game;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
 import lombok.Data;
@@ -7,7 +8,6 @@ import me.signatured.clashroyale.ClashPlayer;
 import me.signatured.clashroyale.arena.ArenaData;
 import me.signatured.clashroyale.card.CardDeck;
 import me.signatured.clashroyale.card.PlayerCard;
-import me.signatured.clashroyale.task.ElixirTask;
 import me.signatured.clashroyale.util.ClashUtil;
 
 @Data
@@ -22,8 +22,6 @@ public class ClashGameData {
 	private ArenaData data;
 	private int crowns;
 	private double elixir = 5;
-	
-	private ElixirTask elixirTask;
 	
 	public ClashGameData(ClashGame game, ClashPlayer player, int id) {
 		this.game = game;
@@ -62,12 +60,25 @@ public class ClashGameData {
 		player.getInventory().setItem(8, nextCard.getSkull());
 	}
 	
+	public void endGame() {
+		player.teleport(Bukkit.getWorld("world").getSpawnLocation());
+		player.setGame(null);
+	}
+	
 	public void addElixer(double amount) {
 		elixir = Math.min(elixir + amount, 10);
 	}
 	
 	public void addCrown() {
 		crowns++;
+	}
+	
+	public void spawn() {
+		//TODO: remove
+		player.clearInventory();
+		
+		player.teleport(data.getSpawn());
+		giveHand();
 	}
 	
 	public boolean maxCrowns() {

@@ -48,6 +48,11 @@ public class PlayerCard {
 			if (targetBlock == null)
 				return;
 			
+			if (!game.inProgress()) {
+				player.message(C.RED + "You can only use this when the game is in progress!");
+				return;
+			}
+			
 			Location placed = targetBlock.getLocation().clone().add(0, 1, 0);
 			if (!game.canPlace(player, placed)) {
 				player.message(C.RED + "You can only place on territory you own!");

@@ -102,7 +102,7 @@ public class CardList {
 		FileConfiguration skinConfig = null;
 		File skinFile = null;
 		
-		skinFile = new File(skinsDir(), key + ".yml");
+		skinFile = new File(skinsDir(), key.toLowerCase() + ".yml");
 		skinConfig = YamlConfiguration.loadConfiguration(skinFile);
 		
 		new SkinData(key, skinConfig.getString("uuid"), skinConfig.getString("name"), skinConfig.getString("texture1"), skinConfig.getString("texture2"));

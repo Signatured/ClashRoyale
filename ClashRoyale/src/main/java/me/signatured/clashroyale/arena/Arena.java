@@ -8,11 +8,13 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.block.Sign;
 
 import com.boydti.fawe.bukkit.wrapper.AsyncWorld;
 import com.boydti.fawe.util.TaskManager;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.util.ClashUtil;
@@ -36,7 +38,7 @@ public class Arena {
 		loadWorld(arenaWorld);
 	}
 	
-	private void loadWorld(ArenaWorld arenaWorld) {
+	public void loadWorld(ArenaWorld arenaWorld) {
 		TaskManager.IMP.async(new Runnable() {
 			@Override
 			public void run() {
@@ -53,6 +55,10 @@ public class Arena {
 		});
 	}
 	
+	public void unloadWorld() {
+		ClashUtil.deleteWorld(world);
+	}
+	
 	private void findSigns() {
 		List<Block> signs = new ArrayList<>();
 		ClashUtil.loadChunks(world.getSpawnLocation(), 20, c -> {
@@ -67,11 +73,11 @@ public class Arena {
 		Cuboid main2 = findCuboid("main", "2", signs);
 		Cuboid rightlane2 = findCuboid("rightlane", "2", signs);
 		Cuboid leftlane2 = findCuboid("leftlane", "2", signs);
-		float yaw1 = getYaw("1", signs);
-		float yaw2 = getYaw("2", signs);
+		SpawnLocation spawn1 = getSpawn("1", signs);
+		SpawnLocation spawn2 = getSpawn("2", signs);
 		
-		game.getPlayer1().setData(new ArenaData(game.getPlayer1().getPlayer(), main1, rightlane1, leftlane1, yaw1));
-		game.getPlayer2().setData(new ArenaData(game.getPlayer2().getPlayer(), main2, rightlane2, leftlane2, yaw2));
+		game.getPlayer1().setData(new ArenaData(game.getPlayer1().getPlayer(), main1, rightlane1, leftlane1, spawn1));
+		game.getPlayer2().setData(new ArenaData(game.getPlayer2().getPlayer(), main2, rightlane2, leftlane2, spawn2));
 		
 		for (Block sign : signs)
 			sign.setType(Material.AIR);
@@ -106,10 +112,23 @@ public class Arena {
 		return new Cuboid(corner1, corner2);
 	}
 	
-	private float getYaw(String id, List<Block> signs) {
-		Block block = signs.stream().filter(s -> ((Sign)s.getState()).getLine(1).equals(id)).findAny().orElse(null);
-		org.bukkit.material.Sign sign = (org.bukkit.material.Sign) block;
+	private SpawnLocation getSpawn(String id, List<Block> signs) {
+		Sign sign = signs.stream().map(s -> ((Sign)s.getState())).filter(s -> s.getLine(0).equalsIgnoreCase("spawn") && s.getLine(1).equals(id)).findAny().orElse(null);
+		org.bukkit.material.Sign matSign = (org.bukkit.material.Sign) sign.getBlock();
 		
-		return ClashUtil.faceToYaw(sign.getFacing());
+		SpawnLocation loc = new SpawnLocation(sign.getLocation(), ClashUtil.faceToYaw(matSign.getFacing()));
+		signs.remove(sign.getBlock());
+		
+		sign.setType(Material.AIR);
+		sign.getBlock().getRelative(BlockFace.DOWN).setType(Material.AIR);
+		
+		return loc;
+	}
+	
+	@Getter
+	@AllArgsConstructor
+	public class SpawnLocation {
+		private Location loc;
+		private float yaw;
 	}
 }

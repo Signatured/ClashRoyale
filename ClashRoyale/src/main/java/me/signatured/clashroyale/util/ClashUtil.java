@@ -213,6 +213,17 @@ public class ClashUtil {
 		}
 	}
 	
+	public static void deleteWorld(World world) {
+		File file = world.getWorldFolder();
+		Bukkit.unloadWorld(world, false);
+		
+		try {
+			FileUtils.deleteDirectory(file);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * @param player Player to send message to
 	 * @param message Message to send in actionbar

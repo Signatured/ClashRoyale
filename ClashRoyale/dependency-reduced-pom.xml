@@ -6,13 +6,6 @@
   <name>CraftRoyale</name>
   <version>0.0.1-SNAPSHOT</version>
   <url>http://maven.apache.org</url>
-  <repositories>
-    <repository>
-      <id>brawl</id>
-      <name>Brawl releases</name>
-      <url>http://maven.brawl.com:8082/nexus/content/repositories/releases</url>
-    </repository>
-  </repositories>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>

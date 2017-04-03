@@ -4,6 +4,7 @@ import org.bukkit.Location;
 
 import lombok.Data;
 import me.signatured.clashroyale.ClashPlayer;
+import me.signatured.clashroyale.arena.Arena.SpawnLocation;
 import me.signatured.clashroyale.util.shape.Cuboid;
 
 @Data
@@ -12,14 +13,18 @@ public class ArenaData {
 	private ClashPlayer player;
 	private Cuboid main, rightLane, leftLane;
 	private boolean rightLaneDestroyed = false, leftLaneDestroyed = false;
+	private Location spawn;
 	private float yaw;
 	
-	public ArenaData(ClashPlayer player, Cuboid main, Cuboid rightLane, Cuboid leftLane, float yaw) {
+	public ArenaData(ClashPlayer player, Cuboid main, Cuboid rightLane, Cuboid leftLane, SpawnLocation spawnLoc) {
 		this.player = player;
 		this.main = main;
 		this.rightLane = rightLane;
 		this.leftLane = leftLane;
-		this.yaw = yaw;
+		this.spawn = spawnLoc.getLoc();
+		this.yaw = spawnLoc.getYaw();
+		
+		spawn.setYaw(yaw);
 	}
 	
 	public boolean canPlace(ClashPlayer player, Location loc) {
