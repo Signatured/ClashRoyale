@@ -48,7 +48,8 @@ public class ClashGameData {
 		cards[index] = nextCard;
 		nextCard = getNewCard();
 		
-		//TODO: give new card
+		player.getInventory().setItem(index, cards[index].getGameSkull(game));
+		player.getInventory().setItem(8, nextCard.getSkull());
 	}
 	
 	public void giveHand() {
@@ -81,6 +82,16 @@ public class ClashGameData {
 	}
 	
 	private PlayerCard getNewCard() {
-		return ClashUtil.getRandomEntry(selectedDeck.getCards(), cards);
+		return ClashUtil.getRandomEntry(selectedDeck.getCards(), excluding());
+	}
+	
+	private PlayerCard[] excluding() {
+		PlayerCard[] excluding = new PlayerCard[5];
+		
+		for (int i = 0; i < cards.length; i++)
+			excluding[i] = cards[i];
+		
+		excluding[3] = nextCard;
+		return excluding;
 	}
 }
