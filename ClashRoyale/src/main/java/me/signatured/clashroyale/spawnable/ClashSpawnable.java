@@ -22,7 +22,7 @@ public abstract class ClashSpawnable {
 	private ClashPlayer player;
 	private int level;
 	
-	public ClashSpawnable(ClashGame game, ClashPlayer player, int level) {
+	public ClashSpawnable(ClashGame game, ClashPlayer player, Integer level) {
 		this.game = game;
 		this.player = player;
 		this.level = level;

@@ -34,9 +34,13 @@ public class ClashPlayer {
 	private int selectedDeck = 0;
 	
 	private ArenaType arena;
-	private int trophies;
-	private int level;
-	private int xp;
+	private int trophies = 0;
+	private int level = 1;
+	private int xp = 0;
+	
+	public ClashPlayer(Player player) {
+		this(player.getName(), player.getUniqueId());
+	}
 	
 	public ClashPlayer(String name, UUID uuid) {
 		this.name = name;
@@ -45,15 +49,15 @@ public class ClashPlayer {
 		players.add(this);
 	}
 	
-	public static ClashPlayer getPlayer(Player player) {
-		return getPlayer(player.getUniqueId());
+	public static ClashPlayer of(Player player) {
+		return of(player.getUniqueId());
 	}
 	
-	public static ClashPlayer getPlayer(String name) {
+	public static ClashPlayer of(String name) {
 		return players.stream().filter(p -> p.getName().equalsIgnoreCase(name)).findAny().orElse(null);
 	}
 	
-	public static ClashPlayer getPlayer(UUID uuid) {
+	public static ClashPlayer of(UUID uuid) {
 		return players.stream().filter(p -> p.getUuid().equals(uuid)).findAny().orElse(null);
 	}
 	

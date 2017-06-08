@@ -12,7 +12,7 @@ import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.npc.ClashNpc;
 import me.signatured.clashroyale.util.item.ItemBuilder;
 
-@GenerateCard(key = "NPC_BOMBER", name = "Bomber", rarity = ClashRarity.COMMON, arena = ArenaType.ARENA_1, cost = 3)
+@GenerateCard(key = "NPC_BOMBER", name = "Bomber", rarity = ClashRarity.COMMON, arena = ArenaType.ARENA_1, cost = 3, defaultCard = true)
 public class Bomber extends ClashNpc {
 
 	public Bomber(ClashGame game, ClashPlayer player, int level) {

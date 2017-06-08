@@ -52,6 +52,10 @@ public class CardList {
 		return cards.stream().filter(c -> c.getArena() == arena && c.isReal()).collect(Collectors.toList());
 	}
 	
+	public List<ClashCard> getDefault() {
+		return cards.stream().filter(c -> c.isDefaultCard()).collect(Collectors.toList());
+	}
+	
 	@SuppressWarnings("unchecked")
 	public void load() {
 		System.out.println("Generating cards...");
@@ -73,8 +77,9 @@ public class CardList {
 			ArenaType arena = gc.arena();
 			int cost = gc.cost();
 			boolean real = gc.real();
+			boolean defaultCard = gc.defaultCard();
 			
-			add(new ClashCard(key, name, clazz, rarity, arena, cost, real));
+			add(new ClashCard(key, name, clazz, rarity, arena, cost, real, defaultCard));
 			createSkin(key);
 		}
 		

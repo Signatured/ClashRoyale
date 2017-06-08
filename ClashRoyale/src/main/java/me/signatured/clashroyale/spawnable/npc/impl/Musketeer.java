@@ -11,7 +11,7 @@ import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.npc.SkinnedNpc;
 import me.signatured.clashroyale.util.item.ItemBuilder;
 
-@GenerateCard(key = "NPC_MUSKETEER", name = "Musketeer", rarity = ClashRarity.RARE, arena = ArenaType.ARENA_1, cost = 4)
+@GenerateCard(key = "NPC_MUSKETEER", name = "Musketeer", rarity = ClashRarity.RARE, arena = ArenaType.ARENA_1, cost = 4, defaultCard = true)
 public class Musketeer extends SkinnedNpc {
 
 	public Musketeer(ClashGame game, ClashPlayer player, int level) {

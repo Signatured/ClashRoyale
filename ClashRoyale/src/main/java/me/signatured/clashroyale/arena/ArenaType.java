@@ -26,6 +26,11 @@ public enum ArenaType {
 	private String name;
 	private int trophyReq;
 	
+	public static void loadArenaWorlds() {
+		new ArenaWorld(ArenaType.ARENA_1);
+//		Arrays.asList(values()).forEach(a -> new ArenaWorld(a));
+	}
+	
 	public ArenaWorld getArenaWorld() {
 		return ArenaWorld.getWorld(this);
 	}

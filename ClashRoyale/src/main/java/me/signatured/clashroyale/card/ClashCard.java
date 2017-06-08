@@ -19,6 +19,7 @@ public class ClashCard {
 	private ArenaType arena;
 	private int cost;
 	private boolean real;
+	private boolean defaultCard;
 
 	public ClashSpawnable create(ClashPlayer player, ClashGame game, int level) {
 		try {

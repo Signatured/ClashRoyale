@@ -26,5 +26,6 @@ public @interface GenerateCard {
 	ClashRarity rarity() default ClashRarity.COMMON;
 	ArenaType arena() default ArenaType.ARENA_1;
 	int cost() default 1;
+	boolean defaultCard() default false;
 	boolean real() default true;
 }

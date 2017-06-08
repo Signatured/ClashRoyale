@@ -11,7 +11,7 @@ import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.npc.SkinnedNpc;
 import me.signatured.clashroyale.util.item.ItemBuilder;
 
-@GenerateCard(key = "NPC_KNIGHT", name = "Knight", rarity = ClashRarity.COMMON, arena = ArenaType.ARENA_1, cost = 3)
+@GenerateCard(key = "NPC_KNIGHT", name = "Knight", rarity = ClashRarity.COMMON, arena = ArenaType.ARENA_1, cost = 3, defaultCard = true)
 public class Knight extends SkinnedNpc {
 
 	public Knight(ClashGame game, ClashPlayer player, int level) {

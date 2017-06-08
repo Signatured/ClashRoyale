@@ -3,6 +3,7 @@ package me.signatured.clashroyale.arena;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -10,9 +11,6 @@ import org.bukkit.WorldCreator;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.Sign;
-
-import com.boydti.fawe.bukkit.wrapper.AsyncWorld;
-import com.boydti.fawe.util.TaskManager;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -39,20 +37,13 @@ public class Arena {
 	}
 	
 	public void loadWorld(ArenaWorld arenaWorld) {
-		TaskManager.IMP.async(new Runnable() {
-			@Override
-			public void run() {
-				int arenaId = id++;
-				
-				ClashUtil.copyWorld(arenaWorld.getWorld().getName(), "ARENA_" + arenaId, "uid.dat", "session.dat");
-				AsyncWorld arenaWorld = AsyncWorld.create(new WorldCreator("ARENA_" + arenaId));
-				arenaWorld.commit();
-				
-				world = arenaWorld.getBukkitWorld();
-				findSigns();
-				finish();
-			}
-		});
+		int arenaId = id++;
+		
+		ClashUtil.copyWorld(arenaWorld.getWorld().getName(), "GAME_ARENA_" + arenaId, "uid.dat", "session.lock");
+		world = Bukkit.createWorld(new WorldCreator("GAME_ARENA_" + arenaId));
+		
+		findSigns();
+		finish();
 	}
 	
 	public void unloadWorld() {
@@ -61,11 +52,13 @@ public class Arena {
 	
 	private void findSigns() {
 		List<Block> signs = new ArrayList<>();
-		ClashUtil.loadChunks(world.getSpawnLocation(), 20, c -> {
-			for (Block block : ClashUtil.findBlocks(c.getChunkSnapshot(), Material.SIGN, Material.SIGN_POST, Material.WALL_SIGN))
+		ClashUtil.loadChunks(new Location(world, -216, 64, -189), 30, c -> {
+			for (Block block : ClashUtil.findBlocks(c, Material.SIGN, Material.SIGN_POST, Material.WALL_SIGN))
 				if (!signs.contains(block))
 					signs.add(block);
 		});
+		
+		System.out.println(signs.size());
 		
 		Cuboid main1 = findCuboid("main", "1", signs);
 		Cuboid rightlane1 = findCuboid("rightlane", "1", signs);
@@ -114,7 +107,7 @@ public class Arena {
 	
 	private SpawnLocation getSpawn(String id, List<Block> signs) {
 		Sign sign = signs.stream().map(s -> ((Sign)s.getState())).filter(s -> s.getLine(0).equalsIgnoreCase("spawn") && s.getLine(1).equals(id)).findAny().orElse(null);
-		org.bukkit.material.Sign matSign = (org.bukkit.material.Sign) sign.getBlock();
+		org.bukkit.material.Sign matSign = (org.bukkit.material.Sign) sign.getData();
 		
 		SpawnLocation loc = new SpawnLocation(sign.getLocation(), ClashUtil.faceToYaw(matSign.getFacing()));
 		signs.remove(sign.getBlock());

@@ -12,7 +12,7 @@ import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.npc.RidingNpc;
 import me.signatured.clashroyale.util.item.ItemBuilder;
 
-@GenerateCard(key = "NPC_PRINCE", name = "Prince", rarity = ClashRarity.EPIC, arena = ArenaType.ARENA_1, cost = 5)
+@GenerateCard(key = "NPC_PRINCE", name = "Prince", rarity = ClashRarity.EPIC, arena = ArenaType.ARENA_1, cost = 5, defaultCard = true)
 public class Prince extends RidingNpc {
 
 	public Prince(ClashGame game, ClashPlayer player, int level) {

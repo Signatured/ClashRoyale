@@ -42,6 +42,7 @@ public class SkinData {
 	}
 	
 	public ItemStack getSkull() {
+		System.out.println(key);
 		ItemStack skull = ItemBuilder.of(Material.SKULL_ITEM).data(3).build();
 		SkullMeta meta = (SkullMeta) skull.getItemMeta();
 		

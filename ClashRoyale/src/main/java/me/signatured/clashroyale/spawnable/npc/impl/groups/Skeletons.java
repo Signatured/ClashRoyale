@@ -7,7 +7,7 @@ import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.npc.GroupNpc;
 
-@GenerateCard(key = "GROUP_SKELETONS", name = "Skeletons", rarity = ClashRarity.COMMON, arena = ArenaType.ARENA_2, cost = 1)
+@GenerateCard(key = "GROUP_SKELETONS", name = "Skeletons", rarity = ClashRarity.COMMON, arena = ArenaType.ARENA_2, cost = 1, defaultCard = true)
 public class Skeletons extends GroupNpc {
 
 	public Skeletons(ClashGame game, ClashPlayer player, int level) {
