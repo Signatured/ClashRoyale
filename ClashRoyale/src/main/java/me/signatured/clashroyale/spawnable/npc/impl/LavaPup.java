@@ -1,7 +1,6 @@
 package me.signatured.clashroyale.spawnable.npc.impl;
 
-import org.bukkit.DyeColor;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 
@@ -60,22 +59,22 @@ public class LavaPup extends ClashNpc {
 	
 	@Override
 	public ItemStack getHelmet() {
-		return ItemBuilder.of(Material.LEATHER_CHESTPLATE).color(DyeColor.YELLOW).build();
+		return ItemBuilder.of(Material.LEATHER_CHESTPLATE).setLeatherArmorColor(Color.YELLOW).build();
 	}
 	
 	@Override
 	public ItemStack getChestplate() {
-		return ItemBuilder.of(Material.LEATHER_CHESTPLATE).color(DyeColor.YELLOW).build();
+		return ItemBuilder.of(Material.LEATHER_CHESTPLATE).setLeatherArmorColor(Color.YELLOW).build();
 	}
 	
 	@Override
 	public ItemStack getLeggings() {
-		return ItemBuilder.of(Material.LEATHER_LEGGINGS).color(DyeColor.YELLOW).build();
+		return ItemBuilder.of(Material.LEATHER_LEGGINGS).setLeatherArmorColor(Color.YELLOW).build();
 	}
 	
 	@Override
 	public ItemStack getBoots() {
-		return ItemBuilder.of(Material.LEATHER_BOOTS).color(DyeColor.YELLOW).build();
+		return ItemBuilder.of(Material.LEATHER_BOOTS).setLeatherArmorColor(Color.YELLOW).build();
 	}
 
 }

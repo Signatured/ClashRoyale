@@ -2,6 +2,7 @@ package me.signatured.clashroyale.spawnable.structure;
 
 import java.io.File;
 
+import me.signatured.clashroyale.util.schematic.*;
 import org.bukkit.Location;
 
 import lombok.Data;
@@ -12,8 +13,6 @@ import me.signatured.clashroyale.game.ClashGame;
 import me.signatured.clashroyale.spawnable.ClashRarity;
 import me.signatured.clashroyale.spawnable.ClashSpawnable;
 import me.signatured.clashroyale.spawnable.types.IClashStructure;
-import me.signatured.clashroyale.util.schematic.Schematic;
-import me.signatured.clashroyale.util.schematic.SchematicUtil;
 
 @Data
 @EqualsAndHashCode(callSuper=false)
@@ -21,7 +20,7 @@ public abstract class ClashStructure extends ClashSpawnable implements IClashStr
 		
 	private ClashRarity rarity;
 	private Location loc;
-	private Schematic schematic;
+	private Schem schematic;
 	private int level;
 	private int health;
 		
@@ -65,12 +64,12 @@ public abstract class ClashStructure extends ClashSpawnable implements IClashStr
 		return (int) ((getBaseHealth() * getLevelMultiplier()) + getBaseHealth());
 	}
 	
-	private File getSchematicFile() {
-		return new File(ClashRoyale.getInstance().getDataFolder() + "/" + getKey().toLowerCase() + ".schematic");
+	private String getSchematicName() {
+		return getKey().toLowerCase();
 	}
 	
-	private Schematic attemptLoadSchematic() throws Exception {
-		return SchematicUtil.load(getSchematicFile());
+	private Schem attemptLoadSchematic() throws Exception {
+		return Schem.loadSchematic(getSchematicName());
 	}
 	
 	private void loadSchematic() {

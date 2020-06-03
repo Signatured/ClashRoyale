@@ -1,7 +1,6 @@
 package me.signatured.clashroyale.spawnable.npc.impl;
 
-import org.bukkit.DyeColor;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 
@@ -72,17 +71,17 @@ public class RoyaleGiant extends ClashNpc {
 	
 	@Override
 	public ItemStack getChestplate() {
-		return ItemBuilder.of(Material.CHAINMAIL_CHESTPLATE).color(DyeColor.BLUE).build();
+		return ItemBuilder.of(Material.CHAINMAIL_CHESTPLATE).setLeatherArmorColor(Color.BLUE).build();
 	}
 	
 	@Override
 	public ItemStack getLeggings() {
-		return ItemBuilder.of(Material.CHAINMAIL_LEGGINGS).color(DyeColor.BLUE).build();
+		return ItemBuilder.of(Material.CHAINMAIL_LEGGINGS).setLeatherArmorColor(Color.BLUE).build();
 	}
 	
 	@Override
 	public ItemStack getBoots() {
-		return ItemBuilder.of(Material.CHAINMAIL_BOOTS).color(DyeColor.BLUE).build();
+		return ItemBuilder.of(Material.CHAINMAIL_BOOTS).setLeatherArmorColor(Color.BLUE).build();
 	}
 
 }

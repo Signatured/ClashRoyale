@@ -45,7 +45,7 @@ public class ClashListener implements Listener {
 	public void onCommand(PlayerCommandPreprocessEvent e) {
 		if (e.getMessage().contains("test")) {
 			ClashPlayer player1 = ClashPlayer.of("Signatured");
-			ClashPlayer player2 = ClashPlayer.of("Wolverine");
+			ClashPlayer player2 = ClashPlayer.of("Darius");
 			
 			ClashGame game = new ClashGame(player1, player2);
 			game.loadArena();

@@ -1,155 +1,293 @@
 package me.signatured.clashroyale.util.item;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.function.Consumer;
 
-import org.bukkit.DyeColor;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.LeatherArmorMeta;
-import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.inventory.meta.*;
 import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionType;
 
 public class ItemBuilder {
-	
-	private ItemStack item;
-	
-	public ItemBuilder(ItemStack item) {
-		this.item = item;
+
+	private ItemStack is;
+	/**
+	 * Create a new ItemBuilder from scratch.
+	 * @param m The material to create the ItemBuilder with.
+	 */
+	public ItemBuilder(Material m){
+		this(m, 1);
 	}
-	
-	public ItemBuilder(Material material) {
-		item = new ItemStack(material);
+	/**
+	 * Create a new ItemBuilder over an existing itemstack.
+	 * @param is The itemstack to create the ItemBuilder over.
+	 */
+	public ItemBuilder(ItemStack is){
+		this.is=is;
 	}
-	
-	public static ItemBuilder of(Material material) {
-		return new ItemBuilder(material);
+	/**
+	 * Create a new ItemBuilder from scratch.
+	 * @param m The material of the item.
+	 * @param amount The amount of the item.
+	 */
+	public ItemBuilder(Material m, int amount){
+		is= new ItemStack(m, amount);
 	}
-	
-	public static ItemBuilder of(ItemStack item) {
-		return new ItemBuilder(item);
+	/**
+	 * Create a new ItemBuilder from scratch.
+	 * @param m The material of the item.
+	 * @param amount The amount of the item.
+	 * @param durability The durability of the item.
+	 */
+	public ItemBuilder(Material m, int amount, byte durability){
+		is = new ItemStack(m, amount, durability);
 	}
-	
-	public ItemBuilder name(String name) {
-		editMeta(m -> m.setDisplayName(name));
+	/**
+	 * Clone the ItemBuilder into a new one.
+	 * @return The cloned instance.
+	 */
+	public ItemBuilder clone(){
+		return new ItemBuilder(is);
+	}
+	public static ItemBuilder of(Material m) {
+		return new ItemBuilder(m);
+	}
+	public static ItemBuilder of(ItemStack is) {
+		return new ItemBuilder(is);
+	}
+	public static ItemBuilder of(Material m, int amount) {
+		return new ItemBuilder(m, amount);
+	}
+	public static ItemBuilder of(Material m, int amount, byte durability) {
+		return new ItemBuilder(m, amount, durability);
+	}
+	/**
+	 * Change the durability of the item.
+	 * @param dur The durability to set it to.
+	 */
+	public ItemBuilder setDurability(short dur){
+		is.setDurability(dur);
 		return this;
 	}
-	
-	public ItemBuilder lore(List<String> lore) {
-		editMeta(m -> m.setLore(lore));
+	/**
+	 * Set the displayname of the item.
+	 * @param name The name to change it to.
+	 */
+	public ItemBuilder setName(String name){
+		ItemMeta im = is.getItemMeta();
+		im.setDisplayName(name);
+		is.setItemMeta(im);
 		return this;
 	}
-	
-	public ItemBuilder lore(String... lore) {
-		return lore(Arrays.asList(lore));
-	}
-	
-	public ItemBuilder type(Material type) {
-		item.setType(type);
+
+	/**
+	 * Set the amount of the item.
+	 * @param amount Amount to make item
+	 */
+	public ItemBuilder setAmount(int amount) {
+		is.setAmount(amount);
 		return this;
 	}
-	
-	public ItemBuilder durability(Number data) {
-		item.setDurability(data.shortValue());
+	public ItemBuilder addItemFlag(ItemFlag flag) {
+		ItemMeta im = is.getItemMeta();
+		im.addItemFlags(flag);
+		is.setItemMeta(im);
+
 		return this;
 	}
-	
-	public ItemBuilder data(Number data) {
-		return durability(data);
-	}
-	
-	public ItemBuilder amount(int amount) {
-		item.setAmount(amount);
-		return this;
-	}
-	
-	public ItemBuilder setSafeAmount(int amount) {
-		if (amount > item.getMaxStackSize())
-			return amount(item.getMaxStackSize());
-		if (amount < 1)
-			return amount(1);
-		return amount(amount);
-	}
-	
-	public ItemBuilder enchant(Enchantment enchant, int level) {
-		item.addEnchantment(enchant, level);
-		return this;
-	}
-	
-	public ItemBuilder enchant(Enchantment enchant) {
-		return enchant(enchant, 1);
-	}
-	
-	@SuppressWarnings("deprecation")
-	public ItemBuilder color(DyeColor color) {
-		switch (item.getType()) {
-		
-		case LEATHER_HELMET:
-		case LEATHER_CHESTPLATE:
-		case LEATHER_LEGGINGS:
-		case LEATHER_BOOTS:
-			LeatherArmorMeta meta = (LeatherArmorMeta) item.getItemMeta();
-			meta.setColor(color.getColor());
-			item.setItemMeta(meta);
-			break;
-		
-		case WOOL: 
-		case CARPET:
-		case STAINED_GLASS:
-		case STAINED_GLASS_PANE:
-			item.setDurability(color.getWoolData());
-			break;
-		case INK_SACK:
-		case STAINED_CLAY:
-		case CLAY:
-			item.setDurability(color.getDyeData());
-			break;
-		
-		default:
-			break;	
-		}
-		
-		return this;
-	}
-	
-	public ItemBuilder potion(PotionType type, boolean extended, boolean upgrade) {
-		if (item.getType() == Material.POTION || item.getType() == Material.LINGERING_POTION || item.getType() == Material.SPLASH_POTION) {
-			PotionMeta meta = (PotionMeta) item.getItemMeta();
-			meta.setBasePotionData(new PotionData(type, extended, upgrade));
-			
-			item.setItemMeta(meta);
-		}
-		
-		return this;
-	}
-	
 	public ItemBuilder hideEnchant() {
-		editMeta(m -> m.addItemFlags(ItemFlag.HIDE_ENCHANTS));
+		ItemMeta im = is.getItemMeta();
+		im.addEnchant(Enchantment.ARROW_DAMAGE, 1, true);
+		im.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+		is.setItemMeta(im);
 		return this;
 	}
-	
-	public ItemBuilder hideAttributes() {
-		editMeta(m -> m.addItemFlags(ItemFlag.HIDE_ATTRIBUTES));
+	public ItemBuilder hideAll() {
+		ItemMeta im = is.getItemMeta();
+		im.addItemFlags(ItemFlag.values());
+		is.setItemMeta(im);
+
 		return this;
 	}
-	
-	public ItemBuilder unbreakable() {
-		editMeta(m -> m.addItemFlags(ItemFlag.HIDE_UNBREAKABLE));
+	public ItemBuilder fakeEnchant() {
+		hideEnchant();
+		addUnsafeEnchantment(Enchantment.WATER_WORKER, 1);
 		return this;
 	}
-	
-	public ItemStack build() {
-		return item;
+	/**
+	 * Add an unsafe enchantment.
+	 * @param ench The enchantment to add.
+	 * @param level The level to put the enchant on.
+	 */
+	public ItemBuilder addUnsafeEnchantment(Enchantment ench, int level){
+		is.addUnsafeEnchantment(ench, level);
+		return this;
 	}
-	
-	private void editMeta(Consumer<ItemMeta> consumer) {
-		ItemMeta meta = item.getItemMeta();
-		consumer.accept(meta);
-		item.setItemMeta(meta);
+	/**
+	 * Remove a certain enchant from the item.
+	 * @param ench The enchantment to remove
+	 */
+	public ItemBuilder removeEnchantment(Enchantment ench){
+		is.removeEnchantment(ench);
+		return this;
+	}
+	/**
+	 * Set the skull owner for the item. Works on skulls only.
+	 * @param owner The name of the skull's owner.
+	 */
+	public ItemBuilder setSkullOwner(String owner){
+		try{
+			SkullMeta im = (SkullMeta)is.getItemMeta();
+			im.setOwner(owner);
+			is.setItemMeta(im);
+		}catch(ClassCastException expected){}
+		return this;
+	}
+	/**
+	 * Add an enchant to the item.
+	 * @param ench The enchant to add
+	 * @param level The level
+	 */
+	public ItemBuilder addEnchant(Enchantment ench, int level){
+		ItemMeta im = is.getItemMeta();
+		im.addEnchant(ench, level, true);
+		is.setItemMeta(im);
+		return this;
+	}
+	/**
+	 * Add multiple enchants at once.
+	 * @param enchantments The enchants to add.
+	 */
+	public ItemBuilder addEnchantments(Map<Enchantment, Integer> enchantments){
+		is.addEnchantments(enchantments);
+		return this;
+	}
+	/**
+	 * Sets infinity durability on the item by setting the durability to Short.MAX_VALUE.
+	 */
+	public ItemBuilder setInfinityDurability(){
+		is.setDurability(Short.MAX_VALUE);
+		return this;
+	}
+	/**
+	 * Re-sets the lore.
+	 * @param lore The lore to set it to.
+	 */
+	public ItemBuilder setLore(String... lore){
+		ItemMeta im = is.getItemMeta();
+		im.setLore(Arrays.asList(lore));
+		is.setItemMeta(im);
+		return this;
+	}
+	/**
+	 * Re-sets the lore.
+	 * @param lore The lore to set it to.
+	 */
+	public ItemBuilder setLore(List<String> lore) {
+		ItemMeta im = is.getItemMeta();
+		im.setLore(lore);
+		is.setItemMeta(im);
+		return this;
+	}
+	/**
+	 * Remove a lore line.
+	 * @param lore The lore to remove.
+	 */
+	public ItemBuilder removeLoreLine(String line){
+		ItemMeta im = is.getItemMeta();
+		List<String> lore = new ArrayList<>(im.getLore());
+		if(!lore.contains(line))return this;
+		lore.remove(line);
+		im.setLore(lore);
+		is.setItemMeta(im);
+		return this;
+	}
+	/**
+	 * Remove a lore line.
+	 * @param index The index of the lore line to remove.
+	 */
+	public ItemBuilder removeLoreLine(int index){
+		ItemMeta im = is.getItemMeta();
+		List<String> lore = new ArrayList<>(im.getLore());
+		if(index<0||index>lore.size())return this;
+		lore.remove(index);
+		im.setLore(lore);
+		is.setItemMeta(im);
+		return this;
+	}
+	/**
+	 * Add a lore line.
+	 * @param line The lore line to add.
+	 */
+	public ItemBuilder addLoreLine(String line){
+		ItemMeta im = is.getItemMeta();
+		List<String> lore = new ArrayList<>();
+		if(im.hasLore())lore = new ArrayList<>(im.getLore());
+		lore.add(line);
+		im.setLore(lore);
+		is.setItemMeta(im);
+		return this;
+	}
+	/**
+	 * Add a lore line.
+	 * @param line The lore line to add.
+	 * @param pos The index of where to put it.
+	 */
+	public ItemBuilder addLoreLine(String line, int pos){
+		ItemMeta im = is.getItemMeta();
+		List<String> lore = new ArrayList<>(im.getLore());
+		lore.set(pos, line);
+		im.setLore(lore);
+		is.setItemMeta(im);
+		return this;
+	}
+	/**
+	 * Sets the armor color of a leather armor piece. Works only on leather armor pieces.
+	 * @param color The color to set it to.
+	 */
+	public ItemBuilder setLeatherArmorColor(Color color){
+		try{
+			LeatherArmorMeta im = (LeatherArmorMeta)is.getItemMeta();
+			im.setColor(color);
+			is.setItemMeta(im);
+		}catch(ClassCastException expected){}
+		return this;
+	}
+
+	/**
+	 * Sets the potion meta of a potion. Works only on potions and splash potions.
+	 * @param type Type of potion to make it
+	 * @param extended If the potion should be extended (note some potions cannot be extended and upgraded)
+	 * @param upgraded If the potion should be upgraded (note some potions cannot be extended and upgraded)
+	 */
+	public ItemBuilder setPotionMeta(PotionType type, boolean extended, boolean upgraded) {
+		try {
+			PotionMeta meta = (PotionMeta) is.getItemMeta();
+			meta.setBasePotionData(new PotionData(type, extended, upgraded));
+			is.setItemMeta(meta);
+		} catch (ClassCastException e) {
+			e.printStackTrace();
+		}
+
+		return this;
+	}
+
+	public ItemBuilder unbreaking() {
+		ItemMeta meta = is.getItemMeta();
+		meta.setUnbreakable(true);
+		is.setItemMeta(meta);
+
+		return this;
+	}
+
+	/**
+	 * Retrieves the itemstack from the ItemBuilder.
+	 * @return The itemstack created/modified by the ItemBuilder instance.
+	 */
+	public ItemStack build(){
+		return is;
 	}
 }

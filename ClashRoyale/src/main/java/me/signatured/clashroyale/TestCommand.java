@@ -15,7 +15,7 @@ public class TestCommand extends Command {
 	@Override
 	public boolean execute(CommandSender sender, String arg1, String[] arg2) {
 		ClashPlayer player1 = ClashPlayer.of("Signatured");
-		ClashPlayer player2 = ClashPlayer.of("Wolverine");
+		ClashPlayer player2 = ClashPlayer.of("Darius");
 		
 		ClashGame game = new ClashGame(player1, player2);
 		game.loadArena();

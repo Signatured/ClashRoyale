@@ -33,10 +33,10 @@ public class PlayerCard {
 	
 	public ItemStack getSkull() {
 		SkinData data = SkinData.getData(card.getKey());
-		ItemBuilder ib = (data != null) ? ItemBuilder.of(data.getSkull()) : ItemBuilder.of(Material.SKULL_ITEM).data(3);
+		ItemBuilder ib = (data != null) ? ItemBuilder.of(data.getSkull()) : ItemBuilder.of(Material.PLAYER_HEAD);
 		
-		ib.name(card.getRarity().getColor() + card.getName() + " (" + card.getCost() + " Elixir)");
-		ib.lore(C.GRAY + "Right click in your", C.GRAY + "territory to place!");
+		ib.setName(card.getRarity().getColor() + card.getName() + " (" + card.getCost() + " Elixir)");
+		ib.setLore(C.GRAY + "Right click in your", C.GRAY + "territory to place!");
 		
 		return ib.build();
 	}

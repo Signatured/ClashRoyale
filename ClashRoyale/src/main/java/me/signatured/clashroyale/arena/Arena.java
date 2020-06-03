@@ -53,7 +53,7 @@ public class Arena {
 	private void findSigns() {
 		List<Block> signs = new ArrayList<>();
 		ClashUtil.loadChunks(new Location(world, -216, 64, -189), 30, c -> {
-			for (Block block : ClashUtil.findBlocks(c, Material.SIGN, Material.SIGN_POST, Material.WALL_SIGN))
+			for (Block block : ClashUtil.findBlocks(c, Material.OAK_SIGN, Material.OAK_WALL_SIGN))
 				if (!signs.contains(block))
 					signs.add(block);
 		});

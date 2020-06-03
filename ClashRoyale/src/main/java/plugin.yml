@@ -2,3 +2,10 @@ name: ClashRoyale
 version: 1.0
 main: me.signatured.clashroyale.ClashRoyale
 author: Signatured
+description: Clash Royale in MC
+api-version: 1.14
+
+commands:
+  test:
+    description: Test command
+    usage: /<command>

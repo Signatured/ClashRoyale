@@ -61,7 +61,7 @@ public class Lumberjack extends SkinnedNpc {
 	
 	@Override
 	public ItemStack getOffHand() {
-		return ItemBuilder.of(Material.POTION).potion(PotionType.INSTANT_DAMAGE, false, false).build();
+		return ItemBuilder.of(Material.POTION).setPotionMeta(PotionType.INSTANT_DAMAGE, false, false).build();
 	}
 
 }

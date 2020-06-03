@@ -1,45 +1,33 @@
 package me.signatured.clashroyale.util;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.EnumMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
-import java.util.function.Consumer;
-import java.util.stream.Collectors;
-
-import org.apache.commons.io.FileUtils;
-import org.bukkit.Bukkit;
+import com.mojang.authlib.properties.*;
+import me.signatured.clashroyale.*;
+import me.signatured.clashroyale.game.*;
+import me.signatured.clashroyale.mechanics.*;
+import me.signatured.clashroyale.spawnable.*;
+import me.signatured.clashroyale.spawnable.types.*;
+import me.signatured.clashroyale.util.task.*;
+import net.citizensnpcs.api.npc.NPC;
+import net.citizensnpcs.npc.skin.*;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.*;
+import net.minecraft.server.v1_14_R1.*;
 import org.bukkit.Chunk;
-import org.bukkit.ChunkSnapshot;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
-import org.bukkit.craftbukkit.v1_11_R1.CraftWorld;
-import org.bukkit.craftbukkit.v1_11_R1.entity.CraftPlayer;
-import org.bukkit.entity.Player;
-import org.bukkit.util.BlockIterator;
+import org.bukkit.block.*;
+import org.bukkit.craftbukkit.libs.org.apache.commons.io.FileUtils;
+import org.bukkit.craftbukkit.v1_14_R1.*;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.*;
+import org.bukkit.util.*;
 
-import com.mojang.authlib.properties.Property;
-
-import me.signatured.clashroyale.ClashPlayer;
-import me.signatured.clashroyale.game.ClashGame;
-import me.signatured.clashroyale.mechanics.SkinData;
-import me.signatured.clashroyale.spawnable.ClashSpawnable;
-import me.signatured.clashroyale.spawnable.types.IDamageableSpawnable;
-import me.signatured.clashroyale.spawnable.types.ILocatable;
-import me.signatured.clashroyale.util.task.Sync;
-import net.citizensnpcs.api.npc.NPC;
-import net.citizensnpcs.npc.skin.SkinnableEntity;
-import net.minecraft.server.v1_11_R1.BlockPosition;
-import net.minecraft.server.v1_11_R1.IBlockData;
-import net.minecraft.server.v1_11_R1.IChatBaseComponent;
-import net.minecraft.server.v1_11_R1.PacketPlayOutChat;
+import java.io.*;
+import java.util.*;
+import java.util.function.Consumer;
+import java.util.stream.*;
 
 public class ClashUtil {
 	
@@ -229,9 +217,7 @@ public class ClashUtil {
 	 * @param message Message to send in actionbar
 	 */
 	public static void actionbar(Player player, String message) {
-		IChatBaseComponent icbc = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + C.translate(message) + "\"}");
-		PacketPlayOutChat bar = new PacketPlayOutChat(icbc, (byte) 2);
-		((CraftPlayer) player).getHandle().playerConnection.sendPacket(bar);
+		player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
 	}
 	
 	/**
@@ -319,7 +305,7 @@ public class ClashUtil {
 		for (int x = 0; x != 16; x++)
 			for (int z = 0; z != 16; z++)
 				for (int y = 0; y != 256; y++) {
-					Material m = Material.getMaterial(chunk.getBlockTypeId(x, y, z));
+					Material m = chunk.getBlockType(x, y, z);
 					if (!checkMaterials || mats.contains(m)) {
 						int absX = chunk.getX() * 16 + x;
 						int absZ = chunk.getZ() * 16 + z;
@@ -357,13 +343,13 @@ public class ClashUtil {
 		int y = loc.getBlockY();
 		int z = loc.getBlockZ();
 		
-		net.minecraft.server.v1_11_R1.Chunk chunk = getChunk(world, x, z);
+		net.minecraft.server.v1_14_R1.Chunk chunk = getChunk(world, x, z);
         
         BlockPosition bp = new BlockPosition(x, y, z);
         
         int combined = type.getId() + (data << 12);
         
-        IBlockData ibd = net.minecraft.server.v1_11_R1.Block.getByCombinedId(combined);
+        IBlockData ibd = net.minecraft.server.v1_14_R1.Block.getByCombinedId(combined);
         
         Runnable change = () -> chunk.getWorld().setTypeAndData(bp, ibd, 2); // 2 == Dont update physics.
         
@@ -383,12 +369,12 @@ public class ClashUtil {
 	 * @param z Z coordinate
 	 * @return net.minecraft.server.v1_8_R3.Chunk
 	 */
-	public static net.minecraft.server.v1_11_R1.Chunk getChunk(org.bukkit.World world, int x, int z) {
+	public static net.minecraft.server.v1_14_R1.Chunk getChunk(org.bukkit.World world, int x, int z) {
 		
 		CraftWorld cw = (CraftWorld) world;
 		
-        net.minecraft.server.v1_11_R1.World w = cw.getHandle();
-        net.minecraft.server.v1_11_R1.Chunk chunk = w.getChunkAt(x >> 4, z >> 4);
+        net.minecraft.server.v1_14_R1.World w = cw.getHandle();
+        net.minecraft.server.v1_14_R1.Chunk chunk = w.getChunkAt(x >> 4, z >> 4);
         
 		return chunk;
 	}
@@ -440,5 +426,19 @@ public class ClashUtil {
 	 */
 	public static int random(int max) {
 		return RANDOM.nextInt(max);
+	}
+
+	/**
+	 * @param location Center location
+	 * @param distance Distance to check entities
+	 * @param entity What kind of entity we're looking for
+	 * @return List of nearby entities
+	 */
+	public static <T extends Entity> ArrayList<T> getEntitiesAround(Location location, double distance, Class<T> entity) {
+		ArrayList<T> entities = new ArrayList<>();
+		for (Entity e : location.getWorld().getEntities())
+			if (e.getLocation().distance(location) <= distance && entity.isAssignableFrom(e.getClass()))
+				entities.add((T) e);
+		return entities;
 	}
 }

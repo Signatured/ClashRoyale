@@ -1,19 +1,14 @@
 package me.signatured.clashroyale.mechanics;
 
-import java.util.List;
+import lombok.*;
+import me.signatured.clashroyale.*;
+import me.signatured.clashroyale.spawnable.*;
+import me.signatured.clashroyale.spawnable.structure.*;
+import me.signatured.clashroyale.spawnable.types.*;
+import me.signatured.clashroyale.util.*;
+import org.bukkit.*;
 
-import org.bukkit.Location;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import me.signatured.clashroyale.ClashPlayer;
-import me.signatured.clashroyale.spawnable.ClashSpawnable;
-import me.signatured.clashroyale.spawnable.structure.ClashStructure;
-import me.signatured.clashroyale.spawnable.types.IDamageableSpawnable;
-import me.signatured.clashroyale.util.ClashUtil;
-import me.signatured.clashroyale.util.ParticleBuilder;
-import net.minecraft.server.v1_11_R1.EnumParticle;
+import java.util.*;
 
 @Data
 public class ClashExplosion {
@@ -24,7 +19,7 @@ public class ClashExplosion {
 	private ExplosionSize explosionSize;
 	
 	public void expload(ClashPlayer damage, Location loc) {
-		ParticleBuilder.of(explosionSize.getParticle(), loc).send();
+		ParticleBuilder.of(explosionSize.getParticle()).location(loc).spawn();
 		List<ClashSpawnable> inRange = ClashUtil.getSpawnablesInRange(damage, loc, radius);
 		
 		for (ClashSpawnable s : inRange) {
@@ -37,10 +32,10 @@ public class ClashExplosion {
 	@Getter
 	@AllArgsConstructor
 	public enum ExplosionSize {
-		NORMAL(EnumParticle.EXPLOSION_NORMAL),
-		LARGE(EnumParticle.EXPLOSION_LARGE),
-		HUGE(EnumParticle.EXPLOSION_HUGE);
+		NORMAL(Particle.EXPLOSION_NORMAL),
+		LARGE(Particle.EXPLOSION_LARGE),
+		HUGE(Particle.EXPLOSION_HUGE);
 		
-		private EnumParticle particle;
+		private Particle particle;
 	}
 }

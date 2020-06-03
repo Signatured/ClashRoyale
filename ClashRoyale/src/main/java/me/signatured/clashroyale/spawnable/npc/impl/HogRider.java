@@ -61,7 +61,7 @@ public class HogRider extends RidingNpc {
 	
 	@Override
 	public ItemStack getMainHand() {
-		return ItemBuilder.of(Material.STONE_SPADE).build();
+		return ItemBuilder.of(Material.STONE_SHOVEL).build();
 	}
 
 }

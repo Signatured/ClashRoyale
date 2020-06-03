@@ -1,7 +1,6 @@
 package me.signatured.clashroyale.spawnable.npc.impl;
 
-import org.bukkit.DyeColor;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 
@@ -72,7 +71,7 @@ public class Bowler extends ClashNpc {
 	
 	@Override
 	public ItemStack getChestplate() {
-		return ItemBuilder.of(Material.LEATHER_CHESTPLATE).color(DyeColor.PURPLE).build();
+		return ItemBuilder.of(Material.LEATHER_CHESTPLATE).setLeatherArmorColor(Color.PURPLE).build();
 	}
 	
 	@Override
@@ -82,7 +81,7 @@ public class Bowler extends ClashNpc {
 	
 	@Override
 	public ItemStack getBoots() {
-		return ItemBuilder.of(Material.LEATHER_BOOTS).color(DyeColor.PURPLE).build();
+		return ItemBuilder.of(Material.LEATHER_BOOTS).setLeatherArmorColor(Color.PURPLE).build();
 	}
 
 }
