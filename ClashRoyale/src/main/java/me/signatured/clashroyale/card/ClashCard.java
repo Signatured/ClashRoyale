@@ -24,7 +24,10 @@ public class ClashCard {
 	public ClashSpawnable create(ClashPlayer player, ClashGame game, int level) {
 		try {
 			ClashSpawnable instance = (ClashSpawnable) spawnClass
-					.getConstructor(ClashPlayer.class, ClashGame.class, Integer.class).newInstance(player, game, level);
+					.getConstructor(ClashGame.class, ClashPlayer.class, int.class).newInstance(game, player, level);
+
+			instance.setKey(key);
+			instance.setName(name);
 			return instance;
 		} catch (Exception e) {
 			throw new RuntimeException(e);

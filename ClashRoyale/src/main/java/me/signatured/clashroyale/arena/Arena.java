@@ -1,13 +1,10 @@
 package me.signatured.clashroyale.arena;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
-import org.bukkit.WorldCreator;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.Sign;
@@ -38,9 +35,12 @@ public class Arena {
 	
 	public void loadWorld(ArenaWorld arenaWorld) {
 		int arenaId = id++;
-		
-		ClashUtil.copyWorld(arenaWorld.getWorld().getName(), "GAME_ARENA_" + arenaId, "uid.dat", "session.lock");
+
+		System.out.println("Copying world...");
+		ClashUtil.copyWorld("/root/prestonplayz/Personal/server/worlds/" + arenaWorld.getWorld().getName(), "/root/prestonplayz/Personal/server/worlds/GAME_ARENA_" + arenaId, "uid.dat", "session.lock");
+		System.out.println("World copied...");
 		world = Bukkit.createWorld(new WorldCreator("GAME_ARENA_" + arenaId));
+		System.out.println("World created! yayayayaya");
 		
 		findSigns();
 		finish();
@@ -51,8 +51,9 @@ public class Arena {
 	}
 	
 	private void findSigns() {
+		System.out.println("Looking for signs");
 		List<Block> signs = new ArrayList<>();
-		ClashUtil.loadChunks(new Location(world, -216, 64, -189), 30, c -> {
+		ClashUtil.loadChunks(new Location(world, 117, 105, 50), 10, c -> {
 			for (Block block : ClashUtil.findBlocks(c, Material.OAK_SIGN, Material.OAK_WALL_SIGN))
 				if (!signs.contains(block))
 					signs.add(block);
@@ -66,6 +67,7 @@ public class Arena {
 		Cuboid main2 = findCuboid("main", "2", signs);
 		Cuboid rightlane2 = findCuboid("rightlane", "2", signs);
 		Cuboid leftlane2 = findCuboid("leftlane", "2", signs);
+		System.out.println(leftlane2.getCorner1());
 		SpawnLocation spawn1 = getSpawn("1", signs);
 		SpawnLocation spawn2 = getSpawn("2", signs);
 		
@@ -74,10 +76,13 @@ public class Arena {
 		
 		for (Block sign : signs)
 			sign.setType(Material.AIR);
+
+		System.out.println("Found signs");
 	}
 	
 	private void finish() {
 		Sync.get().run(() -> {
+			System.out.println("loaded");
 			loaded = true;
 			
 			game.setArena(this);

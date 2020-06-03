@@ -45,6 +45,9 @@ public class SkinData {
 		System.out.println(key);
 		ItemStack skull = ItemBuilder.of(Material.PLAYER_HEAD).build();
 		SkullMeta meta = (SkullMeta) skull.getItemMeta();
+
+		if (uuid == null)
+			return skull;
 		
 		GameProfile profile = new GameProfile(UUID.fromString(uuid), name);
 		profile.getProperties().put("textures", new Property("textures", texture1, texture2));
